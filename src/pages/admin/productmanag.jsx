@@ -1,4 +1,4 @@
-import NavBar from "../../components/admin/NavBarAdmin";
+import NavBar from '../../components/admin/NavBarAdmin';
 
 function ProductManagement() {
   return (

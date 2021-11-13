@@ -1,10 +1,10 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ispotipo from "../../assets/isotipo.png";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ispotipo from '../../assets/isotipo.png';
 
 const ButtonAppBar = function () {
   return (
@@ -12,42 +12,42 @@ const ButtonAppBar = function () {
       <AppBar position="static">
         <Toolbar
           sx={{
-            bgcolor: "#ffffff",
+            bgcolor: '#ffffff',
             pl: {
-              md: "94px !important",
-              xs: "none",
+              md: '94px !important',
+              xs: 'none'
             },
             pr: {
-              md: "94px !important",
-              xs: "20px",
+              md: '94px !important',
+              xs: '20px'
             },
             height: {
-              md: "64px !important",
-              xs: "64px !important",
-            },
+              md: '64px !important',
+              xs: '64px !important'
+            }
           }}
         >
-          <IconButton sx={{ display: { xs: "block", md: "none" } }}>
+          <IconButton sx={{ display: { xs: 'block', md: 'none' } }}>
             <MenuIcon />
           </IconButton>
           <Box
             sx={{
-              display: "inline-flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignContent: "space-between",
+              display: 'inline-flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignContent: 'space-between'
             }}
           >
             <Box>
               <Button
                 variant="text"
                 sx={{
-                  bgcolor: "#ffffff",
-                  color: "#05B3B2",
-                  textTransform: "none",
-                  fontFamily: "Noto Sans, sans-serif",
-                  fontWeight: "Bold",
-                  fontSize: "1.25rem",
+                  bgcolor: '#ffffff',
+                  color: '#05B3B2',
+                  textTransform: 'none',
+                  fontFamily: 'Noto Sans, sans-serif',
+                  fontWeight: 'Bold',
+                  fontSize: '1.25rem'
                 }}
               >
                 Productos
@@ -55,12 +55,12 @@ const ButtonAppBar = function () {
               <Button
                 variant="text"
                 sx={{
-                  bgcolor: "#ffffff",
-                  color: "#05B3B2",
-                  textTransform: "none",
-                  fontFamily: "Noto Sans, sans-serif",
-                  fontWeight: "Bold",
-                  fontSize: "1.25rem",
+                  bgcolor: '#ffffff',
+                  color: '#05B3B2',
+                  textTransform: 'none',
+                  fontFamily: 'Noto Sans, sans-serif',
+                  fontWeight: 'Bold',
+                  fontSize: '1.25rem'
                 }}
               >
                 Cuentas
@@ -68,12 +68,12 @@ const ButtonAppBar = function () {
               <Button
                 variant="text"
                 sx={{
-                  bgcolor: "#ffffff",
-                  color: "#05B3B2",
-                  textTransform: "none",
-                  fontFamily: "Noto Sans, sans-serif",
-                  fontWeight: "Bold",
-                  fontSize: "1.25rem",
+                  bgcolor: '#ffffff',
+                  color: '#05B3B2',
+                  textTransform: 'none',
+                  fontFamily: 'Noto Sans, sans-serif',
+                  fontWeight: 'Bold',
+                  fontSize: '1.25rem'
                 }}
               >
                 Cifras
@@ -81,12 +81,12 @@ const ButtonAppBar = function () {
               <Button
                 variant="text"
                 sx={{
-                  bgcolor: "#ffffff",
-                  color: "#05B3B2",
-                  textTransform: "none",
-                  fontFamily: "Noto Sans, sans-serif",
-                  fontWeight: "Bold",
-                  fontSize: "1.25rem",
+                  bgcolor: '#ffffff',
+                  color: '#05B3B2',
+                  textTransform: 'none',
+                  fontFamily: 'Noto Sans, sans-serif',
+                  fontWeight: 'Bold',
+                  fontSize: '1.25rem'
                 }}
               >
                 Salir
@@ -95,14 +95,10 @@ const ButtonAppBar = function () {
 
             <Box
               sx={{
-                alignSelf: "flex-end",
+                alignSelf: 'flex-end'
               }}
             >
-              <img
-                src={ispotipo}
-                alt="Isotipo de la marca"
-                className="imagen"
-              />
+              <img src={ispotipo} alt="Isotipo de la marca" className="imagen" />
             </Box>
           </Box>
         </Toolbar>

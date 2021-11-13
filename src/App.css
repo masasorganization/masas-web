@@ -39,17 +39,17 @@ Gris: #666666 */
 /*Texto de las barras de las páginas*/
 .txt-title {
   color: #ffffff;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 1rem;
 }
 
 /*** Administrador ***/
 .admin-btn {
-  background-color: "#ffffff";
-  color: "#05B3B2";
-  font-family: "Noto Sans, sans-serif";
-  font-weight: "Bold";
-  font-size: "1.25rem";
+  background-color: '#ffffff';
+  color: '#05B3B2';
+  font-family: 'Noto Sans, sans-serif';
+  font-weight: 'Bold';
+  font-size: '1.25rem';
 }
 .imagen {
   height: 44px;
