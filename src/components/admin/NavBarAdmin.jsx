@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ispotipo from "../../assets/isotipo.png";
 
-function ButtonAppBar() {
+const ButtonAppBar = function () {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -101,14 +101,14 @@ function ButtonAppBar() {
               <img
                 src={ispotipo}
                 alt="Isotipo de la marca"
-                class="imagen"
-              ></img>
+                className="imagen"
+              />
             </Box>
           </Box>
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
 
 export default ButtonAppBar;
