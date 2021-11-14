@@ -47,7 +47,9 @@ function Products() {
                                         textTransform: 'none' }} label="Orgánico" />
                        </Tabs>
                    </AppBar>
-                   <CardProduct />
+                   <Grid item xs={12} md={4}>
+                        <CardProduct />
+                   </Grid>
                </Grid>
            </Grid>
         </div>
