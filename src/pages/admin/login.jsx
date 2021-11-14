@@ -4,7 +4,11 @@ import Box from '@mui/material/Box';
 import logo from '../../assets/logo.png';
 import fondo from '../../assets/svg-fondo.svg';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 // import Avatar from '@mui/material/Avatar';
+
+const texto1 = 'Inicia sesión en tu ';
+const texto2 = 'cuenta:';
 
 function Login() {
   return (
@@ -76,13 +80,39 @@ function Login() {
             </Box>
             {/* Texto de introducción */}
             <Box
+              display="flex"
+              flexDirection="row"
+              justifyContent="center"
               sx={{
                 // bgcolor: 'green',
                 pt: '36px',
                 pb: '48px'
               }}
             >
-              Inicia sesión en tu cuenta:
+              <Typography
+                variant="body1"
+                color="initial"
+                sx={{
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 300,
+                  fontSize: '1rem',
+                  whiteSpace: 'pre-wrap'
+                }}
+              >
+                {texto1}
+              </Typography>
+              <Typography
+                variant="body1"
+                color="initial"
+                sx={{
+                  fontFamily: 'Noto Sans, sans-serif',
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  color: '#FF4E00'
+                }}
+              >
+                {texto2}
+              </Typography>
             </Box>
             {/* Campos de Texto */}
             <Box
