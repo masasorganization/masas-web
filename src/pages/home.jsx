@@ -28,8 +28,8 @@ function Home() {
                                         ":hover": {
                                             bgcolor: '#ff823b'
                                         } }}>Ingreso Vendedor</Button>
-                        </Link>
-                    </nav>
+                    </Link>
+                </nav>
                 <Grid item xs={12}>
                     <img className="logo-home" src= {Logo} alt="logo másas" />
                 </Grid>
@@ -49,7 +49,7 @@ function Home() {
                                             xs: '1.1rem'
                                         },
                                         mt: {
-                                            md: '5rem',
+                                            md: '3rem',
                                             xs: '2rem'
                                         },
                                         b: {
@@ -99,12 +99,14 @@ function Home() {
                                     }
                                 },
                                 height: {
-                                    md: '6rem',
+                                    md: '7.2rem',
                                     xs: '4rem'
                                 }}}>
-                        <Link to="/">Contacto | </Link>
-                        <Link to="/politics"> Políticas | </Link>
-                        <Link to="/politics">Términos</Link>
+                        <div className="foot-home">
+                            <Link to="/">Contacto | </Link>
+                            <Link to="/politics"> Políticas | </Link>
+                            <Link to="/politics">Términos</Link>
+                        </div>
                     </Box>
                 </Grid>
             </Grid>

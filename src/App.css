@@ -26,12 +26,24 @@ Jalea de ciruela: #b70030*/
   margin-top: 8rem;
 }
 
-.btn-cat{
+.btn-cat {
   margin-left: auto;
   margin-right: auto;
 }
 
-.btn-cat>a{
+.btn-cat>a {
+  text-decoration: none;
+}
+
+.foot-home {
+  padding-top: 3rem;
+}
+
+.btn-exit {
+  text-align: center;
+}
+
+.btn-exit>a {
   text-decoration: none;
 }
 
@@ -40,6 +52,11 @@ Jalea de ciruela: #b70030*/
   background-color: #770047;
   margin-top: 0;
   padding: 0.3rem;
+  text-align: center;
+}
+
+.l-cat{
+  text-decoration: none;
 }
 /*Página pedidos-orders*/
 .tab-showOrders {
@@ -63,5 +80,5 @@ Jalea de ciruela: #b70030*/
 .txt-title{
   color: #ffffff;
   font-family: 'Nunito', sans-serif;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
