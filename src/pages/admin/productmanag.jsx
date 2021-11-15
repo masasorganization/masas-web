@@ -1,10 +1,12 @@
-function ProductManagement() {
-    return(
-        <div>
-            <h1>Aquí editas los productos</h1>
-        </div>
+import NavBar from "../../components/admin/NavBarAdmin";
 
-    );
+function ProductManagement() {
+  return (
+    <div>
+      <NavBar />
+      <h1 className="txt-title">Aquí editas los productos</h1>
+    </div>
+  );
 }
 
 export default ProductManagement;
