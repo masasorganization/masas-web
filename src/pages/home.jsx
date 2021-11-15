@@ -83,25 +83,25 @@ function Home() {
                     </Link>
                 </div>
                 <Grid item xs={12}>
-                    <Box sx={{ bgcolor: '#ff4e00',
-                                textAlign: 'center',
-                                mt: '5rem',
-                                a: {
-                                    textDecoration: 'none',
-                                    color: '#ffffff',
-                                    fontFamily: 'Noto Sans, sans-serif',
-                                    fontWeight: '700',
-                                    mt: '3rem'
-                                },
-                                ":hover": {
-                                    a: {
-                                        color: '#ff823b'
-                                    }
-                                },
-                                height: {
-                                    md: '7.2rem',
-                                    xs: '4rem'
-                                }}}>
+                    <Box position="static" sx={{ bgcolor: '#ff4e00',
+                                                textAlign: 'center',
+                                                mt: '5rem',
+                                                a: {
+                                                    textDecoration: 'none',
+                                                    color: '#ffffff',
+                                                    fontFamily: 'Noto Sans, sans-serif',
+                                                    fontWeight: '700',
+                                                    mt: '3rem'
+                                                },
+                                                ":hover": {
+                                                    a: {
+                                                        color: '#ff823b'
+                                                    }
+                                                },
+                                                height: {
+                                                    md: '7.2rem',
+                                                    xs: '6rem'
+                                                }}}>
                         <div className="foot-home">
                             <Link to="/">Contacto | </Link>
                             <Link to="/politics"> Políticas | </Link>

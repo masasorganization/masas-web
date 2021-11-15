@@ -3,10 +3,12 @@ import Button from '@mui/material/Button';
 
 function BtnExit() {
     return(
-        <div className="btn-exit">
+        <div className="btn-exit" position="static">
             <Link to="/">
                 <Button variant="contained" sx={{ bgcolor: '#c30500', 
                                 color: '#ffffff',
+                                boxShadow: '0',
+                                mt: '1rem',
                                 textTransform: 'none',
                                 width: '18rem',
                                 fontFamily: 'Noto Sans, sans-serif',

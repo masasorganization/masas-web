@@ -3,7 +3,7 @@
 Naranja principal: #ff4e00
 Morado principal: #770047
 Naranja claro: #ff823b
-Naranja oscuro: #c305000
+Naranja oscuro: #c30500
 Morado claro: #aa3d72
 Morado oscuro: #460020
 Crema de limón: #9bd816
@@ -58,12 +58,60 @@ Jalea de ciruela: #b70030*/
 .l-cat{
   text-decoration: none;
 }
+
+.box-selectPro {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-pay {
+  text-align: center;
+}
+
+.btn-pay>a{
+  text-decoration: none;
+}
+
+.btn-add {
+  text-align: center;
+}
+
+.icon-exp {
+  margin-left: auto;
+  margin-right: auto;
+}
 /*Página pedidos-orders*/
 .tab-showOrders {
   background-color: #9bd816;
   margin-top: 0;
   padding: 0.3rem;
 }
+
+.custom-order {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-order {
+  width: 4rem;
+  height: 4rem;
+  background-color: #ffcc00;
+}
+
+.delete-order {
+  width: 4rem;
+  height: 4rem;
+  background-color: #c30500;
+}
+
+.btn-ok {
+  text-align: center;
+}
+
+.btn-ok>a {
+  text-decoration: none;
+}
+
 /*Página solicitud contraentrega-deliveryreq*/
 .tab-showDelForm {
   background-color: #b70030;
@@ -81,4 +129,5 @@ Jalea de ciruela: #b70030*/
   color: #ffffff;
   font-family: 'Nunito', sans-serif;
   font-size: 1.15rem;
+  text-align: center;
 }

@@ -3,11 +3,12 @@ import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CardProduct from '../../components/client/CardProduct';
+import BtnExit from '../../components/client/BtnExit';
 
 function Products() {
     return(
         <div>
-           <Grid container>
+           <Grid spacing={4} container>
                <Grid item xs={12} md={12}>
                    <AppBar sx={{ boxShadow: '0' }} position="static">
                        <Tabs sx={{ bgcolor: '#ff4e00',
@@ -47,10 +48,19 @@ function Products() {
                                         textTransform: 'none' }} label="Orgánico" />
                        </Tabs>
                    </AppBar>
-                   <Grid item xs={12} md={4}>
-                        <CardProduct />
-                   </Grid>
                </Grid>
+               <Grid item xs={12} md={4}>
+                        <CardProduct />
+                </Grid>
+               <Grid item xs={12} md={4}>
+                        <CardProduct />
+                </Grid>
+               <Grid item xs={12} md={4}>
+                        <CardProduct />
+                </Grid>
+                <Grid item xs={12} md={12}>
+                    <BtnExit />
+                </Grid>
            </Grid>
         </div>
     );
