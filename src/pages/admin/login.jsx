@@ -4,8 +4,11 @@ import Box from '@mui/material/Box';
 import logo from '../../assets/logo.png';
 import fondo from '../../assets/svg-fondo.svg';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-// import Avatar from '@mui/material/Avatar';
+import { styled } from '@mui/material/styles';
+
+// Contenedores de Texto
+const Resaltado = styled('p')``;
+const Cuerpo = styled('p')``;
 
 const texto1 = 'Inicia sesión en tu ';
 const texto2 = 'cuenta:';
@@ -79,6 +82,7 @@ function Login() {
               />
             </Box>
             {/* Texto de introducción */}
+            {/* Contenedor del Texto */}
             <Box
               display="flex"
               flexDirection="row"
@@ -89,30 +93,36 @@ function Login() {
                 pb: '48px'
               }}
             >
-              <Typography
-                variant="body1"
-                color="initial"
+              {/* Cuerpo del texto Nunito */}
+              <Cuerpo
+                alignCenter
                 sx={{
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 300,
                   fontSize: '1rem',
-                  whiteSpace: 'pre-wrap'
+                  whiteSpace: 'pre-wrap',
+                  m: 0,
+                  letterSpacing: '1.25px',
+                  lineHeight: '1rem'
                 }}
               >
                 {texto1}
-              </Typography>
-              <Typography
-                variant="body1"
-                color="initial"
+              </Cuerpo>
+              {/* Texto resaltado Noto */}
+              <Resaltado
+                alignCenter
                 sx={{
                   fontFamily: 'Noto Sans, sans-serif',
                   fontWeight: 700,
                   fontSize: '1rem',
-                  color: '#FF4E00'
+                  color: '#FF4E00',
+                  m: 0,
+                  letterSpacing: '1.25px',
+                  lineHeight: '14px'
                 }}
               >
                 {texto2}
-              </Typography>
+              </Resaltado>
             </Box>
             {/* Campos de Texto */}
             <Box
@@ -125,16 +135,8 @@ function Login() {
                 id="standard-basic"
                 label="Nombre de usuario"
                 variant="standard"
-                // value={''}
-                // onChange={''}
               />
-              <TextField
-                id="standard-basic"
-                label="Contraseña"
-                variant="standard"
-                // value={''}
-                // onChange={''}
-              />
+              <TextField id="standard-basic" label="Contraseña" variant="standard" />
             </Box>
             <Box
               sx={{
