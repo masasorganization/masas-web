@@ -95,7 +95,6 @@ function Login() {
             >
               {/* Cuerpo del texto Nunito */}
               <Cuerpo
-                alignCenter
                 sx={{
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 300,
@@ -110,7 +109,6 @@ function Login() {
               </Cuerpo>
               {/* Texto resaltado Noto */}
               <Resaltado
-                alignCenter
                 sx={{
                   fontFamily: 'Noto Sans, sans-serif',
                   fontWeight: 700,
@@ -132,11 +130,23 @@ function Login() {
               }}
             >
               <TextField
-                id="standard-basic"
+                id="username"
+                helperText="Ingrese su nombre de usuario"
                 label="Nombre de usuario"
                 variant="standard"
+                sx={{
+                  fontFamily: 'Noto Sans, sans-serif',
+                  fontSize: '1rem',
+                  color: '#AEAEAE',
+                  fontWeight: 400
+                }}
               />
-              <TextField id="standard-basic" label="Contraseña" variant="standard" />
+              <TextField
+                helperText="Ingrese su contraseña"
+                id="password"
+                label="Contraseña"
+                variant="standard"
+              />
             </Box>
             <Box
               sx={{
