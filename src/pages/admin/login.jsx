@@ -2,9 +2,12 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import imagenLogo from '../../assets/logo.png';
+import imagenLogoAlt from '../../assets/logoAlt.png';
 import imagenFondo from '../../assets/svg-fondo.svg';
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import { Link } from 'react-router-dom';
 
 // Contenedores de Texto
 const Resaltado = styled('p')``;
@@ -41,13 +44,7 @@ function Login() {
             {/* Contenedor del logo */}
             <Box display="flex" sx={{ ...contenedorLogo }}>
               {/* logo */}
-              <Box
-                alignSelf="center"
-                component="img"
-                srcSet={imagenLogo}
-                alt="logo"
-                sx={{ ...logo }}
-              />
+              <Box component={Link} alignSelf="center" sx={{ ...logo }} to="/" />
             </Box>
             {/* Texto de introducción */}
             {/* Contenedor del Texto */}
@@ -57,7 +54,7 @@ function Login() {
               justifyContent="center"
               sx={{
                 pt: '36px',
-                pb: '48px'
+                mb: '28px'
               }}
             >
               {/* Cuerpo del texto Nunito */}
@@ -66,34 +63,39 @@ function Login() {
               <Resaltado sx={{ ...resaltado }}>{texto2}</Resaltado>
             </Box>
             {/* Campos de Texto */}
-            <Box sx={{ height: '103px' }}>
-              <TextField
-                sx={{ ...formulario }}
-                id="username"
-                helperText="Ingrese su nombre de usuario"
-                label="Nombre de usuario"
-                variant="standard"
-              />
-              <TextField
-                helperText="Ingrese su contraseña"
-                id="password"
-                label="Contraseña"
-                variant="standard"
-                sx={{
-                  MuiFormHelperText: {
-                    fontSize: '5rem'
-                  }
-                }}
-              />
-            </Box>
+            <Grid container>
+              <Grid item xs={12} sx={{ mb: '20px' }}>
+                <TextField
+                  id="username"
+                  //helperText="Ingrese su nombre de usuario"
+                  label="Nombre de usuario"
+                  variant="standard"
+                  sx={{ ...formulario }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  //helperText="Ingrese su contraseña"
+                  id="password"
+                  label="Contraseña"
+                  variant="standard"
+                  sx={{ ...formulario }}
+                />
+              </Grid>
+            </Grid>
             <Box
               sx={{
                 // bgcolor: 'violet',
-                pt: '48px',
-                pb: '36px'
+                mt: '56px',
+                mb: '36px'
               }}
             >
-              <Button variant="contained" color="primary">
+              <Button
+                disableElevation
+                variant="contained"
+                color="primary"
+                sx={{ ...botonLogin }}
+              >
                 Inicio
               </Button>
             </Box>
@@ -106,7 +108,7 @@ function Login() {
 
 export default Login;
 
-// Estilos como variables (constantes 🥴)
+// Estilos como variables (¿constantes? 🥴)
 
 const fondo = {
   bgcolor: '#05B3B2',
@@ -120,7 +122,7 @@ const fondo = {
 };
 
 const recubrimientoFondo = {
-  bgcolor: '#05B3B280',
+  bgcolor: '#05B3B240',
   height: '100vh',
   width: '100vw',
   p: 0,
@@ -144,7 +146,14 @@ const contenedorLogo = {
 const logo = {
   mx: 'auto',
   height: '288px',
-  width: '267px'
+  width: '267px',
+  backgroundImage: `url(${imagenLogo})`,
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  ':hover': {
+    backgroundImage: `url(${imagenLogoAlt})`
+  }
 };
 
 const cuerpo = {
@@ -168,9 +177,39 @@ const resaltado = {
 };
 
 const formulario = {
+  '& .MuiInput-input': {
+    color: '#00928e',
+    fontFamily: 'Nunito, sans-serif',
+    fontWeight: 300,
+    fontSize: '1rem',
+    letterSpacing: '1px'
+  },
+  '& .MuiInputLabel-root': {
+    fontFamily: 'Noto Sans, sans-serif',
+    fontSize: '1rem',
+    fontWeight: 400,
+    letterSpacing: '0.3px',
+    '&.Mui-focused': {
+      color: '#00928e'
+    }
+  },
+  '& .MuiInput-root': {
+    '&:after': {
+      borderBottom: '2px solid #00928e'
+    }
+  }
+};
+
+const botonLogin = {
+  backgroundColor: '#05B3B2',
+  borderRadius: '10px',
+  width: '278px',
+  height: '39px',
+  textTransform: 'none',
   fontFamily: 'Noto Sans, sans-serif',
-  fontSize: '1rem',
-  color: '#AEAEAE',
-  fontWeight: 400,
-  letterSpacing: '5.25px'
+  fontWeight: '700',
+  fontSize: '1.125rem',
+  '&:hover': {
+    backgroundColor: '#00928e'
+  }
 };
