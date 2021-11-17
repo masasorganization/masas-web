@@ -152,7 +152,9 @@ const logo = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   ':hover': {
-    backgroundImage: `url(${imagenLogoAlt})`
+    transition: 'transform .2s',
+    backgroundImage: `url(${imagenLogoAlt})`,
+    transform: 'scale(1.007)'
   }
 };
 
