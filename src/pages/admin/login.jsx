@@ -178,7 +178,6 @@ const resaltado = {
 
 const formulario = {
   '& .MuiInput-input': {
-    color: '#00928e',
     fontFamily: 'Nunito, sans-serif',
     fontWeight: 300,
     fontSize: '1rem',
