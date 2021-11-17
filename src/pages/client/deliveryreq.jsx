@@ -13,21 +13,21 @@ function DeliveryRequest() {
                     </div>
                 </Grid>
                 <Grid item xs={12} md={12}>
-            <Typography sx={{  mt: '1rem',
-                                ml: '1rem',
-                                fontFamily: 'Nunito, sans-serif',
-                                fontSize: '1.2rem', }}>
-                <Typography sx={{ fontWeight: '700'}} h3>
-                    Formulario de datos
-                </Typography>
-                <Typography sx={{ color: '#c30500' }} h4>
-                    * Campo de datos obligatorio
-                </Typography>
-            </Typography>
+                    <Typography sx={{  mt: '1rem',
+                                        ml: '1rem',
+                                        fontFamily: 'Nunito, sans-serif',
+                                        fontSize: '1.2rem', }}>
+                        <Typography sx={{ fontWeight: '700'}} h3>
+                            Formulario de datos
+                        </Typography>
+                        <Typography sx={{ color: '#c30500' }} h4>
+                            * Campo de datos obligatorio
+                        </Typography>
+                    </Typography>
                 </Grid>
-		<Grid item xs={12} md={12}>
-		<FormClient />
-		</Grid>
+                <Grid item xs={12} md={12}>
+                    <FormClient />
+                </Grid>
                 <Grid item xs={12} md={12}>
                     <BtnExit />
                 </Grid>

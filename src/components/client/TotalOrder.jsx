@@ -25,9 +25,10 @@ function TotalOrder() {
             </Box>
             <div className="btn-ok">
                 <Link to="/deliveryreq">
-                    <Button variant="contained" sx={{ bgcolor: '#ff4e00', 
+                    <Button sx={{ bgcolor: '#ff4e00', 
                                         color: '#ffffff',
                                         textTransform: 'none',
+                                        borderRadius: '10px',
                                         boxShadow: '0',
                                         mt: '1rem',
                                         width: '18rem',
@@ -38,7 +39,7 @@ function TotalOrder() {
                                         },
                                         fontWeight: '700',
                                         ":hover": {
-                                            bgcolor: '#ff823b' 
+                                            bgcolor: '#9bd816' 
                                         } }}>Ok</Button>
                 </Link>
             </div>

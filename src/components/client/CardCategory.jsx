@@ -29,6 +29,9 @@ function CardCategory() {
                                             textAlign: 'center',
                                             fontWeight: '700',
                                             mt: '5rem',
+                                            ":hover": {
+                                                color: '#ff823b'
+                                            },
                                             fontSize: {
                                                 md: '1.8rem',
                                                 xs: '1.2rem'
@@ -45,6 +48,9 @@ function CardCategory() {
                             sx={{ color: '#ffffff',
                                     fontSize: '1.7rem',
                                     fontWeight: '700',
+                                    ":hover": {
+                                        color: '#460020'
+                                    },
                                     ml: 'auto',
                                     mr: 'auto',
                                     mb: '3rem' }} />

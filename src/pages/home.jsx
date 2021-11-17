@@ -69,6 +69,7 @@ function Home() {
                                             xs: '18rem',
                                         },
                                         borderRadius: '10px',
+                                        boxShadow: '0',
                                         color: '#ffffff',
                                         textTransform: 'none',
                                         fontFamily: 'Noto Sans, sans-serif',
@@ -99,7 +100,7 @@ function Home() {
                                                     }
                                                 },
                                                 height: {
-                                                    md: '7.2rem',
+                                                    md: '7.8rem',
                                                     xs: '6rem'
                                                 }}}>
                         <div className="foot-home">
@@ -107,6 +108,8 @@ function Home() {
                             <Link to="/politics"> Políticas | </Link>
                             <Link to="/politics">Términos</Link>
                         </div>
+                        <Typography sx={{ color: '#ff823b',
+                                            mt: '0.5rem' }} h5>©má sas 2021</Typography>
                     </Box>
                 </Grid>
             </Grid>

@@ -124,6 +124,22 @@ Jalea de ciruela: #b70030*/
   margin-top: 0;
   padding: 0.3rem;
 }
+
+.btn-edit {
+  text-align: center;
+}
+
+.btn-edit>a{
+  text-decoration: none;
+}
+
+.btn-download {
+  text-align: center;
+}
+
+.btn-download>a{
+  text-decoration: none;
+}
 /*Texto de las barras de las páginas*/
 .txt-title{
   color: #ffffff;

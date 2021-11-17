@@ -79,10 +79,12 @@ function CardProduct() {
                                 harina de maíz, harina de avena sin gluten, levadura orgánica y sal marina.
                             </Typography>
                             <div className="btn-add">
-                                <Button variant="contained" sx={{ bgcolor: '#ff823b',
+                                <Button sx={{ bgcolor: '#ff823b',
                                                                 textTransform: 'none',
                                                                 width: '18rem',
                                                                 mt: '1rem',
+                                                                color: '#ffffff',
+                                                                borderRadius: '10px',
                                                                 boxShadow: '0',
                                                                 fontFamily: 'Noto Sans, sans-serif',
                                                                 fontSize: {
@@ -91,7 +93,7 @@ function CardProduct() {
                                                                 },
                                                                 fontWeight: '700',
                                                                 ":hover": {
-                                                                    bgcolor: 'blue' 
+                                                                    bgcolor: '#ff4e00' 
                                                                 }}}>Añadir</Button>
                             </div>
                         </CardContent>
@@ -110,9 +112,11 @@ function CardProduct() {
                 </CardActions>
                 <div className="btn-pay">
                     <Link to="/orders">
-                        <Button variant="contained" sx={{ bgcolor: '#9bd816',
+                        <Button sx={{ bgcolor: '#9bd816',
                                                             textTransform: 'none',
                                                             width: '18rem',
+                                                            color: '#ffffff',
+                                                            borderRadius: '10px',
                                                             boxShadow: '0',
                                                             fontFamily: 'Noto Sans, sans-serif',
                                                             fontSize: {
@@ -121,7 +125,7 @@ function CardProduct() {
                                                             },
                                                             fontWeight: '700',
                                                             ":hover": {
-                                                                bgcolor: 'blue' 
+                                                                bgcolor: '#ff4e00' 
                                                             },
                                                             mt: '1rem'}}>Pagar</Button>
                     </Link>
