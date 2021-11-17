@@ -85,7 +85,6 @@ function Login() {
             </Grid>
             <Box
               sx={{
-                // bgcolor: 'violet',
                 mt: '56px',
                 mb: '36px'
               }}
