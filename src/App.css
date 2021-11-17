@@ -7,10 +7,7 @@ Naranja oscuro: #c305000
 Morado claro: #aa3d72
 Morado oscuro: #460020
 Crema de limón: #9bd816
-Jalea de ciruela: #b70030
-Azulado: #05B3B2
-Blanco: #ffffff
-Gris: #666666 */
+Jalea de ciruela: #b70030*/
 
 /*Página categoría-categories*/
 .tab-showCategory {
@@ -37,25 +34,8 @@ Gris: #666666 */
   padding: 0.3rem;
 }
 /*Texto de las barras de las páginas*/
-.txt-title {
+.txt-title{
   color: #ffffff;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 1rem;
 }
-
-/*** Administrador ***/
-.admin-btn {
-  background-color: "#ffffff";
-  color: "#05B3B2";
-  font-family: "Noto Sans, sans-serif";
-  font-weight: "Bold";
-  font-size: "1.25rem";
-}
-.imagen {
-  height: 44px;
-  width: 47px;
-}
-.prueba {
-  display: flex !important;
-}
-/*** FIN Administrador ***/
