@@ -74,6 +74,7 @@ function Login() {
             <Grid container>
               <Grid item xs={12} sx={{ mb: "20px" }}>
                 <TextField
+                  required
                   onChange={(text) => setBotonActivo(!text.target.value)}
                   id="username"
                   //helperText="Ingrese su nombre de usuario"
@@ -85,10 +86,12 @@ function Login() {
               <Grid item xs={12}>
                 <TextField
                   //helperText="Ingrese su contraseña"
+                  required
                   onChange={(text) => setBotonActivo(!text.target.value)}
                   id="password"
                   label="Contraseña"
                   variant="standard"
+                  type="password"
                   sx={{ ...formulario }}
                 />
               </Grid>
