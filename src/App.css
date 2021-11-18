@@ -15,7 +15,7 @@ Jalea de ciruela: #b70030*/
   margin-top: 0.5rem;
 }
 
-.nav-home>a{
+.nav-home > a {
   text-decoration: none;
 }
 
@@ -30,7 +30,7 @@ Jalea de ciruela: #b70030*/
   text-align: center;
 }
 
-.btn-client>a {
+.btn-client > a {
   text-decoration: none;
 }
 
@@ -46,7 +46,7 @@ Jalea de ciruela: #b70030*/
   text-align: center;
 }
 
-.l-cat{
+.l-cat {
   text-decoration: none;
 }
 
@@ -80,9 +80,9 @@ Jalea de ciruela: #b70030*/
 }
 
 /*Texto de las barras de las páginas*/
-.txt-title{
+.txt-title {
   color: #ffffff;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 1.15rem;
   text-align: center;
 }

@@ -1,22 +1,22 @@
-import './App.css';
+import "./App.css";
 //Se importan las rutas de las vistas para conectar con rutas
-import Home from 'pages/home';
-import Categories from 'pages/client/categories';
-import Products from 'pages/client/products';
-import Orders from 'pages/client/orders';
-import DeliveryRequest from 'pages/client/deliveryreq';
-import DeliveryConfirm from 'pages/client/deliveryconf';
-import Politics from 'pages/client/politics';
-import Login from 'pages/admin/login';
-import Welcome from 'pages/admin/welcome';
-import ProductManagement from 'pages/admin/productmanag';
-import SellerManagement from 'pages/admin/sellermanag';
-import SalesReport from 'pages/admin/salesrep';
-import Report from 'pages/admin/report';
-import OrdersClient from 'pages/admin/ordersclient';
-import Registry from 'pages/admin/registry';
+import Home from "pages/home";
+import Categories from "pages/client/categories";
+import Products from "pages/client/products";
+import Orders from "pages/client/orders";
+import DeliveryRequest from "pages/client/deliveryreq";
+import DeliveryConfirm from "pages/client/deliveryconf";
+import Politics from "pages/client/politics";
+import Login from "pages/admin/login";
+import Welcome from "pages/admin/welcome";
+import ProductManagement from "pages/admin/productmanag";
+import SellerManagement from "pages/admin/sellermanag";
+import SalesReport from "pages/admin/salesrep";
+import Report from "pages/admin/report";
+import OrdersClient from "pages/admin/ordersclient";
+import Registry from "pages/admin/registry";
 //Se importa React-Router-Dom
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
