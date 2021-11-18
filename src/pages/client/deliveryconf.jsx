@@ -2,7 +2,8 @@ import Grid from '@mui/material/Grid';
 import DataClient from '../../components/client/DataClient';
 import DataPdf from '../../components/client/DataPdf';
 import Typography from '@mui/material/Typography';
-import BtnExit from '../../components/client/BtnExit';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 function DeliveryConfirm() {
     return(
@@ -43,7 +44,28 @@ function DeliveryConfirm() {
                 </Grid>
             </Grid>
             <Grid item xs={12} md={12}>
-                <BtnExit />
+                <div className="btn-client">
+                    <Link to="/">
+                        <Button sx={{ border: '2px solid #ff4e00', 
+                                    color: '#ff4e00',
+                                    borderRadius: '10px',
+                                    boxShadow: '0',
+                                    mt: '1rem',
+                                    textTransform: 'none',
+                                    width: '18rem',
+                                    fontFamily: 'Noto Sans, sans-serif',
+                                    fontSize: {
+                                        md: '1.1rem',
+                                        xs: '1rem'
+                                    },
+                                    fontWeight: '700',
+                                    ":hover": {
+                                        bgcolor: '#770047',
+                                        color: '#ffffff',
+                                        border: '0'
+                                    } }}>Inicio</Button>
+                    </Link>
+                </div>
             </Grid>
         </div>
     );

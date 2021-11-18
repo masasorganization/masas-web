@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -11,7 +11,7 @@ function BtnExit() {
     const closeModal = () => setOpen(false);
 
     return(
-        <div className="btn-exit" position="static">
+        <div className="btn-client" position="static">
             <Button onClick={openModal} sx={{ bgcolor: '#c30500', 
                             color: '#ffffff',
                             borderRadius: '10px',
@@ -50,7 +50,7 @@ function BtnExit() {
                                         mb: '2rem' }} id="description-modal">Tu progreso se eliminará</Typography>
                     <Box sx={{ display: 'flex',
                                 flexDirection: 'column'}} >
-                        <div className="btn-exit">
+                        <div className="btn-client">
                             <Button onClick={closeModal} sx={{ bgcolor: '#ff4e00',
                                             color: '#ffffff',
                                             borderRadius: '10px',

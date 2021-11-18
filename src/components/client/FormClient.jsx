@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
 function FormClient() {
+    //Documento de identificación
     const idclient = [
         { value: 'Cédula de ciudadanía', label: 'CC'}, 
         { value: 'Cédula de extranjería', label: 'CE'},
@@ -18,6 +19,7 @@ function FormClient() {
         { value: 'Nit empresarial', label: 'NIT'},
         { value: 'Pasaporte', label: 'P'},
     ];
+    //Variables para gestionar idioma de fecha
     const localeMap = { es: esLocale };
     const date = { es: '__/__/____' };
     const [locale] = React.useState('es');
@@ -77,7 +79,7 @@ function FormClient() {
                     </LocalizationProvider>
                 </Box>
             </Box>
-            <div className="btn-ok">
+            <div className="btn-client">
                 <Link to="/deliveryconf">
                     <Button sx={{ bgcolor: '#ff4e00', 
                                     color: '#ffffff',

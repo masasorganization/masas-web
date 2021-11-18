@@ -26,25 +26,16 @@ Jalea de ciruela: #b70030*/
   margin-top: 8rem;
 }
 
-.btn-cat {
-  margin-left: auto;
-  margin-right: auto;
+.btn-client {
+  text-align: center;
 }
 
-.btn-cat>a {
+.btn-client>a {
   text-decoration: none;
 }
 
 .foot-home {
   padding-top: 3rem;
-}
-
-.btn-exit {
-  text-align: center;
-}
-
-.btn-exit>a {
-  text-decoration: none;
 }
 
 /*Página categoría-categories*/
@@ -64,18 +55,6 @@ Jalea de ciruela: #b70030*/
   flex-direction: row;
 }
 
-.btn-pay {
-  text-align: center;
-}
-
-.btn-pay>a{
-  text-decoration: none;
-}
-
-.btn-add {
-  text-align: center;
-}
-
 .icon-exp {
   margin-left: auto;
   margin-right: auto;
@@ -85,31 +64,6 @@ Jalea de ciruela: #b70030*/
   background-color: #9bd816;
   margin-top: 0;
   padding: 0.3rem;
-}
-
-.custom-order {
-  display: flex;
-  flex-direction: column;
-}
-
-.edit-order {
-  width: 4rem;
-  height: 4rem;
-  background-color: #ffcc00;
-}
-
-.delete-order {
-  width: 4rem;
-  height: 4rem;
-  background-color: #c30500;
-}
-
-.btn-ok {
-  text-align: center;
-}
-
-.btn-ok>a {
-  text-decoration: none;
 }
 
 /*Página solicitud contraentrega-deliveryreq*/
@@ -125,21 +79,6 @@ Jalea de ciruela: #b70030*/
   padding: 0.3rem;
 }
 
-.btn-edit {
-  text-align: center;
-}
-
-.btn-edit>a{
-  text-decoration: none;
-}
-
-.btn-download {
-  text-align: center;
-}
-
-.btn-download>a{
-  text-decoration: none;
-}
 /*Texto de las barras de las páginas*/
 .txt-title{
   color: #ffffff;

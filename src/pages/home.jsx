@@ -61,28 +61,30 @@ function Home() {
                         en pro de tu bienestar</p>
                     </Typography>
                 </Grid>
-                <div className="btn-cat">
-                    <Link to="/categories">
-                        <Button sx={{ bgcolor: '#770047',
-                                        width: {
-                                            md: '22rem',
-                                            xs: '18rem',
-                                        },
-                                        borderRadius: '10px',
-                                        boxShadow: '0',
-                                        color: '#ffffff',
-                                        textTransform: 'none',
-                                        fontFamily: 'Noto Sans, sans-serif',
-                                        fontSize: {
-                                            md: '1.1rem',
-                                            xs: '1rem',
-                                        },
-                                        fontWeight: '700',
-                                        ":hover": {
-                                            bgcolor: '#aa3d72'
-                                        } }}>Conoce nuestros productos</Button>
-                    </Link>
-                </div>
+                <Grid xs={12}>
+                    <div className="btn-client">
+                        <Link to="/categories">
+                            <Button sx={{ bgcolor: '#770047',
+                                            width: {
+                                                md: '22rem',
+                                                xs: '18rem',
+                                            },
+                                            borderRadius: '10px',
+                                            boxShadow: '0',
+                                            color: '#ffffff',
+                                            textTransform: 'none',
+                                            fontFamily: 'Noto Sans, sans-serif',
+                                            fontSize: {
+                                                md: '1.1rem',
+                                                xs: '1rem',
+                                            },
+                                            fontWeight: '700',
+                                            ":hover": {
+                                                bgcolor: '#aa3d72'
+                                            } }}>Conoce nuestros productos</Button>
+                        </Link>
+                    </div>
+                </Grid>
                 <Grid item xs={12}>
                     <Box position="static" sx={{ bgcolor: '#ff4e00',
                                                 textAlign: 'center',
@@ -101,7 +103,7 @@ function Home() {
                                                 },
                                                 height: {
                                                     md: '7.8rem',
-                                                    xs: '6rem'
+                                                    xs: '7rem'
                                                 }}}>
                         <div className="foot-home">
                             <Link to="/">Contacto | </Link>

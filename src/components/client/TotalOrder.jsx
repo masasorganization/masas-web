@@ -23,7 +23,7 @@ function TotalOrder() {
                     </Typography> 
                 </Typography>      
             </Box>
-            <div className="btn-ok">
+            <div className="btn-client">
                 <Link to="/deliveryreq">
                     <Button sx={{ bgcolor: '#ff4e00', 
                                         color: '#ffffff',

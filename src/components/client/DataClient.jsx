@@ -52,7 +52,7 @@ function DataClient() {
                         mr: '1rem',
                         borderTop: '2px solid #770047' }} >
             </Box>
-            <div className="btn-edit">
+            <div className="btn-client">
                 <Link to="/deliveryreq">
                     <Button sx={{ bgcolor: '#ff9e0c',
                                     width: {

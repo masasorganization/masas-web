@@ -19,7 +19,7 @@ function DataPdf() {
                         mr: '1rem',
                         borderTop: '2px solid #770047' }} >
             </Box>
-            <div className="btn-download">
+            <div className="btn-client">
                     <Button sx={{ bgcolor: '#ff4e00',
                                     width: {
                                         md: '22rem',

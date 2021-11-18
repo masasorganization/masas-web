@@ -7,10 +7,9 @@ import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 import React from 'react';
 import Beetroot from '../../assets/beetroot-cake-org1.jpg';
+import FormProduct from './FormProduct';
 
 function CardProduct() {
     const [expanded, setExpanded] = React.useState(false);
@@ -49,20 +48,7 @@ function CardProduct() {
                             Un color natural divertido y deliciosas notas de sabor agridulce
                             </Typography>
                         </div>
-                        <div>
-                            <Autocomplete disablePortal sx={{ width: '10rem' }} id="size-product" 
-                                                                                options={size} 
-                                                                                renderInput={(params) => <TextField {...params}  label="Tamaño" />} />
-                            <Autocomplete disablePortal sx={{ width: '10rem', 
-                                                                mt: '0.6rem' }} id="units-product" 
-                                                                                options={units} 
-                                                                                renderInput={(params) => <TextField {...params}  label="Unidades" />} />
-                            <Autocomplete disablePortal sx={{ width: '10rem', 
-                                                                mt: '0.6rem' }} id="toppings-product" 
-                                                                                options={toppings} 
-                                                                                renderInput={(params) => <TextField {...params}  label="Complementos" />} />
-                  
-                        </div>
+                        <FormProduct />
                     </div>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent>
@@ -78,7 +64,7 @@ function CardProduct() {
                                 Remolachas confitadas, jugo de naranja tangelo, huevos de granja, aceite de oliva, aceite de coco,
                                 harina de maíz, harina de avena sin gluten, levadura orgánica y sal marina.
                             </Typography>
-                            <div className="btn-add">
+                            <div className="btn-client">
                                 <Button sx={{ bgcolor: '#ff823b',
                                                                 textTransform: 'none',
                                                                 width: '18rem',
@@ -110,7 +96,7 @@ function CardProduct() {
                                                 aria-label="more"  />
                     </div>
                 </CardActions>
-                <div className="btn-pay">
+                <div className="btn-client">
                     <Link to="/orders">
                         <Button sx={{ bgcolor: '#9bd816',
                                                             textTransform: 'none',
@@ -136,7 +122,3 @@ function CardProduct() {
 }
 
 export default CardProduct;
-
-const size = ['x8 porciones', 'x12 porciones'];
-const units = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const toppings = ['Gajos de naranja dulce', 'Jalea de ciruela', 'Nueces picadas', 'Salsa de chocolate', 'Zanahorias asadas'];
