@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 // Contenedores de Texto
 const Resaltado = styled('p')``;
@@ -17,7 +18,13 @@ const Cuerpo = styled('p')``;
 const texto1 = 'Inicia sesión en tu ';
 const texto2 = 'cuenta:';
 
+
+
 function Login() {
+
+  const [botonActivo,setBotonActivo] = useState(true);
+  
+
   return (
     <div>
       {/* Fondo */}
@@ -65,7 +72,9 @@ function Login() {
             {/* Campos de Texto */}
             <Grid container>
               <Grid item xs={12} sx={{ mb: '20px' }}>
+                
                 <TextField
+                  onChange={(text) => setBotonActivo(!text.target.value)}
                   id="username"
                   //helperText="Ingrese su nombre de usuario"
                   label="Nombre de usuario"
@@ -76,6 +85,7 @@ function Login() {
               <Grid item xs={12}>
                 <TextField
                   //helperText="Ingrese su contraseña"
+                  onChange={(text) => setBotonActivo(!text.target.value)}
                   id="password"
                   label="Contraseña"
                   variant="standard"
@@ -89,14 +99,14 @@ function Login() {
                 mb: '36px'
               }}
             >
-              <Button
-                disableElevation
+              <Button             
                 variant="contained"
                 color="primary"
                 sx={{ ...botonLogin }}
-              >
+                disabled ={botonActivo}>
                 Inicio
               </Button>
+
             </Box>
           </Container>
         </Box>
