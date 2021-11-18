@@ -30,23 +30,28 @@ const ButtonAppBar = function () {
               justifyContent="flex-start"
               alignItems="center"
             >
-              <Grid item xs={12}>
+              <Grid item xs={3}>
                 <Button variant="text" sx={{ ...buttonStyle }}>
                   Productos
                 </Button>
-
+              </Grid>
+              <Grid item xs={3}>
                 <Button variant="text" sx={{ ...buttonStyle }}>
                   Cuentas
                 </Button>
-
+              </Grid>
+              <Grid item xs={3}>
                 <Button variant="text" sx={{ ...buttonStyle }}>
                   Cifras
                 </Button>
-
+              </Grid>
+              <Grid item xs={3}>
                 <Button variant="text" sx={{ ...buttonStyle }}>
                   Salir
                 </Button>
               </Grid>
+
+              {/* <Grid item xs={12}></Grid> */}
             </Grid>
             {/* <Box></Box> */}
             <Box className="navBarAdmin">
