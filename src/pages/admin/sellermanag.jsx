@@ -1,15 +1,15 @@
-import { Grid } from '@mui/material';
-import { Button } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/system';
-import { Box } from '@mui/system';
-import { styled } from '@mui/material/styles';
-import ButtonAppBar from '../../components/admin/NavBarAdmin';
-import BoxManagement from '../../components/admin/BoxManagement';
+import { Grid } from '@mui/material'
+import { Button } from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/system'
+import { Box } from '@mui/system'
+import { styled } from '@mui/material/styles'
+import ButtonAppBar from '../../components/admin/NavBarAdmin'
+import BoxManagement from '../../components/admin/BoxManagement'
 
-const Text1Style = styled('p')``;
-const Text2Style = styled('p')``;
+const Text1Style = styled('p')``
+const Text2Style = styled('p')``
 
-const text1 = 'Gestión de ';
+const text1 = 'Gestión de '
 
 const theme = createTheme({
   palette: {
@@ -20,7 +20,7 @@ const theme = createTheme({
     secundarioClaro: '#AA3D72',
     azulado: '#05B3B2'
   }
-});
+})
 
 // eslint-disable-next-line react/prop-types
 function SellerManagement({ title }) {
@@ -78,10 +78,10 @@ function SellerManagement({ title }) {
         </Grid>
       </Box>
     </div>
-  );
+  )
 }
 
-export default SellerManagement;
+export default SellerManagement
 
 const text1Style = {
   m: '50px',
@@ -92,7 +92,7 @@ const text1Style = {
   fontSize: '36px',
   fontWeight: 300,
   whiteSpace: 'pre-wrap'
-};
+}
 
 const text2Style = {
   m: '50px',
@@ -101,7 +101,7 @@ const text2Style = {
   fontFamily: 'Noto Sans',
   fontSize: '36px',
   fontWeight: 'Bold'
-};
+}
 
 const buttonStyle1 = {
   mt: '52px',
@@ -121,4 +121,4 @@ const buttonStyle1 = {
   ':hover': {
     bgcolor: '#FF823B'
   }
-};
+}
