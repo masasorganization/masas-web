@@ -16,4 +16,19 @@
     max-width: 7vh;
 }
 
-/*Fin Administacion*/
+/*** Administrador ***/
+.admin-btn {
+  background-color: '#ffffff';
+  color: '#05B3B2';
+  font-family: 'Noto Sans, sans-serif';
+  font-weight: 'Bold';
+  font-size: '1.25rem';
+}
+.imagen {
+  height: 44px;
+  width: 47px;
+}
+.prueba {
+  display: flex !important;
+}
+/*** FIN Administrador ***/
