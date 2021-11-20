@@ -1,4 +1,3 @@
-import * as React from 'react'
 import TestNavbar from '../../components/admin/TestNavbar'
 
 function SalesReport() {
