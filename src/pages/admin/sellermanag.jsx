@@ -27,7 +27,7 @@ const theme = createTheme({
 function SellerManagement({ title }) {
   return (
     <div>
-      <TestNavbar></TestNavbar>
+      <TestNavbar estado="2" />
       {/* <ButtonAppBar></ButtonAppBar> */}
       <Box
         sx={{

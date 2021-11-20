@@ -27,7 +27,7 @@ const theme = createTheme({
 function ProductManagement({ title }) {
   return (
     <div>
-      <TestNavbar></TestNavbar>
+      <TestNavbar estado="1" />
       {/* <ButtonAppBar></ButtonAppBar> */}
       <Box
         sx={{
