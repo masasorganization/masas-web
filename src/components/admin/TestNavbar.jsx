@@ -9,6 +9,7 @@ import Collapse from '@mui/material/Collapse'
 import { Link } from 'react-router-dom'
 import imagenLogo from '../../assets/isotipo.png'
 import imagenLogoAlt from '../../assets/isotipoAlt.png'
+import Button from '@mui/material/Button'
 
 const TestNavbar = () => {
   const [expanded, setExpanded] = React.useState(false)
@@ -17,63 +18,85 @@ const TestNavbar = () => {
     setExpanded(!expanded)
   }
 
+  const objetosMenu = [
+    {
+      tituloPagina: 'Productos',
+      paginaURL: 'productmanag'
+    },
+    {
+      tituloPagina: 'Cuentas',
+      paginaURL: 'sellermanag'
+    },
+    {
+      tituloPagina: 'Cifras',
+      paginaURL: 'salesrep'
+    },
+    {
+      tituloPagina: 'Salir',
+      paginaURL: 'login'
+    }
+  ]
+
   return (
     <div>
       <AppBar elevation="0" position="static">
         <Toolbar sx={{ ...contenedorBarra }}>
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          <Box sx={{ ...contenedorNavegacion }}>
             <IconButton
               expand={expanded}
               onClick={handleExpandClick}
-              aria-label="more"
-              sx={{ display: { xs: 'flex', md: 'none' }, mr: '16px' }}
+              aria-label="Menu"
+              sx={{ ...contenedorIcono }}
             >
               <MenuIcon />
             </IconButton>
-            <Box
-              sx={{
-                display: {
-                  xs: 'none',
-                  md: 'flex'
-                },
-                flexDirection: 'row'
-              }}
-            >
-              <Typography component={Link} sx={{ ...botonTexto }} to="productmanag">
-                Productos
-              </Typography>
-              <Typography component={Link} sx={{ ...botonTexto }} to="sellermanag">
-                Cuentas
-              </Typography>
-              <Typography component={Link} sx={{ ...botonTexto }} to="salesrep">
-                Cifras
-              </Typography>
-              <Typography component={Link} sx={{ ...botonTexto }} to="login">
-                Salir
-              </Typography>
+            <Box sx={{ ...barraPC }}>
+              {objetosMenu.map((objetoMenu) => {
+                const { tituloPagina, paginaURL } = objetoMenu
+                return (
+                  <Button
+                    component={Link}
+                    sx={{ ...botonesNavegacion }}
+                    to={paginaURL}
+                  >
+                    {tituloPagina}
+                  </Button>
+                )
+              })}
             </Box>
             <Collapse
               orientation="horizontal"
               in={expanded}
               timeout="auto"
               unmountOnExit
-              sx={{ ...barraColapsada }}
+              sx={{ ...barraMovil }}
             >
-              <Typography component={Link} sx={{ ...botonTexto }} to="productmanag">
+              <Typography
+                component={Link}
+                sx={{ ...botonesNavegacion }}
+                to="productmanag"
+              >
                 Productos
               </Typography>
-              <Typography component={Link} sx={{ ...botonTexto }} to="sellermanag">
+              <Typography
+                component={Link}
+                sx={{ ...botonesNavegacion }}
+                to="sellermanag"
+              >
                 Cuentas
               </Typography>
-              <Typography component={Link} sx={{ ...botonTexto }} to="salesrep">
+              <Typography
+                component={Link}
+                sx={{ ...botonesNavegacion }}
+                to="salesrep"
+              >
                 Cifras
               </Typography>
-              <Typography component={Link} sx={{ ...botonTexto }} to="login">
+              <Typography component={Link} sx={{ ...botonesNavegacion }} to="login">
                 Salir
               </Typography>
             </Collapse>
           </Box>
-
           <Box component={Link} sx={{ ...logo }} to="welcome"></Box>
         </Toolbar>
       </AppBar>
@@ -100,21 +123,47 @@ const contenedorBarra = {
   }
 }
 
-const botonTexto = {
+const contenedorNavegacion = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center'
+}
+
+const contenedorIcono = {
+  display: { xs: 'flex', md: 'none' },
+  mr: '16px'
+}
+
+const botonesNavegacion = {
   fontFamily: 'Noto Sans, sans-serif',
   fontWeight: 700,
-  fontSize: '16px',
+  fontSize: { xs: '16px', md: '20px' },
   color: '#05B3B2',
-  mr: '16px',
+  mr: { xs: '16px', md: '40px' },
+  p: 0,
+  minWidth: 0,
+  textTransform: 'capitalize',
+  letterSpacing: 0,
+  textDecoration: 'none',
   ':hover': {
-    color: '#666666'
+    color: '#666666',
+    backgroundColor: 'unset',
+    textDecoration: 'none'
   }
 }
 
-const barraColapsada = {
+const barraMovil = {
   display: {
     xs: 'flex',
     md: 'none'
+  },
+  flexDirection: 'row'
+}
+
+const barraPC = {
+  display: {
+    xs: 'none',
+    md: 'flex'
   },
   flexDirection: 'row'
 }
