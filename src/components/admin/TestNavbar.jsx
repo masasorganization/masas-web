@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Collapse from '@mui/material/Collapse'
 import { Link } from 'react-router-dom'
 import imagenLogo from '../../assets/isotipo.png'
+import imagenLogoAlt from '../../assets/isotipoAlt.png'
 
 const TestNavbar = () => {
   const [expanded, setExpanded] = React.useState(false)
@@ -73,7 +74,7 @@ const TestNavbar = () => {
             </Collapse>
           </Box>
 
-          <Box sx={{ ...logo }}></Box>
+          <Box component={Link} sx={{ ...logo }} to="welcome"></Box>
         </Toolbar>
       </AppBar>
     </div>
@@ -124,5 +125,10 @@ const logo = {
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   width: { xs: '30px', md: '47px' },
-  height: { xs: '28px', md: '44px' }
+  height: { xs: '28px', md: '44px' },
+  ':hover': {
+    transition: 'transform .1s',
+    backgroundImage: `url(${imagenLogoAlt})`,
+    transform: 'scale(1.05)'
+  }
 }
