@@ -1,9 +1,9 @@
-import TestNavbar from '../../components/admin/TestNavbar'
+import AdminNavbar from '../../components/admin/AdminNavbar'
 
 function SalesReport() {
   return (
     <div>
-      <TestNavbar estado="3" />
+      <AdminNavbar estado="3" />
       <h1>Aquí generas los reportes de venta</h1>
     </div>
   )
