@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import imagenLogo from '../../assets/isotipo.png'
 import imagenLogoAlt from '../../assets/isotipoAlt.png'
 import Button from '@mui/material/Button'
+import CloseIcon from '@mui/icons-material/Close'
 
 const TestNavbar = (props) => {
   // Props que llegan desde el padre (la vista)
@@ -20,6 +21,13 @@ const TestNavbar = (props) => {
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
+  }
+
+  // reactHook para cambiar el icono del menú hamburguesa
+  const [cambio, setCambio] = React.useState(false)
+
+  const cambiarIcono = () => {
+    setCambio(!cambio)
   }
 
   // Arreglo con los elementos de la barra de navegación
@@ -62,6 +70,12 @@ const TestNavbar = (props) => {
   // Se llama la función cada vez que carga la barra de navegación
   cambiarEstadoNavBar(estadoBoton)
 
+  // Doble funcion anidada que dispara el Collapse y el cambio de icono
+  function dobleFuncion() {
+    handleExpandClick()
+    cambiarIcono()
+  }
+
   return (
     <div>
       <AppBar elevation={desactivarElevacion} position="static">
@@ -69,11 +83,14 @@ const TestNavbar = (props) => {
           <Box sx={{ ...contenedorNavegacion }}>
             <IconButton
               expand={expanded ? 1 : undefined}
-              onClick={handleExpandClick}
+              onClick={() => dobleFuncion()}
               aria-label="Menu"
               sx={{ ...contenedorIcono }}
             >
-              <MenuIcon />
+              <MenuIcon
+                component={cambio ? CloseIcon : MenuIcon}
+                sx={{ ...icono }}
+              />
             </IconButton>
             <Box sx={{ ...barraPC }}>
               {objetosMenu.map((objetoMenu, index) => {
@@ -147,6 +164,10 @@ const contenedorNavegacion = {
 const contenedorIcono = {
   display: { xs: 'flex', md: 'none' },
   mr: '16px'
+}
+
+const icono = {
+  color: '#05B3B2'
 }
 
 const botonesNavegacion = {
