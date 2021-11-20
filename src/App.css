@@ -3,17 +3,61 @@
 Naranja principal: #ff4e00
 Morado principal: #770047
 Naranja claro: #ff823b
-Naranja oscuro: #c305000
+Naranja oscuro: #c30500
 Morado claro: #aa3d72
 Morado oscuro: #460020
 Crema de limón: #9bd816
 Jalea de ciruela: #b70030*/
+
+.nav-home {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+}
+
+.nav-home > a {
+  text-decoration: none;
+}
+
+.logo-home {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8rem;
+}
+
+.btn-client {
+  text-align: center;
+}
+
+.btn-client > a {
+  text-decoration: none;
+}
+
+.foot-home {
+  padding-top: 3rem;
+}
 
 /*Página categoría-categories*/
 .tab-showCategory {
   background-color: #770047;
   margin-top: 0;
   padding: 0.3rem;
+  text-align: center;
+}
+
+.l-cat {
+  text-decoration: none;
+}
+
+.box-selectPro {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-exp {
+  margin-left: auto;
+  margin-right: auto;
 }
 /*Página pedidos-orders*/
 .tab-showOrders {
@@ -21,6 +65,7 @@ Jalea de ciruela: #b70030*/
   margin-top: 0;
   padding: 0.3rem;
 }
+
 /*Página solicitud contraentrega-deliveryreq*/
 .tab-showDelForm {
   background-color: #b70030;
@@ -33,9 +78,11 @@ Jalea de ciruela: #b70030*/
   margin-top: 0;
   padding: 0.3rem;
 }
+
 /*Texto de las barras de las páginas*/
-.txt-title{
+.txt-title {
   color: #ffffff;
-  font-family: 'Nunito', sans-serif;
-  font-size: 1rem;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.15rem;
+  text-align: center;
 }
