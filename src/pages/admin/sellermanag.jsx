@@ -3,8 +3,9 @@ import { Button } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/system'
 import { Box } from '@mui/system'
 import { styled } from '@mui/material/styles'
-import ButtonAppBar from '../../components/admin/NavBarAdmin'
+//import ButtonAppBar from '../../components/admin/NavBarAdmin'
 import BoxManagement from '../../components/admin/BoxManagement'
+import TestNavbar from '../../components/admin/TestNavbar'
 
 const Text1Style = styled('p')``
 const Text2Style = styled('p')``
@@ -26,7 +27,8 @@ const theme = createTheme({
 function SellerManagement({ title }) {
   return (
     <div>
-      <ButtonAppBar></ButtonAppBar>
+      <TestNavbar></TestNavbar>
+      {/* <ButtonAppBar></ButtonAppBar> */}
       <Box
         sx={{
           pr: '48px',
