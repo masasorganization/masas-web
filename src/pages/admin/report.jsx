@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import { Link } from 'react-router-dom'
 
+// Arreglo de datos que deberian de llegar desde el padre
 const datosReporte = [
   {
     idPedido: 1,
@@ -19,24 +20,28 @@ const datosReporte = [
   }
 ]
 
+// Devuelve un entero por cada objeto en el arreglo
 let indice = datosReporte.length
 
-var sinAzucar = 0
+//  Agrega un entero a la variable cada vez que encuentra la palabra "Sin azúcar"
+let sinAzucar = 0
 for (let a = 0; a < datosReporte.length; a++) {
   if (datosReporte[a].categoriaPedido === 'Sin azúcar') {
     sinAzucar++
   }
 }
 
-var masaSaludable = 0
-for (var b = 0; b < datosReporte.length; b++) {
+//  Agrega un entero a la variable cada vez que encuentra la palabra "Masa saludable"
+let masaSaludable = 0
+for (let b = 0; b < datosReporte.length; b++) {
   if (datosReporte[b].categoriaPedido === 'Masa saludable') {
     masaSaludable++
   }
 }
 
-var tipoOrganico = 0
-for (var c = 0; c < datosReporte.length; c++) {
+//  Agrega un entero a la variable cada vez que encuentra la palabra "Tipo organico"
+let tipoOrganico = 0
+for (let c = 0; c < datosReporte.length; c++) {
   if (datosReporte[c].categoriaPedido === 'Tipo organico') {
     tipoOrganico++
   }
