@@ -19,7 +19,7 @@ function SalesReport() {
 
   return (
     <div>
-      <AdminNavbar estado='3' />
+      <AdminNavbar usuario='admin' />
       <h1>Aquí generas los reportes de venta</h1>
     </div>
   )
