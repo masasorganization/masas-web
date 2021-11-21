@@ -13,10 +13,7 @@ import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
 import { administrador } from '../../components/admin/navigationData'
 
-const TestNavbar = (props) => {
-  // Props que llegan desde el padre (la vista)
-  const estadoBoton = props.estado
-
+const TestNavbar = () => {
   // reactHook para el contenedor Collapse del menú hamburguesa
   const [expanded, setExpanded] = React.useState(false)
 
@@ -30,48 +27,6 @@ const TestNavbar = (props) => {
   const cambiarIcono = () => {
     setCambio(!cambio)
   }
-
-  // Arreglo con los elementos de la barra de navegación
-  const objetosMenu = [
-    {
-      tituloPagina: 'Productos',
-      paginaURL: 'productmanag',
-      estado: ''
-    },
-    {
-      tituloPagina: 'Cuentas',
-      paginaURL: 'sellermanag',
-      estado: ''
-    },
-    {
-      tituloPagina: 'Cifras',
-      paginaURL: 'salesrep',
-      estado: ''
-    },
-    {
-      tituloPagina: 'Salir',
-      paginaURL: 'login',
-      estado: ''
-    }
-  ]
-
-  console.log(administrador)
-
-  // Funcion para cambiar el color al botón activo en la barra de navegación
-  const cambiarEstadoNavBar = (e) => {
-    if (e === '1') {
-      objetosMenu[0].estado = activo
-    } else if (e === '2') {
-      objetosMenu[1].estado = activo
-    } else if (e === '3') {
-      objetosMenu[2].estado = activo
-    } else {
-      console.log('Parametro invalido para el botón de la barra de navegación')
-    }
-  }
-
-  // Se llama la función cada vez que carga la barra de navegación
-  cambiarEstadoNavBar(estadoBoton)
 
   // Doble funcion anidada que dispara el Collapse y el cambio de icono
   function dobleFuncion() {
@@ -118,16 +73,17 @@ const TestNavbar = (props) => {
               unmountOnExit
               sx={{ ...barraMovil }}
             >
-              {objetosMenu.map((objetoMenu, index) => {
-                const { tituloPagina, paginaURL, estado } = objetoMenu
+              {administrador.map((datos, index) => {
+                const { pagina, url, estado } = datos
                 return (
                   <Typography
                     key={index}
                     component={Link}
-                    sx={{ ...botonesNavegacion, ...estado }}
-                    to={paginaURL}
+                    sx={{ ...botonesNavegacion }}
+                    style={estado ? activo : undefined}
+                    to={url}
                   >
-                    {tituloPagina}
+                    {pagina}
                   </Typography>
                 )
               })}

@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Grid } from '@mui/material'
 import { Button } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/system'
@@ -24,11 +25,23 @@ const theme = createTheme({
 })
 
 function SellerManagement({ title }) {
-  limpiarPaginas()
+  // ReactHook para cambiar el estado de la pagina actual
+  const [paginaActual, setPaginaActual] = React.useState(false)
+
+  const ponerEstadoPagina = () => {
+    setPaginaActual((administrador[1].estado = !paginaActual))
+  }
+
+  // ReactHook para cambiar el estado de todas las paginas y de la pagina actual
+  React.useEffect(() => {
+    limpiarPagina()
+    ponerEstadoPagina()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div>
       <AdminNavbar estado='2' />
-      {/* <ButtonAppBar></ButtonAppBar> */}
       <Box
         sx={{
           pr: '48px',
@@ -127,11 +140,9 @@ const buttonStyle1 = {
 
 // Logica del padre para la barra de navegación
 
-const limpiarPaginas = () => {
-  administrador[0].estado = false
-  administrador[1].estado = true
-  administrador[2].estado = false
-  administrador[3].estado = false
+// Función que devuelve el estado de todas las paginas a falso
+const limpiarPagina = () => {
+  for (let i = 0; i < administrador.length; i++) {
+    administrador[i].estado = false
+  }
 }
-
-// Función que envia el estado de la pagina actual a verdadero

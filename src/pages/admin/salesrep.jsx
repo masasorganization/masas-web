@@ -1,8 +1,22 @@
+import * as React from 'react'
 import AdminNavbar from '../../components/admin/AdminNavbar'
 import { administrador } from '../../components/admin/navigationData'
 
 function SalesReport() {
-  limpiarPaginas()
+  // ReactHook para cambiar el estado de la pagina actual
+  const [paginaActual, setPaginaActual] = React.useState(false)
+
+  const ponerEstadoPagina = () => {
+    setPaginaActual((administrador[2].estado = !paginaActual))
+  }
+
+  // ReactHook para cambiar el estado de todas las paginas y de la pagina actual
+  React.useEffect(() => {
+    limpiarPagina()
+    ponerEstadoPagina()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div>
       <AdminNavbar estado='3' />
@@ -15,11 +29,9 @@ export default SalesReport
 
 // Logica del padre para la barra de navegación
 
-const limpiarPaginas = () => {
-  administrador[0].estado = false
-  administrador[1].estado = false
-  administrador[2].estado = true
-  administrador[3].estado = false
+// Función que devuelve el estado de todas las paginas a falso
+const limpiarPagina = () => {
+  for (let i = 0; i < administrador.length; i++) {
+    administrador[i].estado = false
+  }
 }
-
-// Función que envia el estado de la pagina actual a verdadero
