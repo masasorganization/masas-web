@@ -1,19 +1,88 @@
+/*Estilos de la aplicación web, utilizar solo con className*/
+/*Paleta de colores: 
+Naranja principal: #ff4e00
+Morado principal: #770047
+Naranja claro: #ff823b
+Naranja oscuro: #c30500
+Morado claro: #aa3d72
+Morado oscuro: #460020
+Crema de limón: #9bd816
+Jalea de ciruela: #b70030*/
 
-/*Administracion*/
-
-.cards > img{
-    height: 100%;
-    max-height: 100vh;
-    width: 100%;
-    max-width: 100vw;
-    border-radius: 0px 10px 10px 0px;  
+.nav-home {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
 }
 
-.navBarAdmin > img{
-    height: 100%;
-    max-height: 100vh;
-    width: 100%;
-    max-width: 7vh;
+.nav-home > a {
+  text-decoration: none;
 }
 
-/*Fin Administacion*/
+.logo-home {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8rem;
+}
+
+.btn-client {
+  text-align: center;
+}
+
+.btn-client > a {
+  text-decoration: none;
+}
+
+.foot-home {
+  padding-top: 3rem;
+}
+
+/*Página categoría-categories*/
+.tab-showCategory {
+  background-color: #770047;
+  margin-top: 0;
+  padding: 0.3rem;
+  text-align: center;
+}
+
+.l-cat {
+  text-decoration: none;
+}
+
+.box-selectPro {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-exp {
+  margin-left: auto;
+  margin-right: auto;
+}
+/*Página pedidos-orders*/
+.tab-showOrders {
+  background-color: #9bd816;
+  margin-top: 0;
+  padding: 0.3rem;
+}
+
+/*Página solicitud contraentrega-deliveryreq*/
+.tab-showDelForm {
+  background-color: #b70030;
+  margin-top: 0;
+  padding: 0.3rem;
+}
+/*Página confirmación de entrega-deliveryconf*/
+.tab-showDelConf {
+  background-color: #aa3d72;
+  margin-top: 0;
+  padding: 0.3rem;
+}
+
+/*Texto de las barras de las páginas*/
+.txt-title {
+  color: #ffffff;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.15rem;
+  text-align: center;
+}
