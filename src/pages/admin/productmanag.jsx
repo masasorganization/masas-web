@@ -5,6 +5,11 @@ import { Box } from '@mui/system'
 import { styled } from '@mui/material/styles'
 import BoxManagement from '../../components/admin/BoxManagement'
 import AdminNavbar from '../../components/admin/AdminNavbar'
+import { administrador } from '../../components/admin/navigationData'
+
+const paginaActiva = () => {
+  administrador[0].estado = true
+}
 
 const Text1Style = styled('p')``
 const Text2Style = styled('p')``
@@ -22,10 +27,12 @@ const theme = createTheme({
   }
 })
 
+paginaActiva()
+
 function ProductManagement({ title }) {
   return (
     <div>
-      <AdminNavbar estado="1" />
+      <AdminNavbar estado='1' />
       <Box
         sx={{
           pr: '48px',
@@ -40,7 +47,7 @@ function ProductManagement({ title }) {
         >
           <Box>
             <ThemeProvider theme={theme}>
-              <Box display="flex" flexDirection="row">
+              <Box display='flex' flexDirection='row'>
                 <Text1Style sx={{ ...text1Style, color: 'negro' }}>
                   {text1}
                 </Text1Style>
@@ -59,20 +66,20 @@ function ProductManagement({ title }) {
         <Grid container>
           <Grid item xs={12} md={6}>
             <BoxManagement
-              title="prueba titulo"
-              paragraph="prueba parrafo"
+              title='prueba titulo'
+              paragraph='prueba parrafo'
             ></BoxManagement>
           </Grid>
           <Grid item xs={12} md={6}>
             <BoxManagement
-              title="prueba titulo"
-              paragraph="prueba parrafo"
+              title='prueba titulo'
+              paragraph='prueba parrafo'
             ></BoxManagement>
           </Grid>
           <Grid item xs={12} md={6}>
             <BoxManagement
-              title="prueba titulo"
-              paragraph="prueba parrafo"
+              title='prueba titulo'
+              paragraph='prueba parrafo'
             ></BoxManagement>
           </Grid>
         </Grid>

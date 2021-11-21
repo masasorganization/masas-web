@@ -5,6 +5,11 @@ import { Box } from '@mui/system'
 import { styled } from '@mui/material/styles'
 import BoxManagement from '../../components/admin/BoxManagement'
 import AdminNavbar from '../../components/admin/AdminNavbar'
+import { administrador } from '../../components/admin/navigationData'
+
+const paginaActiva = () => {
+  administrador[1].estado = true
+}
 
 const Text1Style = styled('p')``
 const Text2Style = styled('p')``
@@ -21,6 +26,8 @@ const theme = createTheme({
     azulado: '#05B3B2'
   }
 })
+
+paginaActiva()
 
 function SellerManagement({ title }) {
   return (

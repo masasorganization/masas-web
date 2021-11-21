@@ -1,4 +1,11 @@
 import AdminNavbar from '../../components/admin/AdminNavbar'
+import { administrador } from '../../components/admin/navigationData'
+
+const paginaActiva = () => {
+  administrador[2].estado = true
+}
+
+paginaActiva()
 
 function SalesReport() {
   return (
