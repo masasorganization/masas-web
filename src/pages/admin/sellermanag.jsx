@@ -41,7 +41,7 @@ function SellerManagement({ title }) {
 
   return (
     <div>
-      <AdminNavbar estado='2' />
+      <AdminNavbar usuario='admin' />
       <Box
         sx={{
           pr: '48px',

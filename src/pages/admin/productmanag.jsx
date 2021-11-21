@@ -41,7 +41,7 @@ function ProductManagement({ title }) {
 
   return (
     <div>
-      <AdminNavbar estado='1' />
+      <AdminNavbar usuario='admin' />
       <Box
         sx={{
           pr: '48px',

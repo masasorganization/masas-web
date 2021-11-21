@@ -11,9 +11,23 @@ import imagenLogo from '../../assets/isotipo.png'
 import imagenLogoAlt from '../../assets/isotipoAlt.png'
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
-import { administrador } from '../../components/admin/navigationData'
+import { administrador, vendedor } from '../../components/admin/navigationData'
 
-const TestNavbar = () => {
+// Carga la colección de datos correspondiente al rol
+let usuarioAdmin = administrador
+let usuarioVende = vendedor
+
+const TestNavbar = (props) => {
+  // Variable vacia que recibe el rol actual
+  let usuarioActual = undefined
+
+  // Selecciona el tipo de datos correspondiente al rol enviado desde el padre
+  if (props.usuario === 'admin') {
+    usuarioActual = usuarioAdmin
+  } else {
+    usuarioActual = usuarioVende
+  }
+
   // reactHook para el contenedor Collapse del menú hamburguesa
   const [expanded, setExpanded] = React.useState(false)
 
@@ -51,7 +65,7 @@ const TestNavbar = () => {
               />
             </IconButton>
             <Box sx={{ ...barraPC }}>
-              {administrador.map((datos, index) => {
+              {usuarioActual.map((datos, index) => {
                 const { pagina, url, estado } = datos
                 return (
                   <Button
@@ -73,7 +87,7 @@ const TestNavbar = () => {
               unmountOnExit
               sx={{ ...barraMovil }}
             >
-              {administrador.map((datos, index) => {
+              {usuarioActual.map((datos, index) => {
                 const { pagina, url, estado } = datos
                 return (
                   <Typography
