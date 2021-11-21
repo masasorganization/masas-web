@@ -7,10 +7,6 @@ import BoxManagement from '../../components/admin/BoxManagement'
 import AdminNavbar from '../../components/admin/AdminNavbar'
 import { administrador } from '../../components/admin/navigationData'
 
-const paginaActiva = () => {
-  administrador[0].estado = true
-}
-
 const Text1Style = styled('p')``
 const Text2Style = styled('p')``
 
@@ -27,9 +23,8 @@ const theme = createTheme({
   }
 })
 
-paginaActiva()
-
 function ProductManagement({ title }) {
+  paginaActiva()
   return (
     <div>
       <AdminNavbar estado='1' />
@@ -149,3 +144,15 @@ const buttonStyle2 = {
     bgcolor: '#FF823B'
   }
 }
+
+// Logica del padre para la barra de navegación
+
+// Función que devuelve el estado de todas las paginas a falso
+const paginaActiva = () => {
+  administrador[0].estado = true
+  administrador[1].estado = false
+  administrador[2].estado = false
+  administrador[3].estado = false
+}
+
+// Función que envia el estado de la pagina actual a verdadero

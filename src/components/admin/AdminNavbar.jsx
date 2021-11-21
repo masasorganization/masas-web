@@ -11,6 +11,7 @@ import imagenLogo from '../../assets/isotipo.png'
 import imagenLogoAlt from '../../assets/isotipoAlt.png'
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
+import { administrador } from '../../components/admin/navigationData'
 
 const TestNavbar = (props) => {
   // Props que llegan desde el padre (la vista)
@@ -54,6 +55,8 @@ const TestNavbar = (props) => {
     }
   ]
 
+  console.log(administrador)
+
   // Funcion para cambiar el color al botón activo en la barra de navegación
   const cambiarEstadoNavBar = (e) => {
     if (e === '1') {
@@ -78,13 +81,13 @@ const TestNavbar = (props) => {
 
   return (
     <div>
-      <AppBar elevation={desactivarElevacion} position="static">
+      <AppBar elevation={desactivarElevacion} position='static'>
         <Toolbar sx={{ ...contenedorBarra }}>
           <Box sx={{ ...contenedorNavegacion }}>
             <IconButton
               expand={expanded ? 1 : undefined}
               onClick={() => dobleFuncion()}
-              aria-label="Menu"
+              aria-label='Menu'
               sx={{ ...contenedorIcono }}
             >
               <MenuIcon
@@ -93,24 +96,25 @@ const TestNavbar = (props) => {
               />
             </IconButton>
             <Box sx={{ ...barraPC }}>
-              {objetosMenu.map((objetoMenu, index) => {
-                const { tituloPagina, paginaURL, estado } = objetoMenu
+              {administrador.map((datos, index) => {
+                const { pagina, url, estado } = datos
                 return (
                   <Button
                     key={index}
                     component={Link}
-                    sx={{ ...botonesNavegacion, ...estado }}
-                    to={paginaURL}
+                    sx={{ ...botonesNavegacion }}
+                    style={estado ? activo : undefined}
+                    to={url}
                   >
-                    {tituloPagina}
+                    {pagina}
                   </Button>
                 )
               })}
             </Box>
             <Collapse
-              orientation="horizontal"
+              orientation='horizontal'
               in={expanded}
-              timeout="auto"
+              timeout='auto'
               unmountOnExit
               sx={{ ...barraMovil }}
             >
@@ -129,7 +133,7 @@ const TestNavbar = (props) => {
               })}
             </Collapse>
           </Box>
-          <Box component={Link} sx={{ ...logo }} to="welcome"></Box>
+          <Box component={Link} sx={{ ...logo }} to='welcome'></Box>
         </Toolbar>
       </AppBar>
     </div>

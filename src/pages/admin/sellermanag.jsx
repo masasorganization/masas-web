@@ -7,10 +7,6 @@ import BoxManagement from '../../components/admin/BoxManagement'
 import AdminNavbar from '../../components/admin/AdminNavbar'
 import { administrador } from '../../components/admin/navigationData'
 
-const paginaActiva = () => {
-  administrador[1].estado = true
-}
-
 const Text1Style = styled('p')``
 const Text2Style = styled('p')``
 
@@ -27,9 +23,8 @@ const theme = createTheme({
   }
 })
 
-paginaActiva()
-
 function SellerManagement({ title }) {
+  limpiarPaginas()
   return (
     <div>
       <AdminNavbar estado='2' />
@@ -129,3 +124,14 @@ const buttonStyle1 = {
     bgcolor: '#FF823B'
   }
 }
+
+// Logica del padre para la barra de navegación
+
+const limpiarPaginas = () => {
+  administrador[0].estado = false
+  administrador[1].estado = true
+  administrador[2].estado = false
+  administrador[3].estado = false
+}
+
+// Función que envia el estado de la pagina actual a verdadero
