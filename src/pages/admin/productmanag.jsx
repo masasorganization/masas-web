@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Grid } from '@mui/material'
 import { Button } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/system'
@@ -5,6 +6,7 @@ import { Box } from '@mui/system'
 import { styled } from '@mui/material/styles'
 import BoxManagement from '../../components/admin/BoxManagement'
 import AdminNavbar from '../../components/admin/AdminNavbar'
+import { administrador } from '../../components/admin/navigationData'
 
 const Text1Style = styled('p')``
 const Text2Style = styled('p')``
@@ -23,9 +25,23 @@ const theme = createTheme({
 })
 
 function ProductManagement({ title }) {
+  // ReactHook para cambiar el estado de la pagina actual
+  const [paginaActual, setPaginaActual] = React.useState(false)
+
+  const ponerEstadoPagina = () => {
+    setPaginaActual((administrador[0].estado = !paginaActual))
+  }
+
+  // ReactHook para cambiar el estado de todas las paginas y de la pagina actual
+  React.useEffect(() => {
+    limpiarPagina()
+    ponerEstadoPagina()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div>
-      <AdminNavbar estado="1" />
+      <AdminNavbar estado='1' />
       <Box
         sx={{
           pr: '48px',
@@ -40,7 +56,7 @@ function ProductManagement({ title }) {
         >
           <Box>
             <ThemeProvider theme={theme}>
-              <Box display="flex" flexDirection="row">
+              <Box display='flex' flexDirection='row'>
                 <Text1Style sx={{ ...text1Style, color: 'negro' }}>
                   {text1}
                 </Text1Style>
@@ -59,20 +75,20 @@ function ProductManagement({ title }) {
         <Grid container>
           <Grid item xs={12} md={6}>
             <BoxManagement
-              title="prueba titulo"
-              paragraph="prueba parrafo"
+              title='prueba titulo'
+              paragraph='prueba parrafo'
             ></BoxManagement>
           </Grid>
           <Grid item xs={12} md={6}>
             <BoxManagement
-              title="prueba titulo"
-              paragraph="prueba parrafo"
+              title='prueba titulo'
+              paragraph='prueba parrafo'
             ></BoxManagement>
           </Grid>
           <Grid item xs={12} md={6}>
             <BoxManagement
-              title="prueba titulo"
-              paragraph="prueba parrafo"
+              title='prueba titulo'
+              paragraph='prueba parrafo'
             ></BoxManagement>
           </Grid>
         </Grid>
@@ -140,5 +156,14 @@ const buttonStyle2 = {
   borderRadius: '10px',
   ':hover': {
     bgcolor: '#FF823B'
+  }
+}
+
+// Logica del padre para la barra de navegación
+
+// Función que devuelve el estado de todas las paginas a falso
+const limpiarPagina = () => {
+  for (let i = 0; i < administrador.length; i++) {
+    administrador[i].estado = false
   }
 }
