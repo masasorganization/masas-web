@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles'
 import BoxManagement from '../../components/admin/BoxManagement'
 import AdminNavbar from '../../components/admin/AdminNavbar'
 import { administrador } from '../../components/admin/navigationData'
+import ProductManager from '../../components/admin/ProductManager'
 
 const Text1Style = styled('p')``
 const Text2Style = styled('p')``
@@ -39,60 +40,116 @@ function SellerManagement({ title }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // setter pantalla principal
+  const [mostrarPrincipal, setMostrarPrincipal] = React.useState(false)
+
+  const imprimirPantallaPrincipal = () => {
+    setMostrarPrincipal(!mostrarPrincipal)
+  }
+
+  // setter nuevo componente
+  const [mostrarNuevoEditor, setMostrarNuevoEditor] = React.useState(false)
+
+  const imprimirNuevoEditor = () => {
+    setMostrarNuevoEditor(!mostrarNuevoEditor)
+  }
+
+  // debug
+  console.log(mostrarNuevoEditor)
+
   return (
     <div>
       <AdminNavbar usuario='admin' />
+      <Button
+        size='small'
+        variant='outlined'
+        onClick={() => imprimirPantallaPrincipal()}
+      >
+        Principal
+      </Button>
+      <Button
+        size='small'
+        variant='outlined'
+        onClick={() => imprimirNuevoEditor()}
+      >
+        Nuevo
+      </Button>
+      {/* <ProductManager /> */}
+      {/* <PantallaPrincipal /> */}
+      <RenderNuevoEditor montar={mostrarNuevoEditor} />
+      <RenderPrincipal montar={mostrarPrincipal} />
+    </div>
+  )
+}
+
+function RenderNuevoEditor(props) {
+  const montar = props.montar
+  if (montar === true) {
+    return <ProductManager />
+  }
+  return null
+}
+
+function RenderPrincipal(props) {
+  const montar = props.montar
+  if (montar === true) {
+    return <PantallaPrincipal />
+  }
+  return null
+}
+
+function PantallaPrincipal({ title }) {
+  return (
+    <Box
+      sx={{
+        pr: '48px',
+        pl: '48px'
+      }}
+    >
       <Box
         sx={{
-          pr: '48px',
-          pl: '48px'
+          display: 'flex',
+          justifyContent: 'space-between'
         }}
       >
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between'
-          }}
-        >
-          <Box>
-            <ThemeProvider theme={theme}>
-              <Box display='flex' flexDirection='row'>
-                <Text1Style sx={{ ...text1Style, color: 'negro' }}>
-                  {text1}
-                </Text1Style>
-                <Text2Style sx={{ ...text2Style, color: 'principalClaro' }}>
-                  {title}
-                </Text2Style>
-              </Box>
-            </ThemeProvider>
-          </Box>
-          <Box>
-            <Button sx={{ ...buttonStyle1 }}>Nueva cuenta</Button>
-          </Box>
+        <Box>
+          <ThemeProvider theme={theme}>
+            <Box display='flex' flexDirection='row'>
+              <Text1Style sx={{ ...text1Style, color: 'negro' }}>
+                {text1}
+              </Text1Style>
+              <Text2Style sx={{ ...text2Style, color: 'principalClaro' }}>
+                {title}
+              </Text2Style>
+            </Box>
+          </ThemeProvider>
         </Box>
-
-        <Grid container>
-          <Grid item xs={12} md={6}>
-            <BoxManagement
-              title='Federico Molano'
-              paragraph='fedemolo'
-            ></BoxManagement>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <BoxManagement
-              title='Daniela Bedoya'
-              paragraph='denibedo'
-            ></BoxManagement>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <BoxManagement
-              title='Javier Torres'
-              paragraph='javitorr'
-            ></BoxManagement>
-          </Grid>
-        </Grid>
+        <Box>
+          <Button sx={{ ...buttonStyle1 }}>Nueva cuenta</Button>
+        </Box>
       </Box>
-    </div>
+
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <BoxManagement
+            title='Federico Molano'
+            paragraph='fedemolo'
+          ></BoxManagement>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BoxManagement
+            title='Daniela Bedoya'
+            paragraph='denibedo'
+          ></BoxManagement>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BoxManagement
+            title='Javier Torres'
+            paragraph='javitorr'
+          ></BoxManagement>
+        </Grid>
+      </Grid>
+    </Box>
   )
 }
 
