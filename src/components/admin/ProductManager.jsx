@@ -30,8 +30,18 @@ const ProductManager = () => {
   return (
     <Box sx={{ ...pantallaCompleta }}>
       <div>
-        <Cuerpo sx={{ ...tituloCuerpo }}>Editar</Cuerpo>
-        <Resaltado sx={{ ...tituloResaltado }}>Producto</Resaltado>
+        <Box
+          display='flex'
+          flexDirection='row'
+          justifyContent='space-between'
+          sx={{ height: { xs: '55px', md: '143px' }, width: '100%' }}
+        >
+          <Box display='flex' flexDirection='row' alignItems='center'>
+            <Cuerpo sx={{ ...tituloCuerpo }}>Editar </Cuerpo>
+            <Resaltado sx={{ ...tituloResaltado }}>Producto</Resaltado>
+          </Box>
+        </Box>
+
         <Box sx={{ ...contenedorAcordeones }}>
           <Grid
             container
@@ -41,7 +51,6 @@ const ProductManager = () => {
           >
             <Grid item xs={12} md={6}>
               <Accordion
-                onClick={() => cambioIzquierdo()}
                 elevation='0'
                 sx={{
                   maxWidth: {
@@ -54,7 +63,12 @@ const ProductManager = () => {
                 }}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMore />}
+                  onClick={() => cambioIzquierdo()}
+                  expandIcon={
+                    <ExpandMore
+                      sx={{ color: acordeonIzqActivo ? '#ffffff' : '#666666' }}
+                    />
+                  }
                   aria-label='Expand'
                   aria-controls='-content'
                   id='-header'
@@ -62,13 +76,14 @@ const ProductManager = () => {
                     px: {
                       md: '24px',
                       xs: '10px'
-                    }
+                    },
+                    bgcolor: acordeonIzqActivo ? '#05B3B2' : 'transparent'
                   }}
                 >
                   <Typography
                     sx={{
                       ...tituloAcordeon,
-                      color: acordeonIzqActivo ? '#05B3B2' : '#666666'
+                      color: acordeonIzqActivo ? '#ffffff' : '#666666'
                     }}
                   >
                     <b>Información general</b>
@@ -98,7 +113,6 @@ const ProductManager = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <Accordion
-                onClick={() => cambioDerecho()}
                 elevation='0'
                 sx={{
                   maxWidth: {
@@ -111,7 +125,12 @@ const ProductManager = () => {
                 }}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMore />}
+                  onClick={() => cambioDerecho()}
+                  expandIcon={
+                    <ExpandMore
+                      sx={{ color: acordeonDerActivo ? '#ffffff' : '#666666' }}
+                    />
+                  }
                   aria-label='Expand'
                   aria-controls='-content'
                   id='-header'
@@ -119,13 +138,14 @@ const ProductManager = () => {
                     px: {
                       md: '24px',
                       xs: '10px'
-                    }
+                    },
+                    bgcolor: acordeonDerActivo ? '#05B3B2' : 'transparent'
                   }}
                 >
                   <Typography
                     sx={{
                       ...tituloAcordeon,
-                      color: acordeonDerActivo ? '#05B3B2' : '#666666'
+                      color: acordeonDerActivo ? '#ffffff' : '#666666'
                     }}
                   >
                     Imágen
@@ -148,7 +168,7 @@ const ProductManager = () => {
                       alignItems: 'left'
                     }}
                   >
-                    Formulario para las imagenes
+                    Aquí va el componente de imágenes
                   </Container>
                 </AccordionDetails>
               </Accordion>
@@ -263,28 +283,24 @@ const contenedorAcordeones = {
 
 const tituloAcordeon = {
   fontFamily: 'Noto Sans, sans-serif',
-  fontSize: '1rem',
+  fontSize: '18px',
   fontWeight: 700,
   letterSpacing: '0.3px',
-  color: '#666666'
+  lineHeight: 0
 }
 
 const tituloCuerpo = {
   fontFamily: 'Nunito, sans-serif',
   fontWeight: 300,
-  fontSize: '1rem',
+  fontSize: { xs: '1.125rem', md: '2.25rem' },
   whiteSpace: 'pre-wrap',
-  m: 0,
-  letterSpacing: '1.25px',
-  lineHeight: '1rem'
+  m: 0
 }
 
 const tituloResaltado = {
   fontFamily: 'Noto Sans, sans-serif',
   fontWeight: 700,
-  fontSize: '1rem',
+  fontSize: { xs: '1.125rem', md: '2.25rem' },
   color: '#FF4E00',
-  m: 0,
-  letterSpacing: '1.25px',
-  lineHeight: '14px'
+  m: 0
 }

@@ -60,20 +60,23 @@ function SellerManagement({ title }) {
   return (
     <div>
       <AdminNavbar usuario='admin' />
-      <Button
-        size='small'
-        variant='outlined'
-        onClick={() => imprimirPantallaPrincipal()}
-      >
-        Principal
-      </Button>
-      <Button
-        size='small'
-        variant='outlined'
-        onClick={() => imprimirNuevoEditor()}
-      >
-        Nuevo
-      </Button>
+      <Box sx={{ position: 'absolute', bottom: 16, right: 16 }}>
+        <Button
+          size='small'
+          variant='outlined'
+          onClick={() => imprimirPantallaPrincipal()}
+        >
+          Principal
+        </Button>
+        <Button
+          size='small'
+          variant='outlined'
+          onClick={() => imprimirNuevoEditor()}
+        >
+          Nuevo
+        </Button>
+      </Box>
+
       {/* <ProductManager /> */}
       {/* <PantallaPrincipal /> */}
       <RenderNuevoEditor montar={mostrarNuevoEditor} />
