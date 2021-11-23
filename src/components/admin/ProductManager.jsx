@@ -12,10 +12,6 @@ import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 
-// Contenedores de Texto
-const Resaltado = styled('p')``
-const Cuerpo = styled('p')``
-
 const ProductManager = () => {
   let [acordeonIzqActivo, setAcordeonIzqActivo] = React.useState(false)
   let [acordeonDerActivo, setAcordeonDerActivo] = React.useState(false)
@@ -30,172 +26,108 @@ const ProductManager = () => {
 
   return (
     <Box sx={{ ...pantallaCompleta }}>
-      <div>
+      <Box sx={{ ...contenedorSuperior }}>
         <Box sx={{ ...contenedorTitulos }}>
-          <Box display='flex' flexDirection='row' alignItems='center'>
-            <Cuerpo sx={{ ...tituloCuerpo }}>Editar </Cuerpo>
-            <Resaltado sx={{ ...tituloResaltado }}>Producto</Resaltado>
-          </Box>
+          <Cuerpo sx={{ ...tituloCuerpo }}>Editar </Cuerpo>
+          <Resaltado sx={{ ...tituloResaltado }}>Producto</Resaltado>
+        </Box>
 
-          <Box
-            sx={{
-              ...contenedorBotones
-            }}
-          >
-            <Button variant='contained' sx={{ ...botonSecundario, mr: '18px' }}>
-              Cancelar
+        <Box sx={{ ...contenedorBotones }}>
+          <Button variant='contained' sx={{ ...botonSecundario }}>
+            Cancelar
+          </Button>
+          <Tooltip title={textoTooltip} arrow>
+            <Button variant='contained' sx={{ ...botonPrimario }}>
+              Actualizar producto
             </Button>
-            <Tooltip title={textoTooltip} arrow>
-              <Button variant='contained' sx={{ ...botonPrimario }}>
-                Actualizar producto
-              </Button>
-            </Tooltip>
-          </Box>
+          </Tooltip>
         </Box>
+      </Box>
 
-        <Box sx={{ ...contenedorAcordeones, pb: '80px' }}>
-          <Grid
-            container
-            justifyContent='space-between'
-            rowSpacing={{ xs: '10px' }}
-            columnSpacing={{ xs: 0, md: '96px' }}
-          >
-            <Grid item xs={12} md={6}>
-              <Accordion
-                elevation='0'
+      <Box sx={{ ...contenedorAcordeones }}>
+        <Grid
+          container
+          rowSpacing={{ xs: '10px' }}
+          columnSpacing={{ xs: 0, md: '96px' }}
+          sx={{ cuadriculaResponsive }}
+        >
+          <Grid item xs={12} md={6}>
+            <Accordion elevation={desactivarElevacion} sx={{ ...acordeon }}>
+              <AccordionSummary
+                onClick={() => cambioIzquierdo()}
+                expandIcon={
+                  <ExpandMore
+                    sx={{ color: acordeonIzqActivo ? '#ffffff' : '#666666' }}
+                  />
+                }
+                aria-label='Expand'
+                aria-controls='-content'
+                id='-header'
                 sx={{
-                  maxWidth: {
-                    xs: '100%',
-                    sm: '100%',
-                    md: '100%',
-                    lg: '839px'
-                  },
-                  border: 'solid gray 1px'
+                  ...acordeones,
+                  bgcolor: acordeonIzqActivo ? '#05B3B2' : 'transparent'
                 }}
               >
-                <AccordionSummary
-                  onClick={() => cambioIzquierdo()}
-                  expandIcon={
-                    <ExpandMore
-                      sx={{
-                        color: acordeonIzqActivo ? '#ffffff' : '#666666'
-                      }}
-                    />
-                  }
-                  aria-label='Expand'
-                  aria-controls='-content'
-                  id='-header'
+                <Typography
                   sx={{
-                    px: {
-                      md: '24px',
-                      xs: '10px'
-                    },
-                    bgcolor: acordeonIzqActivo ? '#05B3B2' : 'transparent'
+                    ...tituloAcordeon,
+                    color: acordeonIzqActivo ? '#ffffff' : '#666666'
                   }}
                 >
-                  <Typography
-                    sx={{
-                      ...tituloAcordeon,
-                      color: acordeonIzqActivo ? '#ffffff' : '#666666'
-                    }}
-                  >
-                    <b>Información general</b>
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails
-                  sx={{
-                    px: {
-                      md: '0',
-                      xs: '10px'
-                    }
-                  }}
-                >
-                  <Container
-                    maxWidth='mb'
-                    sx={{
-                      px: 0,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'left'
-                    }}
-                  >
-                    <DatosCliente />
-                  </Container>
-                </AccordionDetails>
-              </Accordion>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Accordion
-                elevation='0'
-                sx={{
-                  maxWidth: {
-                    xs: '100%',
-                    sm: '100%',
-                    md: '539px',
-                    lg: '839px'
-                  },
-                  border: 'solid gray 1px'
-                }}
-              >
-                <AccordionSummary
-                  onClick={() => cambioDerecho()}
-                  expandIcon={
-                    <ExpandMore
-                      sx={{
-                        color: acordeonDerActivo ? '#ffffff' : '#666666'
-                      }}
-                    />
-                  }
-                  aria-label='Expand'
-                  aria-controls='-content'
-                  id='-header'
-                  sx={{
-                    px: {
-                      md: '24px',
-                      xs: '10px'
-                    },
-                    bgcolor: acordeonDerActivo ? '#05B3B2' : 'transparent'
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      ...tituloAcordeon,
-                      color: acordeonDerActivo ? '#ffffff' : '#666666'
-                    }}
-                  >
-                    Imágen
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails
-                  sx={{
-                    px: {
-                      md: '0',
-                      xs: '10px'
-                    }
-                  }}
-                >
-                  <Container
-                    maxWidth='mb'
-                    sx={{
-                      px: 0,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'left'
-                    }}
-                  >
-                    Aquí va el componente de imágenes
-                  </Container>
-                </AccordionDetails>
-              </Accordion>
-            </Grid>
+                  <b>Información general</b>
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ ...acordeonInterno }}>
+                <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
+                  <DatosCliente />
+                </Container>
+              </AccordionDetails>
+            </Accordion>
           </Grid>
-        </Box>
-      </div>
+          <Grid item xs={12} md={6}>
+            <Accordion elevation={desactivarElevacion} sx={{ ...acordeon }}>
+              <AccordionSummary
+                onClick={() => cambioDerecho()}
+                expandIcon={
+                  <ExpandMore
+                    sx={{ color: acordeonDerActivo ? '#ffffff' : '#666666' }}
+                  />
+                }
+                aria-label='Expand'
+                aria-controls='-content'
+                id='-header'
+                sx={{
+                  ...acordeones,
+                  bgcolor: acordeonDerActivo ? '#05B3B2' : 'transparent'
+                }}
+              >
+                <Typography
+                  sx={{
+                    ...tituloAcordeon,
+                    color: acordeonDerActivo ? '#ffffff' : '#666666'
+                  }}
+                >
+                  Imágen
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ ...acordeonInterno }}>
+                <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
+                  Aquí va el componente de imágenes
+                </Container>
+              </AccordionDetails>
+            </Accordion>
+          </Grid>
+        </Grid>
+      </Box>
     </Box>
   )
 }
 
 export default ProductManager
+
+// Componentes de Texto
+const Resaltado = styled('p')``
+const Cuerpo = styled('p')``
 
 // Componentes de formulario
 
@@ -267,12 +199,67 @@ const pantallaCompleta = {
   }
 }
 
-const contenedorTitulos = {
+const contenedorSuperior = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
   height: { xs: '55px', md: '143px' },
   width: '100%'
+}
+
+const contenedorTitulos = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center'
+}
+
+const cuadriculaResponsive = {
+  justifyContent: 'space-between'
+}
+
+// estilos de acordeones
+
+const contenedorAcordeones = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  pb: '80px'
+}
+
+const acordeon = {
+  maxWidth: {
+    xs: '100%',
+    lg: '839px'
+  },
+  border: 'solid gray 1px'
+}
+
+const tituloAcordeon = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontSize: '18px',
+  fontWeight: 700,
+  letterSpacing: '0.3px',
+  lineHeight: 0
+}
+
+const acordeonInterno = {
+  px: {
+    md: '0',
+    xs: '10px'
+  }
+}
+
+const contenedorFormulario = {
+  px: 0,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'left'
+}
+
+const acordeones = {
+  px: {
+    md: '24px',
+    xs: '10px'
+  }
 }
 
 const camposTexto = {
@@ -299,19 +286,6 @@ const camposTexto = {
       borderBottom: '2px solid #00928e'
     }
   }
-}
-
-const contenedorAcordeones = {
-  display: 'flex',
-  justifyContent: 'space-between'
-}
-
-const tituloAcordeon = {
-  fontFamily: 'Noto Sans, sans-serif',
-  fontSize: '18px',
-  fontWeight: 700,
-  letterSpacing: '0.3px',
-  lineHeight: 0
 }
 
 const tituloCuerpo = {
@@ -367,8 +341,11 @@ const botonSecundario = {
   fontWeight: '700',
   fontSize: '1.125rem',
   boxShadow: 'none',
+  mr: '18px',
   '&:hover': {
     backgroundColor: '#770047',
     boxShadow: 'none'
   }
 }
+
+let desactivarElevacion = 0
