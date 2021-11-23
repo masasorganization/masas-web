@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles'
+import Button from '@mui/material/Button'
 
 // Contenedores de Texto
 const Resaltado = styled('p')``
@@ -39,6 +40,19 @@ const ProductManager = () => {
           <Box display='flex' flexDirection='row' alignItems='center'>
             <Cuerpo sx={{ ...tituloCuerpo }}>Editar </Cuerpo>
             <Resaltado sx={{ ...tituloResaltado }}>Producto</Resaltado>
+          </Box>
+
+          <Box
+            sx={{
+              ...contenedorBotones
+            }}
+          >
+            <Button variant='contained' sx={{ ...botonSecundario, mr: '18px' }}>
+              Cancelar
+            </Button>
+            <Button variant='contained' sx={{ ...botonPrimario }}>
+              Actualizar producto
+            </Button>
           </Box>
         </Box>
 
@@ -301,6 +315,48 @@ const tituloResaltado = {
   fontFamily: 'Noto Sans, sans-serif',
   fontWeight: 700,
   fontSize: { xs: '1.125rem', md: '2.25rem' },
-  color: '#FF4E00',
+  color: '#FF823B',
   m: 0
+}
+
+const contenedorBotones = {
+  position: { xs: 'absolute', md: 'unset' },
+  bottom: { xs: '21px', md: 0 },
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '434px'
+}
+
+const botonPrimario = {
+  backgroundColor: '#FF823B',
+  borderRadius: '10px',
+  width: '100%',
+  height: '39px',
+  textTransform: 'none',
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: '700',
+  fontSize: '1.125rem',
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: '#c65306',
+    boxShadow: 'none'
+  }
+}
+
+const botonSecundario = {
+  backgroundColor: '#AA3D72',
+  borderRadius: '10px',
+  px: '40px',
+  height: '39px',
+  textTransform: 'none',
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: '700',
+  fontSize: '1.125rem',
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: '#770047',
+    boxShadow: 'none'
+  }
 }
