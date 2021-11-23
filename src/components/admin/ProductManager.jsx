@@ -10,11 +10,12 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
-import Tooltip from '@mui/material/Tooltip'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
 
 const ProductManager = () => {
   let [acordeonIzqActivo, setAcordeonIzqActivo] = React.useState(false)
   let [acordeonDerActivo, setAcordeonDerActivo] = React.useState(false)
+  let [primeraVez, setPrimeraVez] = React.useState(true)
 
   const cambioIzquierdo = () => {
     setAcordeonIzqActivo(!acordeonIzqActivo)
@@ -25,7 +26,7 @@ const ProductManager = () => {
   }
 
   return (
-    <Box sx={{ ...pantallaCompleta }}>
+    <Box onClick={() => setPrimeraVez()} sx={{ ...pantallaCompleta }}>
       <Box sx={{ ...contenedorSuperior }}>
         <Box sx={{ ...contenedorTitulos }}>
           <Cuerpo sx={{ ...tituloCuerpo }}>Editar </Cuerpo>
@@ -36,11 +37,17 @@ const ProductManager = () => {
           <Button variant='contained' sx={{ ...botonSecundario }}>
             Cancelar
           </Button>
-          <Tooltip title={textoTooltip} arrow>
+          <TooltipInferior
+            title={textoTooltip}
+            arrow
+            leaveDelay='1500'
+            open={primeraVez}
+            sx={{ ...flechaTooltip }}
+          >
             <Button variant='contained' sx={{ ...botonPrimario }}>
               Actualizar producto
             </Button>
-          </Tooltip>
+          </TooltipInferior>
         </Box>
       </Box>
 
@@ -51,39 +58,47 @@ const ProductManager = () => {
           columnSpacing={{ xs: 0, md: '96px' }}
           sx={{ cuadriculaResponsive }}
         >
-          <Grid item xs={12} md={6}>
-            <Accordion elevation={desactivarElevacion} sx={{ ...acordeon }}>
-              <AccordionSummary
-                onClick={() => cambioIzquierdo()}
-                expandIcon={
-                  <ExpandMore
-                    sx={{ color: acordeonIzqActivo ? '#ffffff' : '#666666' }}
-                  />
-                }
-                aria-label='Expand'
-                aria-controls='-content'
-                id='-header'
-                sx={{
-                  ...acordeones,
-                  bgcolor: acordeonIzqActivo ? '#05B3B2' : 'transparent'
-                }}
-              >
-                <Typography
+          <TooltipCentral
+            title={textoTooltip2}
+            arrow
+            leaveDelay='1500'
+            open={primeraVez}
+            sx={{ ...flechaTooltip }}
+          >
+            <Grid item xs={12} md={6}>
+              <Accordion elevation={desactivarElevacion} sx={{ ...acordeon }}>
+                <AccordionSummary
+                  onClick={() => cambioIzquierdo()}
+                  expandIcon={
+                    <ExpandMore
+                      sx={{ color: acordeonIzqActivo ? '#ffffff' : '#666666' }}
+                    />
+                  }
+                  aria-label='Expand'
+                  aria-controls='-content'
+                  id='-header'
                   sx={{
-                    ...tituloAcordeon,
-                    color: acordeonIzqActivo ? '#ffffff' : '#666666'
+                    ...acordeones,
+                    bgcolor: acordeonIzqActivo ? '#05B3B2' : 'transparent'
                   }}
                 >
-                  <b>Información general</b>
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails sx={{ ...acordeonInterno }}>
-                <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
-                  <DatosCliente />
-                </Container>
-              </AccordionDetails>
-            </Accordion>
-          </Grid>
+                  <Typography
+                    sx={{
+                      ...tituloAcordeon,
+                      color: acordeonIzqActivo ? '#ffffff' : '#666666'
+                    }}
+                  >
+                    <b>Información general</b>
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{ ...acordeonInterno }}>
+                  <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
+                    <DatosCliente />
+                  </Container>
+                </AccordionDetails>
+              </Accordion>
+            </Grid>
+          </TooltipCentral>
           <Grid item xs={12} md={6}>
             <Accordion elevation={desactivarElevacion} sx={{ ...acordeon }}>
               <AccordionSummary
@@ -129,9 +144,41 @@ export default ProductManager
 const Resaltado = styled('p')``
 const Cuerpo = styled('p')``
 
+// Componentes tooltip modificados
+const TooltipCentral = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    top: '20px',
+    fontFamily: 'Nunito, sans-serif',
+    fontWeight: 300,
+    fontSize: '13px',
+    maxWidth: 300,
+    textAlign: 'center',
+    backgroundColor: '#05B3B2'
+  }
+})
+
+const TooltipInferior = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    bottom: '5px',
+    right: '10px',
+    fontFamily: 'Nunito, sans-serif',
+    fontWeight: 300,
+    fontSize: '12px',
+    maxWidth: 400,
+    textAlign: 'center',
+    backgroundColor: '#05B3B2'
+  }
+})
+
 // Componentes de formulario
 
 let textoTooltip = 'Este botón se activará al ingresar toda la información.'
+let textoTooltip2 =
+  'Ingrese la información del producto pulsando en alguna de las dos secciones.'
 
 function DatosCliente() {
   return (
@@ -345,6 +392,14 @@ const botonSecundario = {
   '&:hover': {
     backgroundColor: '#770047',
     boxShadow: 'none'
+  }
+}
+
+const flechaTooltip = {
+  '& .MuiTooltip-arrow': {
+    ':before': {
+      backgroundColor: '#05B3B2'
+    }
   }
 }
 
