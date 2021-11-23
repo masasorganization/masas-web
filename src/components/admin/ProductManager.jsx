@@ -6,11 +6,11 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import TextField from '@mui/material/TextField'
-//import MenuItem from '@mui/material/MenuItem'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
+import Tooltip from '@mui/material/Tooltip'
 
 // Contenedores de Texto
 const Resaltado = styled('p')``
@@ -31,12 +31,7 @@ const ProductManager = () => {
   return (
     <Box sx={{ ...pantallaCompleta }}>
       <div>
-        <Box
-          display='flex'
-          flexDirection='row'
-          justifyContent='space-between'
-          sx={{ height: { xs: '55px', md: '143px' }, width: '100%' }}
-        >
+        <Box sx={{ ...contenedorTitulos }}>
           <Box display='flex' flexDirection='row' alignItems='center'>
             <Cuerpo sx={{ ...tituloCuerpo }}>Editar </Cuerpo>
             <Resaltado sx={{ ...tituloResaltado }}>Producto</Resaltado>
@@ -50,13 +45,15 @@ const ProductManager = () => {
             <Button variant='contained' sx={{ ...botonSecundario, mr: '18px' }}>
               Cancelar
             </Button>
-            <Button variant='contained' sx={{ ...botonPrimario }}>
-              Actualizar producto
-            </Button>
+            <Tooltip title={textoTooltip} arrow>
+              <Button variant='contained' sx={{ ...botonPrimario }}>
+                Actualizar producto
+              </Button>
+            </Tooltip>
           </Box>
         </Box>
 
-        <Box sx={{ ...contenedorAcordeones }}>
+        <Box sx={{ ...contenedorAcordeones, pb: '80px' }}>
           <Grid
             container
             justifyContent='space-between'
@@ -80,7 +77,9 @@ const ProductManager = () => {
                   onClick={() => cambioIzquierdo()}
                   expandIcon={
                     <ExpandMore
-                      sx={{ color: acordeonIzqActivo ? '#ffffff' : '#666666' }}
+                      sx={{
+                        color: acordeonIzqActivo ? '#ffffff' : '#666666'
+                      }}
                     />
                   }
                   aria-label='Expand'
@@ -142,7 +141,9 @@ const ProductManager = () => {
                   onClick={() => cambioDerecho()}
                   expandIcon={
                     <ExpandMore
-                      sx={{ color: acordeonDerActivo ? '#ffffff' : '#666666' }}
+                      sx={{
+                        color: acordeonDerActivo ? '#ffffff' : '#666666'
+                      }}
                     />
                   }
                   aria-label='Expand'
@@ -197,6 +198,8 @@ const ProductManager = () => {
 export default ProductManager
 
 // Componentes de formulario
+
+let textoTooltip = 'Este botón se activará al ingresar toda la información.'
 
 function DatosCliente() {
   return (
@@ -264,6 +267,14 @@ const pantallaCompleta = {
   }
 }
 
+const contenedorTitulos = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  height: { xs: '55px', md: '143px' },
+  width: '100%'
+}
+
 const camposTexto = {
   '& .MuiInput-input': {
     fontFamily: 'Nunito, sans-serif',
@@ -320,19 +331,19 @@ const tituloResaltado = {
 }
 
 const contenedorBotones = {
-  position: { xs: 'absolute', md: 'unset' },
+  position: { xs: 'fixed', md: 'unset' },
   bottom: { xs: '21px', md: 0 },
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
-  width: '434px'
+  zIndex: 1
 }
 
 const botonPrimario = {
   backgroundColor: '#FF823B',
   borderRadius: '10px',
-  width: '100%',
+  width: '270px',
   height: '39px',
   textTransform: 'none',
   fontFamily: 'Noto Sans, sans-serif',
@@ -348,6 +359,7 @@ const botonPrimario = {
 const botonSecundario = {
   backgroundColor: '#AA3D72',
   borderRadius: '10px',
+  width: '129px',
   px: '40px',
   height: '39px',
   textTransform: 'none',
