@@ -6,7 +6,7 @@ const theme = createTheme({
     background: {
       principalClaro: '#FF823B',
       secundarioClaro: '#AA3D72',
-      azulado: '#05B3B2'
+      azulado: '#05B3B2',
     },
     text: {
       white: '#FFFFFF',
