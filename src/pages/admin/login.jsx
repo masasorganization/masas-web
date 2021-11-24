@@ -9,6 +9,8 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Axios from 'axios';
+import Swal from 'sweetalert2';
 
 // Contenedores de Texto
 const Resaltado = styled("p")``;
@@ -20,6 +22,58 @@ const texto2 = "cuenta:";
 
 function Login() {
   const [botonActivo, setBotonActivo] = useState(true);
+
+  //Inicializando los espacios vacios
+  const [usuario, setUsuario]= useState ('')
+  const [contrasena, setContrasena]= useState ('')
+  
+  //Recibo valores capturados en el formulario
+
+  const login=async(e) =>{
+      
+      e.preventDefault();
+
+      //Generando un objeto con las credenciales capturadas
+      const usuarioProps ={usuario,contrasena}
+
+      //Aqui se completa la URl Base del index.js con /jefe/login y el objeto usuario que contiene las credenciales.
+      const respuesta = await Axios.post('/jefe/login', usuarioProps);
+      
+      //Mostrando la respuesta del servidor
+      const mensaje = respuesta.data.mensaje
+
+          //Validaciones del mensaje
+          if (mensaje!=='Bienvenido!'){
+
+              Swal.fire({
+                  icon:"error",
+                  title:mensaje,
+                  showConfirmButton:false,
+                  timer:1500
+              })
+          }
+          else{
+          //Recibiendo datos de Base de datos
+          const token=respuesta.data.token
+          const nombre=respuesta.data.nombre
+          const idusuario=respuesta.data.id
+
+          sessionStorage.setItem('token',token)
+          sessionStorage.setItem('nombre',nombre)
+          sessionStorage.setItem('idusuario',idusuario)
+          
+              Swal.fire({
+                  icon:"success",
+                  title:mensaje,
+                  showConfirmButton:false,
+                  timer:1500
+              });
+             
+          }
+  }
+
+
+
 
   return (
     <div>
@@ -71,11 +125,18 @@ function Login() {
               <Resaltado sx={{ ...resaltado }}>{texto2}</Resaltado>
             </Box>
             {/* Campos de Texto */}
+
+            {/*/Formulario que conecta al BackEnd por medio de Axios*/}
+            <form onSubmit={login}>
+
             <Grid container>
-              <Grid item xs={12} sx={{ mb: "20px" }}>
+              <Grid item xs={12} sx={{ mb: "20px" }} className="form-group">
                 <TextField
+                  className="form-control"
                   required
                   onChange={(text) => setBotonActivo(!text.target.value)}
+                  // eslint-disable-next-line react/jsx-no-duplicate-props
+                  onChange={(e) => setUsuario(e.target.value)}
                   id="username"
                   //helperText="Ingrese su nombre de usuario"
                   label="Nombre de usuario"
@@ -85,9 +146,12 @@ function Login() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  className="form-control"
                   //helperText="Ingrese su contraseña"
                   required
                   onChange={(text) => setBotonActivo(!text.target.value)}
+                  // eslint-disable-next-line react/jsx-no-duplicate-props
+                  onChange={(e) => setContrasena(e.target.value)}
                   id="password"
                   label="Contraseña"
                   variant="standard"
@@ -103,14 +167,21 @@ function Login() {
               }}
             >
               <Button
+                type="submit"
+                className = "btn btn-primary btn-block"
                 variant="contained"
                 color="primary"
                 sx={{ ...botonLogin }}
-                disabled={botonActivo}
+                  
+
+                //Esta propiedad no permitio loguear, ya que deshabilita el boton.
+                //disabled={botonActivo}             
               >
-                Inicio
+               Inicio
               </Button>
             </Box>
+            
+            </form>
           </Container>
         </Box>
       </Box>

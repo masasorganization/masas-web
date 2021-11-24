@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import Axios from 'axios';
+
+//Generando URL Base con Axios
+
+Axios.defaults.baseURL='http://localhost:4000'
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
