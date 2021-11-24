@@ -1,5 +1,5 @@
+import AdminLayout from 'Layouts/AdminLayout'
 import * as React from 'react'
-import AdminNavbar from '../../components/admin/AdminNavbar'
 import { administrador } from '../../components/admin/navigationData'
 
 function SalesReport() {
@@ -19,8 +19,9 @@ function SalesReport() {
 
   return (
     <div>
-      <AdminNavbar usuario='admin' />
-      <h1>Aquí generas los reportes de venta</h1>
+      <AdminLayout body={'Gestión de '} bold={'Cifras'} order={''} color={''}>
+        <h1>titulos inteligentes???</h1>
+      </AdminLayout>
     </div>
   )
 }
