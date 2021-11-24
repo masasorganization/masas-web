@@ -27,7 +27,7 @@ const ProductManager = () => {
   }
 
   return (
-    <Box onClick={() => setPrimeraVez()} sx={{ ...pantallaCompleta }}>
+    <Box onClick={() => setPrimeraVez(false)} sx={{ ...pantallaCompleta }}>
       <Box sx={{ ...contenedorSuperior }}>
         <Box sx={{ ...contenedorTitulos }}>
           <Cuerpo sx={{ ...tituloCuerpo }}>Editar </Cuerpo>
