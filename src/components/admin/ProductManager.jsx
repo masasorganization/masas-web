@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+import MenuItem from '@mui/material/MenuItem'
 
 const ProductManager = () => {
   let [acordeonIzqActivo, setAcordeonIzqActivo] = React.useState(false)
@@ -93,7 +94,7 @@ const ProductManager = () => {
                 </AccordionSummary>
                 <AccordionDetails sx={{ ...acordeonInterno }}>
                   <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
-                    <DatosCliente />
+                    <DatosProducto />
                   </Container>
                 </AccordionDetails>
               </Accordion>
@@ -179,6 +180,122 @@ let textoTooltip = 'Este botón se activará al ingresar toda la información.'
 let textoTooltip2 =
   'Ingrese la información del producto pulsando en alguna de las dos secciones.'
 
+function DatosProducto() {
+  const [seleccionCategorias, setSeleccionCategorias] = React.useState('')
+  const [seleccionTamaño, setSeleccionTamaño] = React.useState('')
+
+  const cambioCategoria = (event) => {
+    setSeleccionCategorias(event.target.value)
+  }
+
+  const cambioTamaño = (event) => {
+    setSeleccionTamaño(event.target.value)
+  }
+
+  const categorias = [
+    {
+      value: 'Sin azúcar',
+      label: 'Sin azúcar'
+    },
+    {
+      value: 'Masa saludable',
+      label: 'Masa saludable'
+    },
+    {
+      value: 'Tipo orgánico',
+      label: 'Tipo orgánico'
+    }
+  ]
+
+  const tamaños = [
+    {
+      value: 'x8',
+      label: 'x8'
+    },
+    {
+      value: 'x16',
+      label: 'x16'
+    }
+  ]
+  return (
+    <>
+      <TextField
+        id='categoriaProducto'
+        select
+        label='Categoria'
+        value={seleccionCategorias}
+        onChange={cambioCategoria}
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        helperText='Seleccione una categoria.'
+        //required='true'
+      >
+        {categorias.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
+
+      <TextField
+        id='nombreProducto'
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Nombre'
+        helperText='Escriba el nombre del producto.'
+        //required='true'
+      />
+
+      <TextField
+        id='tamañoProducto'
+        select
+        label='Tamaño'
+        value={seleccionTamaño}
+        onChange={cambioTamaño}
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        helperText='Seleccione la cantidad de porciones del producto.'
+        //required='true'
+      >
+        {tamaños.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
+
+      <TextField
+        id='valorProducto'
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Valor'
+        helperText='Escriba el valor del producto.'
+        //required='true'
+      />
+
+      <TextField
+        id='descripcionProducto'
+        multiline
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Descripción'
+        helperText='Escriba una descripción del producto.'
+        //required='true'
+      />
+
+      <TextField
+        id='ingredientesProducto'
+        multiline
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Ingredientes'
+        helperText='Escriba todos los ingredientes del producto.'
+        //required='true'
+      />
+    </>
+  )
+}
+
 function DatosCliente() {
   return (
     <>
@@ -232,63 +349,6 @@ function DatosCliente() {
         label='Fecha de entrega'
         //required='true'
       />
-    </>
-  )
-}
-
-function DatosProducto() {
-  return (
-    <>
-      {/* <TextField
-        sx={{ ...camposTexto, mb: '12px' }}
-        variant='standard'
-        label='Nombre completo'
-        //required='true'
-      />
-      <TextField
-        sx={{ ...camposTexto, mb: '12px' }}
-        variant='standard'
-        label='Tipo de documento'
-        //required='true'
-      />
-      <TextField
-        sx={{ ...camposTexto, mb: '12px' }}
-        variant='standard'
-        label='Número de documento'
-        //required='true'
-        //helperText='Sin puntos (.) ni guiones (-) nit completo'
-      />
-      <TextField
-        sx={{ ...camposTexto, mb: '12px' }}
-        variant='standard'
-        label='Dirección'
-        //required='true'
-        //helperText='Ej: Calle 20 sur # 2-28 o Carrera 13 este # 4-55'
-      />
-      <TextField
-        sx={{ ...camposTexto, mb: '12px' }}
-        variant='standard'
-        label='Número casa, apto, oficina'
-        //helperText='Ej: Torre 1 bloque b ap 202'
-      />
-      <TextField
-        sx={{ ...camposTexto, mb: '12px' }}
-        variant='standard'
-        label='Barrio'
-        //required='true'
-      />
-      <TextField
-        sx={{ ...camposTexto, mb: '12px' }}
-        variant='standard'
-        label='Celular'
-        //required='true'
-      />
-      <TextField
-        sx={{ ...camposTexto, mb: '12px' }}
-        variant='standard'
-        label='Fecha de entrega'
-        //required='true'
-      /> */}
     </>
   )
 }
