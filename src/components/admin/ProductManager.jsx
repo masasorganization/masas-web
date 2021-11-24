@@ -163,7 +163,6 @@ const TooltipInferior = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))({
   [`& .${tooltipClasses.tooltip}`]: {
-    bottom: '5px',
     right: '10px',
     fontFamily: 'Nunito, sans-serif',
     fontWeight: 300,
