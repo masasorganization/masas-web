@@ -16,7 +16,7 @@ const administrador = [
   },
   {
     pagina: 'Salir',
-    url: 'logout',
+    url: 'login',
     estado: null
   }
 ]
@@ -39,7 +39,7 @@ const vendedor = [
   },
   {
     pagina: 'Salir',
-    url: 'logout',
+    url: 'login',
     estado: null
   }
 ]
