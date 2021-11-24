@@ -41,7 +41,6 @@ const ProductManager = () => {
           <TooltipInferior
             title={textoTooltip}
             arrow
-            leaveDelay='1500'
             open={primeraVez}
             sx={{ ...flechaTooltip }}
           >
@@ -62,12 +61,11 @@ const ProductManager = () => {
           <TooltipCentral
             title={textoTooltip2}
             arrow
-            leaveDelay='1500'
             open={primeraVez}
             sx={{ ...flechaTooltip }}
           >
             <Grid item xs={12} md={6}>
-              <Accordion elevation={desactivarElevacion} sx={{ ...acordeon }}>
+              <Accordion elevation={0} sx={{ ...acordeon }}>
                 <AccordionSummary
                   onClick={() => cambioIzquierdo()}
                   expandIcon={
@@ -101,7 +99,7 @@ const ProductManager = () => {
             </Grid>
           </TooltipCentral>
           <Grid item xs={12} md={6}>
-            <Accordion elevation={desactivarElevacion} sx={{ ...acordeon }}>
+            <Accordion elevation={0} sx={{ ...acordeon }}>
               <AccordionSummary
                 onClick={() => cambioDerecho()}
                 expandIcon={
@@ -518,5 +516,3 @@ const flechaTooltip = {
     }
   }
 }
-
-let desactivarElevacion = 0
