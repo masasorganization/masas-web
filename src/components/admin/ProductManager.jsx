@@ -239,7 +239,7 @@ function DatosCliente() {
 function DatosProducto() {
   return (
     <>
-      <TextField
+      {/* <TextField
         sx={{ ...camposTexto, mb: '12px' }}
         variant='standard'
         label='Nombre completo'
@@ -288,7 +288,7 @@ function DatosProducto() {
         variant='standard'
         label='Fecha de entrega'
         //required='true'
-      />
+      /> */}
     </>
   )
 }
