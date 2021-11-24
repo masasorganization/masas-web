@@ -236,6 +236,63 @@ function DatosCliente() {
   )
 }
 
+function DatosProducto() {
+  return (
+    <>
+      <TextField
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Nombre completo'
+        //required='true'
+      />
+      <TextField
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Tipo de documento'
+        //required='true'
+      />
+      <TextField
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Número de documento'
+        //required='true'
+        //helperText='Sin puntos (.) ni guiones (-) nit completo'
+      />
+      <TextField
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Dirección'
+        //required='true'
+        //helperText='Ej: Calle 20 sur # 2-28 o Carrera 13 este # 4-55'
+      />
+      <TextField
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Número casa, apto, oficina'
+        //helperText='Ej: Torre 1 bloque b ap 202'
+      />
+      <TextField
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Barrio'
+        //required='true'
+      />
+      <TextField
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Celular'
+        //required='true'
+      />
+      <TextField
+        sx={{ ...camposTexto, mb: '12px' }}
+        variant='standard'
+        label='Fecha de entrega'
+        //required='true'
+      />
+    </>
+  )
+}
+
 // Estilos en variables
 
 const pantallaCompleta = {
