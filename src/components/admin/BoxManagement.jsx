@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
-import Image from '../../assets/descargar.jpg';
+import Image from '../../assets/placeholder.png';
 import { createTheme } from "@mui/material";
 
 const theme = createTheme({
