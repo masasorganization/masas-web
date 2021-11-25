@@ -11,13 +11,18 @@ const theme = createTheme({
       secundarioClaro: '#AA3D72',
       azulado: '#05B3B2',
     },
+    hover: {
+      hoverPrincipalClaro: '#C65306',
+      hoverSecundarioClaro: '#770047',
+      hoverAzulado: '#00928E',
+    },
     text: {
       white: '#FFFFFF',
     },
   },
 });
 
-const BoxCategory = ({background, title, paragraph, word}) => {
+const BoxCategory = ({background, hover, title, paragraph, word}) => {
     return (   
       <div>
             <ThemeProvider theme={theme}>
@@ -35,6 +40,9 @@ const BoxCategory = ({background, title, paragraph, word}) => {
                       mt: '10px',
                       mb: '10px',
                     }, 
+                    ':hover': {
+                      bgcolor: [hover],
+                    },
                 }}>
                     <div>
                         <Box sx={{ 
