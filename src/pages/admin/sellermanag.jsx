@@ -73,9 +73,9 @@ function SellerManagement ({title}) {
                 </Grid>
                         
                     <Grid container >
-                        <Grid item xs={12} md={6}><BoxManagement title='Federico Molano' paragraph='fedemolo'></BoxManagement></Grid>
-                        <Grid item xs={12} md={6}><BoxManagement title='Daniela Bedoya' paragraph='denibedo'></BoxManagement></Grid>
-                        <Grid item xs={12} md={6}><BoxManagement title='Javier Torres' paragraph='javitorr'></BoxManagement></Grid>    
+                        <Grid item xs={12} md={6}><BoxManagement title='Federico Molano' paragraph='fedemolo' button2='none'></BoxManagement></Grid>
+                        <Grid item xs={12} md={6}><BoxManagement title='Daniela Bedoya' paragraph='denibedo' button2='none'></BoxManagement></Grid>
+                        <Grid item xs={12} md={6}><BoxManagement title='Javier Torres' paragraph='javitorr' button2='none'></BoxManagement></Grid>    
                     </Grid>
             </Box>             
         </div>

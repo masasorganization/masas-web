@@ -6,7 +6,7 @@ import { createTheme } from "@mui/material";
 const theme = createTheme({
 });
 
-const BoxManagement = ({title, paragraph}) => {
+const BoxManagement = ({title, paragraph, button1, button2}) => {
     return(
         <div>
             <Box sx={{
@@ -30,7 +30,7 @@ const BoxManagement = ({title, paragraph}) => {
                         fontSize: '16px',
                         letterSpacing: '1.25px',
                         m: '18px',
-                        mb: '0px'
+                        mb: '0px',
                     }}>
                         {[title]}
                     </Box>
@@ -42,7 +42,7 @@ const BoxManagement = ({title, paragraph}) => {
                         letterSpacing: '1.25px',
                         mr: '18px',
                         ml: '18px',
-                        mb: '20px'                
+                        mb: '20px',        
                     }}>
                         {[paragraph]}
                     </Box>
@@ -53,8 +53,9 @@ const BoxManagement = ({title, paragraph}) => {
                         fontSize: '14px',
                         letterSpacing: '1.25px',
                         textTransform: 'capitalize',
+                        display: [button1],
                         ml: '18px',
-                        mr: '18px'
+                        [theme.breakpoints.down('md')]: {ml: '10px'}
                     }}>Borrar</Button>
                     <Button variant="text" sx={{
                         color: '#05B3B2',
@@ -62,7 +63,10 @@ const BoxManagement = ({title, paragraph}) => {
                         fontWeight: 'Bold',
                         fontSize: '14px',
                         letterSpacing: '1.25px',
-                        textTransform: 'capitalize'
+                        textTransform: 'capitalize',
+                        display: [button2],
+                        ml: '18px',   
+                        [theme.breakpoints.down('md')]: {ml: '10px'}
                     }}>Archivar</Button>        
                 </Box>
                     <Box className='cards'>
