@@ -1,5 +1,8 @@
 import { ThemeProvider, createTheme} from '@mui/system';
 import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
+const Text1Style = styled('p')``;
 
 const theme = createTheme({
   palette: {
@@ -14,7 +17,7 @@ const theme = createTheme({
   },
 });
 
-const BoxCategory = ({background, title, paragraph}) => {
+const BoxCategory = ({background, title, paragraph, word}) => {
     return (   
       <div>
             <ThemeProvider theme={theme}>
@@ -25,10 +28,12 @@ const BoxCategory = ({background, title, paragraph}) => {
                     display: 'inline-flex',
                     borderRadius: '14px',
                     [theme.breakpoints.only('md')]: {
-                      height: '250px'
+                      height: '250px',
                     },
                     [theme.breakpoints.down('md')]: {
                       height: '150px',
+                      mt: '10px',
+                      mb: '10px',
                     }, 
                 }}>
                     <div>
@@ -48,7 +53,7 @@ const BoxCategory = ({background, title, paragraph}) => {
                             }}>
                                 {[title]}
                         </Box>
-                        <Box sx={{ 
+                        <Text1Style sx={{ 
                             color: "text.white",
                             textAlign: 'right',
                             letterSpacing: '1.25px',
@@ -61,8 +66,8 @@ const BoxCategory = ({background, title, paragraph}) => {
                               mt: '0rem',
                             },
                             }}>
-                                {[paragraph]}
-                        </Box>
+                                {paragraph}{word}
+                        </Text1Style>           
                     </div>
                 </Box>
             </ThemeProvider>

@@ -45,21 +45,24 @@ function CategoryPage() {
             <BoxCategory
               background="background.principalClaro"
               title="Productos"
-              paragraph="En esta sección puedes crear, editar, modificar y archivar los productos del catalogo."
+              paragraph="En esta sección puedes crear, editar, modificar y archivar los productos del "
+              word= "catalogo."
             />{" "}
           </Grid>
           <Grid item xs={12} sm={11} md={4}>
             <BoxCategory
               background="background.secundarioClaro"
               title="Cuentas"
-              paragraph="En esta sección puedes crear, editar, modificar y eliminar las cuantas de usuario."
+              paragraph="En esta sección puedes crear, editar, modificar y eliminar las cuantas de "
+              word= "usuario."
             />
           </Grid>
           <Grid item xs={12} sm={11} md={4}>
             <BoxCategory
               background="background.azulado"
               title="Cifras"
-              paragraph="En esta sección puedes acceder a los datos que se han recolectado sobre productos y ventas."
+              paragraph="En esta sección puedes acceder a los datos que se han recolectado sobre productos y "
+              word= "ventas."
             />
           </Grid>
           <Grid item xs={12} sm={11} md={4}>
@@ -76,6 +79,7 @@ function CategoryPage() {
                 letterSpacing: "1.25px",
                 alignItems: "center",
                 justifyContent: "center",
+                [theme.breakpoints.down('md')]: {height: '30px', fontSize: '18px'}
               }}
             >
               Salir
