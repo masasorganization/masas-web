@@ -86,3 +86,10 @@ Jalea de ciruela: #b70030*/
   font-size: 1.15rem;
   text-align: center;
 }
+
+.cards > img {
+  max-width: 100vw;
+  max-height: 100vh;
+  height: 100%;
+  width: 100%;
+}
