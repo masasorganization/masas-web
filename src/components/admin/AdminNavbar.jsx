@@ -50,7 +50,7 @@ const TestNavbar = (props) => {
 
   return (
     <div>
-      <AppBar elevation={desactivarElevacion} position='static'>
+      <AppBar elevation={0} position='static'>
         <Toolbar sx={{ ...contenedorBarra }}>
           <Box sx={{ ...contenedorNavegacion }}>
             <IconButton
@@ -121,7 +121,7 @@ const contenedorBarra = {
   justifyContent: 'space-between',
   px: {
     md: '94px',
-    xs: 'none'
+    xs: '18px'
   },
   height: {
     md: '64px',
@@ -137,7 +137,7 @@ const contenedorNavegacion = {
 
 const contenedorIcono = {
   display: { xs: 'flex', md: 'none' },
-  mr: '16px'
+  p: 0
 }
 
 const icono = {
@@ -195,5 +195,3 @@ const logo = {
     transform: 'scale(1.05)'
   }
 }
-
-let desactivarElevacion = 0
