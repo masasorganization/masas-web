@@ -1,10 +1,10 @@
 import { styled } from '@mui/material/styles'
 
-export default function SmartTitle({ body, bold, order, color }) {
-  let titleBody = body
-  let titleBold = bold
-  let textOrder = order
-  let textColor = color
+export default function SmartTitle(props) {
+  let textOrder = props.order
+  let titleBody = props.body
+  let titleBold = props.bold
+  let textColor = props.color
 
   const colorPrincipal = {
     color: '#FF823B'
@@ -19,11 +19,12 @@ export default function SmartTitle({ body, bold, order, color }) {
     fontWeight: 700,
     fontSize: { xs: '1.125rem', md: '2.25rem' },
     color: textColor ? colorPrincipal : colorSecundario,
+    whiteSpace: 'pre-wrap',
     m: 0
   }
 
   function TitleComponent() {
-    if (textOrder === 'inverted') {
+    if (textOrder === 'invertido') {
       return OrderTwo()
     } else {
       return OrderOne()
