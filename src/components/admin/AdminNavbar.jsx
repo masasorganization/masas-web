@@ -120,7 +120,7 @@ const contenedorBarra = {
   display: 'flex',
   justifyContent: 'space-between',
   px: {
-    md: '94px',
+    md: '50px',
     xs: '18px'
   },
   height: {
@@ -137,7 +137,8 @@ const contenedorNavegacion = {
 
 const contenedorIcono = {
   display: { xs: 'flex', md: 'none' },
-  p: 0
+  p: 0,
+  mr: '16px'
 }
 
 const icono = {

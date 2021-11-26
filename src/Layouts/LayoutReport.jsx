@@ -1,7 +1,7 @@
 import * as React from 'react'
 import AdminNavbar from '../components/admin/AdminNavbar'
 import Box from '@mui/material/Box'
-import SmartTitle from 'components/admin/SmartTitle'
+import { styled } from '@mui/material/styles'
 import { vendedor } from '../components/admin/navigationData'
 
 export default function LayoutSalesR({ children }) {
@@ -27,12 +27,8 @@ export default function LayoutSalesR({ children }) {
         <Box sx={{ ...contenedorSuperior }}>
           {/* Cuadro que contiene a los titlos */}
           <Box sx={{ ...contenedorTitulos }}>
-            <SmartTitle
-              body={'del día'}
-              bold={'Informe '}
-              order={'invertido'}
-              color={''}
-            />
+            <Cuerpo sx={{ ...tituloCuerpo }}>{'del día'}</Cuerpo>
+            <Resaltado sx={{ ...tituloResaltado }}>{'Informe '}</Resaltado>
           </Box>
         </Box>
         {children}
@@ -41,10 +37,14 @@ export default function LayoutSalesR({ children }) {
   )
 }
 
+// Componentes de Texto
+const Resaltado = styled('p')``
+const Cuerpo = styled('p')``
+
 const pantallaCompleta = {
   px: {
-    md: '94px',
-    xs: '18px'
+    xs: '18px',
+    md: '50px'
   }
 }
 
@@ -59,8 +59,27 @@ const contenedorSuperior = {
 
 const contenedorTitulos = {
   display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center'
+  flexDirection: 'row-reverse',
+  alignItems: 'center',
+  justifyContent: 'center'
+}
+
+const tituloCuerpo = {
+  fontFamily: 'Nunito, sans-serif',
+  fontWeight: 300,
+  fontSize: { xs: '1.75rem', md: '2.25rem' },
+  whiteSpace: 'pre-wrap',
+  pt: '4.5px',
+  m: 0
+}
+
+const tituloResaltado = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700,
+  fontSize: { xs: '1.75rem', md: '2.25rem' },
+  color: '#05B3B2',
+  whiteSpace: 'pre-wrap',
+  m: 0
 }
 
 // Logica del padre para la barra de navegación

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import AdminNavbar from '../components/admin/AdminNavbar'
 import Box from '@mui/material/Box'
-import SmartTitle from 'components/admin/SmartTitle'
+import MainTitle from 'components/admin/MainTitle'
 import { vendedor } from '../components/admin/navigationData'
 import Typography from '@mui/material/Typography'
 
@@ -27,14 +27,12 @@ export default function LayoutSalesR({ children }) {
         {/* Contenedor principal */}
         <Box sx={{ ...contenedorSuperior }}>
           {/* Cuadro que contiene a los titlos */}
-          <Box sx={{ ...contenedorTitulos }}>
-            <SmartTitle
-              body={'Gestión de '}
-              bold={'pedidos'}
-              order={''}
-              color={''}
-            />
-          </Box>
+          <MainTitle
+            cuerpo={'Gestión de '}
+            resaltado={'pedidos'}
+            posicion={'normal'}
+            color={'secundario'}
+          />
           {/* Cuadro que contiene a los botones */}
           <Box sx={{ ...contenedorBotones }}>
             {/* <Button variant='contained' sx={{ ...botonPrimario }}>
@@ -53,8 +51,8 @@ export default function LayoutSalesR({ children }) {
 
 const pantallaCompleta = {
   px: {
-    md: '94px',
-    xs: '18px'
+    xs: '18px',
+    md: '50px'
   }
 }
 
@@ -65,12 +63,6 @@ const contenedorSuperior = {
   height: { xs: '55px', md: '143px' },
   width: '100%',
   mt: { xs: '10px', md: 0 }
-}
-
-const contenedorTitulos = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center'
 }
 
 const contenedorBotones = {
@@ -87,8 +79,9 @@ const textoComplementario = {
   textTransform: 'none',
   fontFamily: 'Nunito, sans-serif',
   fontWeight: 300,
-  fontSize: { xs: '0.875rem', md: '1.05rem' },
+  fontSize: { xs: '0.875rem', md: '1.20rem' },
   color: '#666666',
+  pt: { xs: 0, md: '7px' },
   '&:hover': {
     color: '#000000'
   }

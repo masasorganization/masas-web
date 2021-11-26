@@ -2,7 +2,7 @@ import * as React from 'react'
 import AdminNavbar from '../components/admin/AdminNavbar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import SmartTitle from 'components/admin/SmartTitle'
+import MainTitle from 'components/admin/MainTitle'
 import { administrador } from '../components/admin/navigationData'
 
 export default function LayoutProdMan({ children }) {
@@ -27,14 +27,12 @@ export default function LayoutProdMan({ children }) {
         {/* Contenedor principal */}
         <Box sx={{ ...contenedorSuperior }}>
           {/* Cuadro que contiene a los titlos */}
-          <Box sx={{ ...contenedorTitulos }}>
-            <SmartTitle
-              body={'Gestión de '}
-              bold={'productos'}
-              order={''}
-              color={'principal'}
-            />
-          </Box>
+          <MainTitle
+            cuerpo={'Gestión de '}
+            resaltado={'productos'}
+            posicion={'normal'}
+            color={'principal'}
+          />
           {/* Cuadro que contiene a los botones */}
           <Box sx={{ ...contenedorBotones }}>
             <Button variant='contained' sx={{ ...botonSecundario }}>
@@ -53,8 +51,8 @@ export default function LayoutProdMan({ children }) {
 
 const pantallaCompleta = {
   px: {
-    md: '94px',
-    xs: '18px'
+    xs: '18px',
+    md: '50px'
   }
 }
 
@@ -65,12 +63,6 @@ const contenedorSuperior = {
   height: { xs: '55px', md: '143px' },
   width: '100%',
   mt: { xs: '10px', md: 0 }
-}
-
-const contenedorTitulos = {
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center'
 }
 
 const contenedorBotones = {
