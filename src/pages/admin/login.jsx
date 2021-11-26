@@ -122,7 +122,7 @@ function Login() {
               flexDirection='row'
               justifyContent='center'
               sx={{
-                pt: '36px',
+                pt: { xs: '8px', md: '36px' },
                 mb: '28px'
               }}
             >
@@ -164,8 +164,8 @@ function Login() {
               </Grid>
               <Box
                 sx={{
-                  mt: '56px',
-                  mb: '36px'
+                  mt: { xs: '48px', md: '56px' },
+                  mb: '26px'
                 }}
               >
                 <Button
@@ -212,25 +212,25 @@ const recubrimientoFondo = {
 
 const contenedorBlanco = {
   bgcolor: 'white',
-  height: '680px',
-  width: '363px',
+  height: { xs: '566px', md: '680px' },
+  width: { xs: '340px', md: '363px' },
   borderRadius: '14px',
   p: '0'
 }
 
 const contenedorLogo = {
-  height: '353px',
-  width: '363px',
+  height: { xs: '293px', md: '353px' },
+  width: { xs: '340px', md: '363px' },
   borderRadius: '14px 14px 0 0'
 }
 
 const logo = {
   mx: 'auto',
-  height: '288px',
+  height: { xs: '237px', md: '288px' },
   width: '267px',
   backgroundImage: `url(${imagenLogo})`,
   backgroundPosition: 'center',
-  backgroundSize: 'cover',
+  backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   ':hover': {
     transition: 'transform .2s',
@@ -286,7 +286,7 @@ const botonLogin = {
   backgroundColor: '#05B3B2',
   borderRadius: '10px',
   width: '278px',
-  height: '39px',
+  height: '32px',
   textTransform: 'none',
   fontFamily: 'Noto Sans, sans-serif',
   fontWeight: '700',
