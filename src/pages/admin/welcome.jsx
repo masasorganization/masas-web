@@ -94,6 +94,7 @@ function CategoryPage() {
                 m: '20px',
                 borderRadius: 2,
                 fontFamily: 'Noto Sans',
+                fontWeight: 700,
                 fontSize: '24px',
                 letterSpacing: '1.25px',
                 alignItems: 'center',
