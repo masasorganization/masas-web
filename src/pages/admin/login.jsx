@@ -122,7 +122,7 @@ function Login() {
               flexDirection='row'
               justifyContent='center'
               sx={{
-                pt: { xs: '8px', md: '36px' },
+                pt: { xs: '8px' },
                 mb: '28px'
               }}
             >
@@ -164,7 +164,7 @@ function Login() {
               </Grid>
               <Box
                 sx={{
-                  mt: { xs: '48px', md: '56px' },
+                  mt: { xs: '48px' },
                   mb: '26px'
                 }}
               >
@@ -212,30 +212,30 @@ const recubrimientoFondo = {
 
 const contenedorBlanco = {
   bgcolor: 'white',
-  height: { xs: '566px', md: '680px' },
-  width: { xs: '340px', md: '363px' },
+  height: { xs: '566px' },
+  width: { xs: '340px' },
   borderRadius: '14px',
   p: '0'
 }
 
 const contenedorLogo = {
-  height: { xs: '293px', md: '353px' },
-  width: { xs: '340px', md: '363px' },
+  height: { xs: '293px' },
+  width: { xs: '340px' },
   borderRadius: '14px 14px 0 0'
 }
 
 const logo = {
   mx: 'auto',
-  height: { xs: '237px', md: '288px' },
+  height: { xs: '227px' },
   width: '267px',
   backgroundImage: `url(${imagenLogo})`,
   backgroundPosition: 'center',
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   ':hover': {
-    transition: 'transform .2s',
+    transition: 'transform .4s',
     backgroundImage: `url(${imagenLogoAlt})`,
-    transform: 'scale(1.007)'
+    transform: 'scale(1.06)'
   }
 }
 
