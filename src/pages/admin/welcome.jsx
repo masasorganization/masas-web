@@ -38,7 +38,11 @@ function CategoryPage() {
         <Box sx={{ ...text3Style }}>Selecciona una opción:</Box>
         <Grid container justifyContent={'center'}>
           <Grid item xs={12} sm={11} md={4}>
-            <Box component={Link} to={'productmanag'}>
+            <Box
+              component={Link}
+              to={'productmanag'}
+              sx={{ textDecoration: 'none' }}
+            >
               <BoxCategory
                 background='background.principalClaro'
                 hover='hover.hoverPrincipalClaro'
@@ -49,7 +53,11 @@ function CategoryPage() {
             </Box>
           </Grid>
           <Grid item xs={12} sm={11} md={4}>
-            <Box component={Link} to={'sellermanag'}>
+            <Box
+              component={Link}
+              to={'sellermanag'}
+              sx={{ textDecoration: 'none' }}
+            >
               <BoxCategory
                 background='background.secundarioClaro'
                 hover='hover.hoverSecundarioClaro'
@@ -60,7 +68,11 @@ function CategoryPage() {
             </Box>
           </Grid>
           <Grid item xs={12} sm={11} md={4}>
-            <Box component={Link} to={'salesrep'}>
+            <Box
+              component={Link}
+              to={'salesrep'}
+              sx={{ textDecoration: 'none' }}
+            >
               <BoxCategory
                 background='background.azulado'
                 hover='hover.hoverAzulado'
@@ -92,7 +104,8 @@ function CategoryPage() {
                   fontSize: '18px'
                 },
                 ':hover': {
-                  backgroundColor: '#979797'
+                  backgroundColor: '#979797',
+                  textDecoration: 'none'
                 }
               }}
             >
