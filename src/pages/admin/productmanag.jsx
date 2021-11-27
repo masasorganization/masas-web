@@ -13,6 +13,7 @@ const Text1Style = styled('p')``;
 const Text2Style = styled('p')``;
 
 const text1 = 'Gestión de ';
+const text2 = 'productos'
 
 const theme = createTheme({
     palette: {
@@ -63,7 +64,7 @@ function ProductManagement ({title}) {
                             <Box  
                             display="flex"
                             flexDirection="row">
-                                <Text1Style sx={{...text1Style, color: 'negro', [theme.breakpoints.down('md')]: {ml: '0px', fontSize: '32px'}}}>{text1}</Text1Style><Text2Style sx={{...text2Style, color: 'principalClaro', [theme.breakpoints.down('md')]: {ml: '0px', mr: '0px', fontSize: '32px'}}}>{title}</Text2Style></Box>
+                                <Text1Style sx={{...text1Style, color: 'negro', [theme.breakpoints.down('md')]: {ml: '0px', fontSize: '32px'}}}>{text1}</Text1Style><Text2Style sx={{...text2Style, color: 'principalClaro', [theme.breakpoints.down('md')]: {ml: '0px', mr: '0px', fontSize: '32px'}}}>{text2}</Text2Style></Box>
                         </ThemeProvider> 
                     </Box>
                     <Box>

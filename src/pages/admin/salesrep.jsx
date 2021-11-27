@@ -12,6 +12,7 @@ const Text2Style = styled('p')``;
 const Text3Style = styled('p')``;
 
 const text1 = 'Gestión de ';
+const text2 = 'cifras';
 
 const theme = createTheme({
     palette: {
@@ -55,17 +56,18 @@ const SalesPage = ({title}) => {
                     <Grid container  sx={{
                         display: 'flex',
                         justifyContent: 'space-between',
+                        [theme.breakpoints.down('md')]: {justifyContent: 'center',}
                         }}>
                         <Box>
                             <ThemeProvider theme={theme}>
                                 <Box  
                                 display="flex"
                                 flexDirection="row">
-                                    <Text1Style sx={{...text1Style, color: 'negro',  [theme.breakpoints.down('md')]: {ml: '0px', fontSize: '32px'}}}>{text1}</Text1Style><Text2Style sx={{...text2Style, color: 'azulado', [theme.breakpoints.down('md')]: {fontSize: '32px'}}}>{title}</Text2Style></Box>
+                                    <Text1Style sx={{...text1Style, color: 'negro',  [theme.breakpoints.down('md')]: {ml: '0px', fontSize: '32px'}}}>{text1}</Text1Style><Text2Style sx={{...text2Style, color: 'azulado', [theme.breakpoints.down('md')]: {mr: '32px', fontSize: '32px'}}}>{text2}</Text2Style></Box>
                             </ThemeProvider> 
                         </Box>
                         <Box>
-                            <Button sx={{...buttonStyle1,  [theme.breakpoints.down('md')]: {...buttonStyle1md},  [theme.breakpoints.down('sm')]: {...buttonStyle1sm}}}>Exportar</Button>
+                            <Button sx={{...buttonStyle1,  [theme.breakpoints.down('md')]: {...buttonStyle1md}}}>Exportar</Button>
                         </Box>
                     </Grid>
                     
@@ -166,10 +168,6 @@ const buttonStyle1md = {
     mt: '50px',
     p: '10px',
     width: '40vw',  
-};
-
-const buttonStyle1sm = {
-    m: '12.5px',
 };
 
 const buttonStyle2 = {

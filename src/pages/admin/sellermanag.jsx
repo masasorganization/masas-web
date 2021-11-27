@@ -13,6 +13,7 @@ const Text1Style = styled('p')``;
 const Text2Style = styled('p')``;
 
 const text1 = 'Gestión de ';
+const text2 = 'cuentas';
 
 const theme = createTheme({
     palette: {
@@ -63,7 +64,7 @@ function SellerManagement ({title}) {
                             <Box  
                             display="flex"
                             flexDirection="row">
-                                <Text1Style sx={{...text1Style, color: 'negro', [theme.breakpoints.down('md')]: {ml: '0px', fontSize: '32px'}}}>{text1}</Text1Style><Text2Style sx={{...text2Style, color: 'principalClaro', [theme.breakpoints.down('md')]: {ml: '0px', mr: '0px', fontSize: '32px'}}}>{title}</Text2Style></Box>
+                                <Text1Style sx={{...text1Style, color: 'negro', [theme.breakpoints.down('md')]: {ml: '0px', fontSize: '32px'}}}>{text1}</Text1Style><Text2Style sx={{...text2Style, color: 'principalClaro', [theme.breakpoints.down('md')]: {ml: '0px', mr: '0px', fontSize: '32px'}}}>{text2}</Text2Style></Box>
                         </ThemeProvider> 
                     </Box>
                     <Box>
@@ -72,9 +73,9 @@ function SellerManagement ({title}) {
                 </Grid>
                         
                     <Grid container >
-                        <Grid item xs={12} md={6}><BoxManagement title='Federico Molano' paragraph='fedemolo'></BoxManagement></Grid>
-                        <Grid item xs={12} md={6}><BoxManagement title='Daniela Bedoya' paragraph='denibedo'></BoxManagement></Grid>
-                        <Grid item xs={12} md={6}><BoxManagement title='Javier Torres' paragraph='javitorr'></BoxManagement></Grid>    
+                        <Grid item xs={12} md={6}><BoxManagement title='Federico Molano' paragraph='fedemolo' button2='none'></BoxManagement></Grid>
+                        <Grid item xs={12} md={6}><BoxManagement title='Daniela Bedoya' paragraph='denibedo' button2='none'></BoxManagement></Grid>
+                        <Grid item xs={12} md={6}><BoxManagement title='Javier Torres' paragraph='javitorr' button2='none'></BoxManagement></Grid>    
                     </Grid>
             </Box>             
         </div>
