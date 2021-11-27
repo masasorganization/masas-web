@@ -3,6 +3,7 @@ import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 const Text1Style = styled('p')``
+const Resaltado = styled('b')``
 
 const theme = createTheme({
   palette: {
@@ -65,23 +66,9 @@ const BoxCategory = ({ background, hover, title, paragraph, word }) => {
             >
               {[title]}
             </Box>
-            <Text1Style
-              sx={{
-                color: 'text.white',
-                textAlign: 'right',
-                letterSpacing: '1.25px',
-                fontSize: '20px',
-                m: '1.6rem',
-                fontFamily: 'Nunito',
-                [theme.breakpoints.down('md')]: {
-                  fontSize: '18px',
-                  margin: '1.3rem',
-                  mt: '0rem'
-                }
-              }}
-            >
+            <Text1Style sx={{ ...estiloParrafo }}>
               {paragraph}
-              {word}
+              <Resaltado sx={{ ...resaltado }}>{word}</Resaltado>
             </Text1Style>
           </div>
         </Box>
@@ -91,3 +78,18 @@ const BoxCategory = ({ background, hover, title, paragraph, word }) => {
 }
 
 export default BoxCategory
+
+const resaltado = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700
+}
+
+const estiloParrafo = {
+  color: 'text.white',
+  textAlign: 'right',
+  letterSpacing: '1.25px',
+  fontFamily: 'Nunito',
+  fontSize: { xs: '14px', sm: '18px', md: '17px', lg: '18px', xl: '21px' },
+  mx: '20px',
+  my: { xs: '1.6rem', md: '4.3rem', lg: '2.9rem' }
+}

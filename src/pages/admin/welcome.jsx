@@ -62,7 +62,7 @@ function CategoryPage() {
                 background='background.secundarioClaro'
                 hover='hover.hoverSecundarioClaro'
                 title='Cuentas'
-                paragraph='En esta sección puedes crear, editar, modificar y eliminar las cuantas de '
+                paragraph='En esta sección puedes crear, editar, modificar y eliminar las cuentas de '
                 word='usuario.'
               />
             </Box>
