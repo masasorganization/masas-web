@@ -1,6 +1,5 @@
-import { Box } from '@mui/material';
-import { Button } from '@mui/material';
-import Image from '../../assets/descargar.jpg';
+import { Box } from '@mui/material'
+import { Button } from '@mui/material'
 
 // eslint-disable-next-line react/prop-types
 const BoxManagement = ({ title, paragraph }) => {
@@ -49,7 +48,7 @@ const BoxManagement = ({ title, paragraph }) => {
             {[paragraph]}
           </Box>
           <Button
-            variant="text"
+            variant='text'
             sx={{
               color: '#AA3D72',
               fontFamily: 'Noto Sans',
@@ -64,7 +63,7 @@ const BoxManagement = ({ title, paragraph }) => {
             Borrar
           </Button>
           <Button
-            variant="text"
+            variant='text'
             sx={{
               color: '#05B3B2',
               fontFamily: 'Noto Sans',
@@ -77,12 +76,12 @@ const BoxManagement = ({ title, paragraph }) => {
             Archivar
           </Button>
         </Box>
-        <Box className="cards">
-          <img src={Image} alt="" />
+        <Box className='cards'>
+          <img src={Image} alt='' />
         </Box>
       </Box>
     </div>
-  );
-};
+  )
+}
 
-export default BoxManagement;
+export default BoxManagement

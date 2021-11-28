@@ -68,14 +68,14 @@ function QuickReport() {
           <Typography sx={{ ...cuerpoPrincipal }}>{'Pedidos'}</Typography>
         </Box>
       </Box>
-      <Box sx={{ height: '168px' }}>
+      <Box sx={{ height: '168px', mt: { xs: '64px', md: '40px' } }}>
         <Typography sx={{ ...subtitulos }}>{'de las categorias:'}</Typography>
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-around'
+            justifyContent: 'space-between'
           }}
         >
           {/* Primera Caja */}
@@ -102,6 +102,20 @@ function QuickReport() {
               {'Tipo organico'}
             </Typography>
           </Box>
+        </Box>
+        <Box
+          sx={{
+            height: { xs: '103px', md: '118px' },
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-end'
+          }}
+        >
+          <Button variant='contained' color='primary' sx={{ ...botonLogin }}>
+            Continuar
+          </Button>
         </Box>
       </Box>
     </>
@@ -140,7 +154,6 @@ const subtitulos = {
   fontWeight: 300,
   fontSize: '1.5rem',
   letterSpacing: '1.25px'
-  //lineHeight: '1rem'
 }
 
 const cuerpoPrincipal = {
@@ -181,6 +194,23 @@ const numeroSecundario = {
   color: '#AA3D72'
 }
 
+const botonLogin = {
+  backgroundColor: '#05B3B2',
+  width: { xs: '278px' },
+  height: '39px',
+  textTransform: 'none',
+  fontFamily: 'Noto Sans, sans-serif',
+  fontSize: '1.125rem',
+  fontWeight: '700',
+  borderRadius: '10px',
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: '#00928e',
+    boxShadow: 'none'
+  }
+}
+
+// eslint-disable-next-line
 function OldReport() {
   return (
     <div>
