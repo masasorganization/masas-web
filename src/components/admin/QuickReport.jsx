@@ -90,16 +90,7 @@ export default function QuickReport() {
             </Typography>
           </Box>
         </Box>
-        <Box
-          sx={{
-            height: { xs: '103px', md: '118px' },
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'flex-end'
-          }}
-        >
+        <Box sx={{ ...contenedorBoton }}>
           <Button
             component={Link}
             to='ordersclient'
@@ -185,6 +176,15 @@ const numeroSecundario = {
   letterSpacing: '1.25px',
   lineHeight: '0.8',
   color: '#AA3D72'
+}
+
+const contenedorBoton = {
+  height: { xs: '103px', md: '118px' },
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'flex-end'
 }
 
 const botonLogin = {
