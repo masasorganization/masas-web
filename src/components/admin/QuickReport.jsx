@@ -49,7 +49,7 @@ for (let c = 0; c < datosReporte.length; c++) {
 export default function QuickReport() {
   return (
     <>
-      <Box sx={{ height: '148px' }}>
+      <Box sx={{ height: '203px', mt: '34px' }}>
         <Typography sx={{ ...subtitulos }}>{'hoy tienes:'}</Typography>
         <Box sx={{ ...cajaPrincipal }}>
           <Typography sx={{ ...numeroPrincipal }}>{indice}</Typography>
@@ -111,7 +111,7 @@ const cajaPrincipal = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '115px',
+  height: '165px',
   bgcolor: '#ffffff',
   borderColor: '#66666699',
   borderStyle: 'solid',
@@ -124,8 +124,8 @@ const cajaSecndaria = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '135px',
-  width: { xs: '145px', sm: '175px', md: '268px', lg: '348px', xl: '478px' },
+  height: '165px',
+  width: { xs: '145px', sm: '175px', md: '258px', lg: '348px', xl: '458px' },
   bgcolor: '#ffffff',
   borderColor: '#66666699',
   borderStyle: 'solid',
@@ -189,7 +189,7 @@ const contenedorBoton = {
 
 const botonLogin = {
   backgroundColor: '#05B3B2',
-  width: { xs: '278px' },
+  width: { xs: '278px', md: '360px' },
   height: '39px',
   textTransform: 'none',
   fontFamily: 'Noto Sans, sans-serif',

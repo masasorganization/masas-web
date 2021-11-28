@@ -20,6 +20,10 @@ export default function LayoutProdMan({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  React.useEffect(() => {
+    document.title = 'má sas | Gestión de productos'
+  })
+
   return (
     <>
       <AdminNavbar usuario='admin' />

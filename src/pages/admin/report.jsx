@@ -6,7 +6,6 @@ function Report() {
     <div>
       <LayoutReport>
         <QuickReport />
-        <h1>Contenido de Reporte</h1>
       </LayoutReport>
     </div>
   )

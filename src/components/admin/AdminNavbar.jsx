@@ -60,7 +60,7 @@ const TestNavbar = (props) => {
               sx={{ ...contenedorIcono }}
             >
               <MenuIcon
-                component={cambio ? CloseIcon : MenuIcon}
+                component={cambio ? MenuCerrar : MenuIcon}
                 sx={{ ...icono }}
               />
             </IconButton>
@@ -103,10 +103,18 @@ const TestNavbar = (props) => {
               })}
             </Collapse>
           </Box>
-          <Box component={Link} sx={{ ...logo }} to='welcome'></Box>
+          <Box sx={{ ...logo }}></Box>
         </Toolbar>
       </AppBar>
     </div>
+  )
+}
+
+function MenuCerrar() {
+  return (
+    <>
+      <CloseIcon sx={{ ...icono, color: '#AA3D72' }}></CloseIcon>
+    </>
   )
 }
 

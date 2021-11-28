@@ -20,6 +20,10 @@ export default function LayoutSalesR({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  React.useEffect(() => {
+    document.title = 'má sas | Gestión de pedidos'
+  })
+
   return (
     <>
       <AdminNavbar usuario='' />
