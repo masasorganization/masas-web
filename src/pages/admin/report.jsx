@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import { Link } from 'react-router-dom'
+import Typography from '@mui/material/Typography'
 
 // Arreglo de datos que deberian de llegar desde el padre
 const datosReporte = [
@@ -49,6 +50,139 @@ for (let c = 0; c < datosReporte.length; c++) {
 
 function Report() {
   return (
+    <>
+      <QuickReport />
+    </>
+  )
+}
+
+export default Report
+
+function QuickReport() {
+  return (
+    <>
+      <Box sx={{ height: '148px' }}>
+        <Typography sx={{ ...subtitulos }}>{'hoy tienes:'}</Typography>
+        <Box sx={{ ...cajaPrincipal }}>
+          <Typography sx={{ ...numeroPrincipal }}>{indice}</Typography>
+          <Typography sx={{ ...cuerpoPrincipal }}>{'Pedidos'}</Typography>
+        </Box>
+      </Box>
+      <Box sx={{ height: '168px' }}>
+        <Typography sx={{ ...subtitulos }}>{'de las categorias:'}</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-around'
+          }}
+        >
+          {/* Primera Caja */}
+          <Box sx={{ ...cajaSecndaria }}>
+            <Typography sx={{ ...numeroSecundario }}>{sinAzucar}</Typography>
+            <Typography sx={{ ...cuerpoSecundario }}>
+              {'Sin'} <br />
+              {'azúcar'}
+            </Typography>
+          </Box>
+          {/* Segunda Caja */}
+          <Box sx={{ ...cajaSecndaria }}>
+            <Typography sx={{ ...numeroSecundario }}>
+              {masaSaludable}
+            </Typography>
+            <Typography sx={{ ...cuerpoSecundario }}>
+              {'Masa saludable'}
+            </Typography>
+          </Box>
+          {/* Tercera Caja */}
+          <Box sx={{ ...cajaSecndaria }}>
+            <Typography sx={{ ...numeroSecundario }}>{tipoOrganico}</Typography>
+            <Typography sx={{ ...cuerpoSecundario }}>
+              {'Tipo organico'}
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+    </>
+  )
+}
+
+const cajaPrincipal = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '115px',
+  bgcolor: '#ffffff',
+  borderColor: '#66666699',
+  borderStyle: 'solid',
+  borderWidth: 'thin',
+  borderRadius: 2
+}
+
+const cajaSecndaria = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '135px',
+  width: '115px',
+  bgcolor: '#ffffff',
+  borderColor: '#66666699',
+  borderStyle: 'solid',
+  borderWidth: 'thin',
+  borderRadius: 2
+}
+
+const subtitulos = {
+  fontFamily: 'Nunito, sans-serif',
+  fontWeight: 300,
+  fontSize: '1.5rem',
+  letterSpacing: '1.25px'
+  //lineHeight: '1rem'
+}
+
+const cuerpoPrincipal = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700,
+  fontSize: '1.5rem',
+  letterSpacing: '1.25px',
+  lineHeight: '0.8',
+  mt: '8px'
+}
+
+const numeroPrincipal = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700,
+  fontSize: '4rem',
+  letterSpacing: '1.25px',
+  lineHeight: '0.8',
+  color: '#05B3B2'
+}
+
+const cuerpoSecundario = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 'Bold',
+  webkitTextStroke: 'medium',
+  fontSize: '1.125rem',
+  letterSpacing: '1.25px',
+  lineHeight: '0.8',
+  mt: '8px',
+  textAlign: 'center'
+}
+
+const numeroSecundario = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700,
+  fontSize: '3rem',
+  letterSpacing: '1.25px',
+  lineHeight: '0.8',
+  color: '#AA3D72'
+}
+
+function OldReport() {
+  return (
     <div>
       <AdminNavbar estado='1' />
       <Container fixed>
@@ -87,4 +221,16 @@ function Report() {
   )
 }
 
-export default Report
+// import LayoutReport from 'Layouts/LayoutReport'
+
+// function Report() {
+//   return (
+//     <div>
+//       <LayoutReport>
+//         <h1>Contenido de Reporte</h1>
+//       </LayoutReport>
+//     </div>
+//   )
+// }
+
+// export default Report
