@@ -112,7 +112,13 @@ function QuickReport() {
             justifyContent: 'flex-end'
           }}
         >
-          <Button variant='contained' color='primary' sx={{ ...botonLogin }}>
+          <Button
+            component={Link}
+            to='ordersclient'
+            variant='contained'
+            color='primary'
+            sx={{ ...botonLogin }}
+          >
             Continuar
           </Button>
         </Box>
