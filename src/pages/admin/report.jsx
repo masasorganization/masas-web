@@ -82,8 +82,7 @@ function QuickReport() {
           <Box sx={{ ...cajaSecndaria }}>
             <Typography sx={{ ...numeroSecundario }}>{sinAzucar}</Typography>
             <Typography sx={{ ...cuerpoSecundario }}>
-              {'Sin'} <br />
-              {'azúcar'}
+              {'Sin'} <br /> {'azúcar'}
             </Typography>
           </Box>
           {/* Segunda Caja */}
@@ -92,14 +91,14 @@ function QuickReport() {
               {masaSaludable}
             </Typography>
             <Typography sx={{ ...cuerpoSecundario }}>
-              {'Masa saludable'}
+              {'Masa'} <br /> {'saludable'}
             </Typography>
           </Box>
           {/* Tercera Caja */}
           <Box sx={{ ...cajaSecndaria }}>
             <Typography sx={{ ...numeroSecundario }}>{tipoOrganico}</Typography>
             <Typography sx={{ ...cuerpoSecundario }}>
-              {'Tipo organico'}
+              {'Tipo'} <br /> {'organico'}
             </Typography>
           </Box>
         </Box>
@@ -141,7 +140,7 @@ const cajaSecndaria = {
   alignItems: 'center',
   justifyContent: 'center',
   height: '135px',
-  width: '115px',
+  width: { xs: '145px', sm: '175px', md: '268px', lg: '348px', xl: '478px' },
   bgcolor: '#ffffff',
   borderColor: '#66666699',
   borderStyle: 'solid',
