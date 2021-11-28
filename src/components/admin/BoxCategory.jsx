@@ -1,5 +1,9 @@
-import { ThemeProvider, createTheme } from '@mui/system';
-import { Box } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/system'
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
+
+const Text1Style = styled('p')``
+const Resaltado = styled('b')``
 
 const theme = createTheme({
   palette: {
@@ -8,14 +12,18 @@ const theme = createTheme({
       secundarioClaro: '#AA3D72',
       azulado: '#05B3B2'
     },
+    hover: {
+      hoverPrincipalClaro: '#C65306',
+      hoverSecundarioClaro: '#770047',
+      hoverAzulado: '#00928E'
+    },
     text: {
       white: '#FFFFFF'
     }
   }
-});
+})
 
-// eslint-disable-next-line react/prop-types
-const BoxCategory = ({ background, title, paragraph }) => {
+const BoxCategory = ({ background, hover, title, paragraph, word }) => {
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -25,12 +33,17 @@ const BoxCategory = ({ background, title, paragraph }) => {
             m: '20px',
             height: '210px',
             display: 'inline-flex',
-            borderRadius: '14px',
+            borderRadius: { xs: '7px', md: '14px' },
             [theme.breakpoints.only('md')]: {
               height: '250px'
             },
             [theme.breakpoints.down('md')]: {
-              height: '150px'
+              height: '150px',
+              mt: '10px',
+              mb: '10px'
+            },
+            ':hover': {
+              bgcolor: [hover]
             }
           }}
         >
@@ -53,28 +66,30 @@ const BoxCategory = ({ background, title, paragraph }) => {
             >
               {[title]}
             </Box>
-            <Box
-              sx={{
-                color: 'text.white',
-                textAlign: 'right',
-                letterSpacing: '1.25px',
-                fontSize: '20px',
-                m: '1.6rem',
-                fontFamily: 'Nunito',
-                [theme.breakpoints.down('md')]: {
-                  fontSize: '18px',
-                  margin: '1.3rem',
-                  mt: '0rem'
-                }
-              }}
-            >
-              {[paragraph]}
-            </Box>
+            <Text1Style sx={{ ...estiloParrafo }}>
+              {paragraph}
+              <Resaltado sx={{ ...resaltado }}>{word}</Resaltado>
+            </Text1Style>
           </div>
         </Box>
       </ThemeProvider>
     </div>
-  );
-};
+  )
+}
 
-export default BoxCategory;
+export default BoxCategory
+
+const resaltado = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700
+}
+
+const estiloParrafo = {
+  color: 'text.white',
+  textAlign: 'right',
+  letterSpacing: '1.25px',
+  fontFamily: 'Nunito',
+  fontSize: { xs: '14px', sm: '18px', md: '17px', lg: '18px', xl: '21px' },
+  mx: '20px',
+  my: { xs: '1.6rem', md: '4.3rem', lg: '2.9rem' }
+}

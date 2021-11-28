@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const testfield = () => {
   return (
     <div>
-      <h3>espacio de prueba entre admin y vendedor</h3>
+      <h3>espacio de prueba entre admin y vendedor.</h3>
       <br />
 
       <ul>

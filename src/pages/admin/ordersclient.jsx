@@ -1,9 +1,13 @@
+import LayoutOrdersC from 'Layouts/LayoutOrdersC'
+
 function OrdersClient() {
   return (
     <div>
-      <h1>Tu listado de pedidos</h1>
+      <LayoutOrdersC>
+        <h1>Contenido de pedidos</h1>
+      </LayoutOrdersC>
     </div>
-  );
+  )
 }
 
-export default OrdersClient;
+export default OrdersClient

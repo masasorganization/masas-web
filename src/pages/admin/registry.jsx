@@ -1,9 +1,13 @@
+import LayoutRegistry from 'Layouts/LayoutRegistry'
+
 function Registry() {
   return (
     <div>
-      <h1>Aquí está tu archivo</h1>
+      <LayoutRegistry>
+        <h1>Contenido de Archivo</h1>
+      </LayoutRegistry>
     </div>
-  );
+  )
 }
 
-export default Registry;
+export default Registry

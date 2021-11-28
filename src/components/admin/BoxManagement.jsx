@@ -1,22 +1,27 @@
 import { Box } from '@mui/material'
 import { Button } from '@mui/material'
+import Image from '../../assets/placeholder.png'
+import { createTheme } from '@mui/material'
 
-// eslint-disable-next-line react/prop-types
-const BoxManagement = ({ title, paragraph }) => {
+const theme = createTheme({})
+
+const BoxManagement = ({ title, paragraph, button1, button2 }) => {
   return (
     <div>
       <Box
         sx={{
           bgcolor: '',
           height: '120px',
-          m: '48px',
-          mb: '18px',
-          mt: '18px',
+          //   m: '48px',
+          //   mb: '18px',
+          //   mt: '18px',
           display: 'flex',
+          maxWidth: { xs: 'unset', md: '540px', lg: '600px' },
           justifyContent: 'space-between',
           border: 1,
           borderColor: '#a0a0a0',
-          borderRadius: '10px'
+          borderRadius: '10px',
+          [theme.breakpoints.down('md')]: { ml: '0px', mr: '0px' }
         }}
       >
         <Box>
@@ -25,9 +30,10 @@ const BoxManagement = ({ title, paragraph }) => {
               color: '#460020',
               fontFamily: 'Noto Sans',
               fontWeight: 'Bold',
-              fontSize: '16px',
-              letterSpacing: '1.25px',
+              fontSize: { xs: '15px', md: '15.2px', lg: '16px' },
+              letterSpacing: { xs: '0.2px', md: '0.2px', lg: '1.25px' },
               m: '18px',
+              mx: { xs: '16px', sm: '18px' },
               mb: '0px'
             }}
           >
@@ -40,6 +46,7 @@ const BoxManagement = ({ title, paragraph }) => {
               fontWeight: 300,
               fontSize: '14px',
               letterSpacing: '1.25px',
+              mx: { xs: '16px', sm: '18px' },
               mr: '18px',
               ml: '18px',
               mb: '20px'
@@ -56,8 +63,9 @@ const BoxManagement = ({ title, paragraph }) => {
               fontSize: '14px',
               letterSpacing: '1.25px',
               textTransform: 'capitalize',
+              display: [button1],
               ml: '18px',
-              mr: '18px'
+              [theme.breakpoints.down('md')]: { ml: '10px' }
             }}
           >
             Borrar
@@ -70,7 +78,10 @@ const BoxManagement = ({ title, paragraph }) => {
               fontWeight: 'Bold',
               fontSize: '14px',
               letterSpacing: '1.25px',
-              textTransform: 'capitalize'
+              textTransform: 'capitalize',
+              display: [button2],
+              ml: '18px',
+              [theme.breakpoints.down('md')]: { ml: '10px' }
             }}
           >
             Archivar

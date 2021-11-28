@@ -11,10 +11,22 @@ import imagenLogo from '../../assets/isotipo.png'
 import imagenLogoAlt from '../../assets/isotipoAlt.png'
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
+import { administrador, vendedor } from '../../components/admin/navigationData'
+
+// Carga la colección de datos correspondiente al rol
+let usuarioAdmin = administrador
+let usuarioVende = vendedor
 
 const TestNavbar = (props) => {
-  // Props que llegan desde el padre (la vista)
-  const estadoBoton = props.estado
+  // Variable vacia que recibe el rol actual
+  let usuarioActual = undefined
+
+  // Selecciona el tipo de datos correspondiente al rol enviado desde el padre
+  if (props.usuario === 'admin') {
+    usuarioActual = usuarioAdmin
+  } else {
+    usuarioActual = usuarioVende
+  }
 
   // reactHook para el contenedor Collapse del menú hamburguesa
   const [expanded, setExpanded] = React.useState(false)
@@ -30,46 +42,6 @@ const TestNavbar = (props) => {
     setCambio(!cambio)
   }
 
-  // Arreglo con los elementos de la barra de navegación
-  const objetosMenu = [
-    {
-      tituloPagina: 'Productos',
-      paginaURL: 'productmanag',
-      estado: ''
-    },
-    {
-      tituloPagina: 'Cuentas',
-      paginaURL: 'sellermanag',
-      estado: ''
-    },
-    {
-      tituloPagina: 'Cifras',
-      paginaURL: 'salesrep',
-      estado: ''
-    },
-    {
-      tituloPagina: 'Salir',
-      paginaURL: 'login',
-      estado: ''
-    }
-  ]
-
-  // Funcion para cambiar el color al botón activo en la barra de navegación
-  const cambiarEstadoNavBar = (e) => {
-    if (e === '1') {
-      objetosMenu[0].estado = activo
-    } else if (e === '2') {
-      objetosMenu[1].estado = activo
-    } else if (e === '3') {
-      objetosMenu[2].estado = activo
-    } else {
-      console.log('Parametro invalido para el botón de la barra de navegación')
-    }
-  }
-
-  // Se llama la función cada vez que carga la barra de navegación
-  cambiarEstadoNavBar(estadoBoton)
-
   // Doble funcion anidada que dispara el Collapse y el cambio de icono
   function dobleFuncion() {
     handleExpandClick()
@@ -78,13 +50,13 @@ const TestNavbar = (props) => {
 
   return (
     <div>
-      <AppBar elevation={desactivarElevacion} position="static">
+      <AppBar elevation={0} position='static'>
         <Toolbar sx={{ ...contenedorBarra }}>
           <Box sx={{ ...contenedorNavegacion }}>
             <IconButton
               expand={expanded ? 1 : undefined}
               onClick={() => dobleFuncion()}
-              aria-label="Menu"
+              aria-label='Menu'
               sx={{ ...contenedorIcono }}
             >
               <MenuIcon
@@ -93,43 +65,45 @@ const TestNavbar = (props) => {
               />
             </IconButton>
             <Box sx={{ ...barraPC }}>
-              {objetosMenu.map((objetoMenu, index) => {
-                const { tituloPagina, paginaURL, estado } = objetoMenu
+              {usuarioActual.map((datos, index) => {
+                const { pagina, url, estado } = datos
                 return (
                   <Button
                     key={index}
                     component={Link}
-                    sx={{ ...botonesNavegacion, ...estado }}
-                    to={paginaURL}
+                    sx={{ ...botonesNavegacion }}
+                    style={estado ? activo : undefined}
+                    to={url}
                   >
-                    {tituloPagina}
+                    {pagina}
                   </Button>
                 )
               })}
             </Box>
             <Collapse
-              orientation="horizontal"
+              orientation='horizontal'
               in={expanded}
-              timeout="auto"
+              timeout='auto'
               unmountOnExit
               sx={{ ...barraMovil }}
             >
-              {objetosMenu.map((objetoMenu, index) => {
-                const { tituloPagina, paginaURL, estado } = objetoMenu
+              {usuarioActual.map((datos, index) => {
+                const { pagina, url, estado } = datos
                 return (
                   <Typography
                     key={index}
                     component={Link}
-                    sx={{ ...botonesNavegacion, ...estado }}
-                    to={paginaURL}
+                    sx={{ ...botonesNavegacion }}
+                    style={estado ? activo : undefined}
+                    to={url}
                   >
-                    {tituloPagina}
+                    {pagina}
                   </Typography>
                 )
               })}
             </Collapse>
           </Box>
-          <Box component={Link} sx={{ ...logo }} to="welcome"></Box>
+          <Box component={Link} sx={{ ...logo }} to='welcome'></Box>
         </Toolbar>
       </AppBar>
     </div>
@@ -146,8 +120,8 @@ const contenedorBarra = {
   display: 'flex',
   justifyContent: 'space-between',
   px: {
-    md: '94px',
-    xs: 'none'
+    md: '50px',
+    xs: '18px'
   },
   height: {
     md: '64px',
@@ -163,6 +137,7 @@ const contenedorNavegacion = {
 
 const contenedorIcono = {
   display: { xs: 'flex', md: 'none' },
+  p: 0,
   mr: '16px'
 }
 
@@ -221,5 +196,3 @@ const logo = {
     transform: 'scale(1.05)'
   }
 }
-
-let desactivarElevacion = 0
