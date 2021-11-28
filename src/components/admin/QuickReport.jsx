@@ -116,7 +116,11 @@ const cajaPrincipal = {
   borderColor: '#66666699',
   borderStyle: 'solid',
   borderWidth: 'thin',
-  borderRadius: 2
+  borderRadius: 2,
+  ':hover': {
+    borderColor: '#00928E',
+    transform: 'scale(1.005)'
+  }
 }
 
 const cajaSecndaria = {
@@ -130,7 +134,11 @@ const cajaSecndaria = {
   borderColor: '#66666699',
   borderStyle: 'solid',
   borderWidth: 'thin',
-  borderRadius: 2
+  borderRadius: 2,
+  ':hover': {
+    borderColor: '#00928E',
+    transform: 'scale(1.005)'
+  }
 }
 
 const subtitulos = {

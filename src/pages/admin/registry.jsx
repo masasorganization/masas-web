@@ -1,7 +1,7 @@
 import LayoutRegistry from 'Layouts/LayoutRegistry'
 import Grid from '@mui/material/Grid'
 import { Box } from '@mui/system'
-import BoxManagement from '../../components/admin/BoxManagement'
+import BoxOrdersManag from '../../components/admin/BoxOrdersManag'
 
 function Registry() {
   return (
@@ -26,10 +26,11 @@ function ArchiveCatalog() {
           columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
         >
           <Grid item xs={12} md={6} lg={6} xl={4}>
-            <BoxManagement
-              title='María Gómez Vega'
-              paragraph='300 1234 45678'
-              button2='none'
+            <BoxOrdersManag
+              name='María Gómez Vega'
+              telephone='300 1234 45678'
+              type='Tipo orgánico'
+              amount='x8 porciones'
             />
           </Grid>
         </Grid>

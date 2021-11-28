@@ -10,18 +10,20 @@ const BoxManagement = ({ title, paragraph, button1, button2 }) => {
     <div>
       <Box
         sx={{
+          cursor: 'pointer',
           bgcolor: '',
           height: '120px',
-          //   m: '48px',
-          //   mb: '18px',
-          //   mt: '18px',
           display: 'flex',
           maxWidth: { xs: 'unset', md: '540px', lg: '600px' },
           justifyContent: 'space-between',
           border: 1,
           borderColor: '#a0a0a0',
           borderRadius: '10px',
-          [theme.breakpoints.down('md')]: { ml: '0px', mr: '0px' }
+          [theme.breakpoints.down('md')]: { ml: '0px', mr: '0px' },
+          ':hover': {
+            borderColor: '#C65306',
+            transform: 'scale(1.005)'
+          }
         }}
       >
         <Box>
