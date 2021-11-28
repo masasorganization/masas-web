@@ -1,12 +1,11 @@
 import { Box } from "@mui/material";
-import { Button } from "@mui/material";
 import Image from '../../assets/placeholder.png';
 import { createTheme } from "@mui/material";
 
 const theme = createTheme({
 });
 
-const BoxManagement = ({name, telephone, type, amount}) => {
+const BoxOrdersManag = ({name, telephone, type, amount}) => {
     return(
         <div>
             <Box sx={{...box1Style}}>
@@ -32,20 +31,21 @@ const BoxManagement = ({name, telephone, type, amount}) => {
     )
 }
 
-export default BoxManagement;
+export default BoxOrdersManag;
 
 
 const box1Style = {
     height: '120px',
-    m: '48px',
-    mb: '18px',
-    mt: '18px', 
     display: 'flex',
+    maxWidth: { xs: 'unset', md: '540px', lg: '600px' },
     justifyContent: 'space-between',
     border: 1,  
-    borderColor: '#666666',
+    borderColor: '#a0a0a0',
     borderRadius: '10px',
-    [theme.breakpoints.down('md')]: {ml: '0px', mr: '0px'}
+    [theme.breakpoints.down('md')]: {ml: '0px', mr: '0px'},
+    ':hover': {
+    borderColor: '#FF4E00'
+  }
 }
 
 const box2Style = {
