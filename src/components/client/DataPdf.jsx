@@ -1,25 +1,17 @@
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import React from 'react';
+import InvoicePdf from './InvoicePdf';
+import {PDFViewer, PDFDownloadLink} from '@react-pdf/renderer';
+
 
 function DataPdf() {
+    const [seePdf] = React.useState(true);
+
     return(
-        <div>
-            <Box sx={{ bgcolor: 'gray',
-                        width: '90%',
-                        display: 'block',
-                        mr: 'auto',
-                        ml: 'auto' }}>
-                Recibo de compra
-            </Box>
-            <Box sx={{ mt: {
-                        md: '3rem',
-                        xs: '2rem'
-                        },
-                        ml: '1rem',
-                        mr: '1rem',
-                        borderTop: '2px solid #770047' }} >
-            </Box>
+        <>
+            {seePdf ? (<PDFViewer style={{  width: '90%', height: '60vh'}}><InvoicePdf /></PDFViewer>) : null}
             <div className="btn-client">
+                <PDFDownloadLink document={<InvoicePdf />} fileName="recibo-masas.pdf">
                     <Button sx={{ bgcolor: '#ff4e00',
                                     width: {
                                         md: '22rem',
@@ -39,8 +31,9 @@ function DataPdf() {
                                     ":hover": {
                                         bgcolor: '#aa3d72'
                                     } }}>Descargar PDF</Button>
+                </PDFDownloadLink>
             </div>
-        </div>
+        </>
     );
 }
 

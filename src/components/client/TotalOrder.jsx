@@ -7,7 +7,9 @@ function TotalOrder() {
     return(
         <div>
             <Box sx={{ borderTop: '2px solid #770047',
-                                mt: '2rem'}}>
+                        mt: '2rem',
+                        ml: '1rem',
+                        mr: '1rem'}}>
                 <Typography sx={{ fontFamily: 'Nunito, sans-serif',
                                     fontSize: '1.3rem',
                                     mt: '1rem',
@@ -18,7 +20,7 @@ function TotalOrder() {
                     <Typography h3>
                             Costo de entrega: $5.000
                     </Typography>
-                    <Typography h3 sx={{ fontWeight: '700' }}>
+                    <Typography h3 sx={{ fontWeight: '700' }} >
                             Total pago contra-entrega: $35.000
                     </Typography> 
                 </Typography>      
@@ -40,7 +42,7 @@ function TotalOrder() {
                                         fontWeight: '700',
                                         ":hover": {
                                             bgcolor: '#9bd816' 
-                                        } }}>Ok</Button>
+                                        } }}>Ok</Button  >
                 </Link>
             </div>
         </div>

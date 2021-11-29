@@ -17,7 +17,7 @@ import OrdersClient from 'pages/admin/ordersclient'
 import Registry from 'pages/admin/registry'
 import Test from 'pages/admin/testfield'
 //Se importa React-Router-Dom
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 function App() {
   return (
@@ -33,9 +33,7 @@ function App() {
           <Route path='/categories'>
             <Categories />
           </Route>
-          <Route path='/products'>
-            <Products />
-          </Route>
+          <Route path='/products' component={SubRoutes}  />
           <Route path='/orders'>
             <Orders />
           </Route>
@@ -79,3 +77,16 @@ function App() {
 }
 
 export default App
+
+function SubRoutes() {
+  return(
+    <Switch>
+      <Route path="/products/:category?" render={props => <Products {...props} />} />
+      <Route path="*">
+        <Redirect to="/orders" />
+      </Route>
+    </Switch>
+  );
+}
+
+
