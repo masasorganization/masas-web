@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import Logo from "../assets/logo-medium.png";
+import Logo from "../assets/logo-large.png";
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -13,7 +13,7 @@ function Home() {
           <Link to="/login">
             <Button
               sx={{
-                bgcolor: "#ff4e00",
+                bgcolor: "#ff4e00" ,
                 width: {
                   md: "15rem",
                   xs: "13rem",
@@ -30,82 +30,69 @@ function Home() {
                 ":hover": {
                   bgcolor: "#ff823b",
                 },
-              }}
-            >
+              }}>
               Ingreso Vendedor
             </Button>
           </Link>
         </nav>
         <Grid item xs={12}>
-          <img className="logo-home" src={Logo} alt="logo másas" />
+          <Box sx={{ textAlign: 'center',
+                      mt: '5rem'}} >
+            <img src={Logo}  style={{ width: '32vh', height: '34vh' }}  alt="logo másas" />
+          </Box>
         </Grid>
         <Grid item xs={12}>
           <Typography
             sx={{
               textAlign: "center",
               fontFamily: "Nunito, sans-serif",
-              p: {
-                md: "2rem",
-                xs: "3rem",
-              },
               lineHeight: {
                 md: "2.5rem",
                 xs: "2.2rem",
               },
               fontSize: {
-                md: "1.25rem",
+                md: "1.3rem",
                 xs: "1.1rem",
               },
-              mt: {
-                md: "3rem",
-                xs: "2rem",
-              },
+              mt: '2rem',
+              mb: '2rem',		
               b: {
                 color: "#aa3d72",
                 fontFamily: "Noto Sans, sans-serif",
               },
-            }}
-          >
-            <p>
+            }}>
               <b>¡Hola!</b>, mezclamos los ingredientes más frescos
               <br />
               en pro de tu bienestar
-            </p>
           </Typography>
         </Grid>
-        <Grid xs={12}>
-          <div className="btn-client">
-            <Link to="/categories">
+        <div className="nav-home">
+          <Link to="/categories">
               <Button
-                sx={{
-                  bgcolor: "#770047",
-                  width: {
-                    md: "22rem",
-                    xs: "18rem",
-                  },
-                  borderRadius: "10px",
-                  boxShadow: "0",
-                  color: "#ffffff",
-                  textTransform: "none",
-                  fontFamily: "Noto Sans, sans-serif",
-                  fontSize: {
-                    md: "1.1rem",
-                    xs: "1rem",
-                  },
-                  fontWeight: "700",
-                  ":hover": {
-                    bgcolor: "#aa3d72",
-                  },
-                }}
-              >
-                Conoce nuestros productos
-              </Button>
-            </Link>
-          </div>
-        </Grid>
+                sx={{ bgcolor: "#770047",
+                      width: {
+                      md: "22rem",
+                      xs: "18rem",
+                    },
+                    borderRadius: "10px",
+                    boxShadow: "0",
+                    color: "#ffffff",
+                    textTransform: "none",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontSize: {
+                      md: "1.1rem",
+                      xs: "1rem",
+                    },
+                    fontWeight: "700",
+                    ":hover": {
+                      bgcolor: "#aa3d72",
+                    },
+                  }}
+                >Conoce nuestros productos</Button>
+          </Link>
+        </div>
         <Grid item xs={12}>
           <Box
-            position="static"
             sx={{
               bgcolor: "#ff4e00",
               textAlign: "center",
@@ -123,17 +110,17 @@ function Home() {
                 },
               },
               height: {
-                md: "7.8rem",
-                xs: "7rem",
+                md: '25vh',
+                xs: '18vh'
               },
             }}
           >
-            <div className="foot-home">
+            <Box sx={{ pt: { md: '3rem', xs: '0.5rem'} }} >
               <Link to="/">Contacto | </Link>
               <Link to="/politics"> Políticas | </Link>
               <Link to="/politics">Términos</Link>
-            </div>
-            <Typography sx={{ color: "#ff823b", mt: "0.5rem" }} h5>
+            </Box>
+            <Typography sx={{ color: "#ff823b", mt: "0.5rem" }}>
               ©má sas 2021
             </Typography>
           </Box>

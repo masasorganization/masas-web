@@ -12,35 +12,35 @@ function DataClient() {
                                     xs: '1.4rem'
                                 },
                                 fontFamily: 'Nunito, sans-serif',
-                                fontSize: '1.2rem' }}>  
-                <Typography h4>
+                                fontSize: '1.2rem' }} >  
+                <Typography>
                     <b>ID-Compra:</b> 001
                 </Typography>  
-                <Typography h4>
+                <Typography>
                     <b>Nombres:</b> María Laura
                 </Typography>  
-                <Typography h4>
+                <Typography>
                     <b>Apellidos:</b> Gómez Vega
                 </Typography>  
-                <Typography h4>
+                <Typography>
                     <b>Tipo de documento:</b> Cédula de ciudadanía
                 </Typography>  
-                <Typography h4>
+                <Typography>
                     <b>Número:</b> 1234567890
                 </Typography>  
-                <Typography h4>
+                <Typography>
                     <b>Dirección:</b> Calle 22 sur # 12 80
                 </Typography>
-                <Typography h4>
+                <Typography>
                     <b>Número casa, apto, oficina:</b> ap 202
                 </Typography>
-                <Typography h4>
+                <Typography>
                     <b>Barrio:</b> Sociego II
                 </Typography>
-                <Typography h4>
+                <Typography>
                     <b>Celular:</b> 3001234567
                 </Typography>
-                <Typography h4>
+                <Typography>
                     <b>Fecha de entrega:</b> 17/11/2021
                 </Typography>
             </Typography>
