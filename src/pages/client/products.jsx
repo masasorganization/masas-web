@@ -107,6 +107,63 @@ function Products(props) {
       </Grid>
     </div>
   )
+
+  function Sugarfree() {
+    return (
+      <>
+        {dataSinAzucar.map((datos, indice) => {
+          const { nombre, precio, descripcion, ingredientes } = datos
+          return (
+            <CardProduct
+              key={indice}
+              titulo={nombre}
+              valor={precio}
+              descripcion={descripcion}
+              ingredientes={ingredientes}
+            />
+          )
+        })}
+      </>
+    )
+  }
+
+  function HealthyDough() {
+    return (
+      <>
+        {dataMasaSaludable.map((datos, indice) => {
+          const { nombre, precio, descripcion, ingredientes } = datos
+          return (
+            <CardProduct
+              key={indice}
+              titulo={nombre}
+              valor={precio}
+              descripcion={descripcion}
+              ingredientes={ingredientes}
+            />
+          )
+        })}
+      </>
+    )
+  }
+
+  function Organic() {
+    return (
+      <>
+        {dataOrganico.map((datos, indice) => {
+          const { nombre, precio, descripcion, ingredientes } = datos
+          return (
+            <CardProduct
+              key={indice}
+              titulo={nombre}
+              valor={precio}
+              descripcion={descripcion}
+              ingredientes={ingredientes}
+            />
+          )
+        })}
+      </>
+    )
+  }
 }
 
 export default Products
@@ -124,31 +181,4 @@ const tabStyle = {
   fontFamily: 'Noto Sans, sans-serif',
   fontWeight: '700',
   textTransform: 'none'
-}
-
-function Sugarfree() {
-  return (
-    <>
-      <CardProduct />
-      <CardProduct />
-    </>
-  )
-}
-
-function HealthyDough() {
-  return (
-    <>
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-    </>
-  )
-}
-
-function Organic() {
-  return (
-    <>
-      <CardProduct />
-    </>
-  )
 }
