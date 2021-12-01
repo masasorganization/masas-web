@@ -1,10 +1,11 @@
 //import { Link } from 'react-router-dom'
-import ProductLayout from '../../components/admin/managers/product/ProductLayout'
+// import ProductLayout from '../../components/admin/managers/product/ProductLayout'
+import Experimental from '../../components/admin/managers/Experimental'
 
 const testfield = () => {
   return (
     <>
-      <ProductLayout />
+      <Experimental />
     </>
   )
 }
