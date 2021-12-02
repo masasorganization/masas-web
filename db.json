@@ -1,0 +1,29 @@
+{
+  "Productos": [
+    {
+      "tamaño": "x12 porciones",
+      "unidades": 4,
+      "toppings": "Nueces picadas",
+      "id": 1
+    },
+    {
+      "tamaño": "x8 porciones",
+      "unidades": 4,
+      "toppings": "Nueces picadas",
+      "id": 2
+    },
+    {
+      "tamaño": "x8 porciones",
+      "unidades": 4,
+      "toppings": "Nueces picadas",
+      "id": 3
+    },
+    {
+      "tamaño": "x8 porciones",
+      "unidades": 4,
+      "toppings": "Nueces picadas",
+      "id": 4
+    }
+  ],
+  "Comprador": []
+}

@@ -1,22 +1,18 @@
-var valores = [
+const datosPedidos = [
   {
-    Productos: [
-      { tamaño: 'casa1', unidades: 'casa', complementos: 'casa' },
-      { tamaño: 'casa2', unidades: 'casa', complementos: 'casa' },
-      { tamaño: 'casa3', unidades: 'casa', complementos: 'casa' }
-    ],
+    Productos: [{}],
     Comprador: {
-      nombres: 'valor',
-      apellidos: 'valor',
-      tipoDocumento: 'valor',
+      nombres: "valor",
+      apellidos: "valor",
+      tipoDocumento: "valor",
       numDocumento: 0,
-      direccion: 'valor',
-      numeroCasa: 'valor',
-      barrio: 'valor',
-      telefono: 'valor',
-      fechaEntrega: 'valor'
+      direccion: "valor",
+      numeroCasa: "valor",
+      barrio: "valor",
+      telefono: "valor",
+      fechaEntrega: "valor"
     }
   }
 ]
 
-export default valores
+export default datosPedidos
