@@ -27,22 +27,16 @@ function Experimental() {
   const [nuevo, setNuevo] = React.useState(false)
   const [editar, setEditar] = React.useState(false)
 
-  // function estadosHijos() {
-  //   if (nuevo === true) {
-  //     setEditar(!editar)
-  //     setIndice(!indice)
-  //   } else if (editar === true) {
-  //     setNuevo(!nuevo)
-  //     setIndice(!indice)
-  //   }
-  // }
-
   React.useEffect(() => {
     document.title = 'má sas | Gestión de productos'
-    //estadosHijos()
   })
 
-  function estadoBotonNuevo() {
+  function estadoIndiceBotonNuevo() {
+    setIndice(!indice)
+    setNuevo(!nuevo)
+  }
+
+  function estadoNuevoBotonCancelar() {
     setIndice(!indice)
     setNuevo(!nuevo)
   }
@@ -54,15 +48,33 @@ function Experimental() {
         montar={indice}
         botonNuevo={
           <Button
-            onClick={() => estadoBotonNuevo()}
+            onClick={() => estadoIndiceBotonNuevo()}
             variant='contained'
             sx={{ ...botonPrimario }}
           >
             Nuevo producto
           </Button>
         }
-      ></RenderIndice>
-      <RenderNuevo montar={nuevo}></RenderNuevo>
+      />
+      <RenderNuevo
+        montar={nuevo}
+        botonCancelar={
+          <Button
+            onClick={() => estadoNuevoBotonCancelar()}
+            variant='contained'
+            sx={{
+              ...botonSecundario,
+              backgroundColor: '#AA3D72',
+              '&:hover': {
+                backgroundColor: '#770047',
+                boxShadow: 'none'
+              }
+            }}
+          >
+            Cancelar
+          </Button>
+        }
+      ></RenderNuevo>
       <Button onClick={() => setIndice(!indice)}>indice</Button>
       <Button onClick={() => setNuevo(!nuevo)}>nuevo</Button>
     </div>
@@ -81,10 +93,10 @@ function RenderIndice({ montar, botonNuevo }) {
   return null
 }
 
-function RenderNuevo(props) {
-  const montar = props.montar
-  if (montar === true) {
-    return <ProductLongForm />
+function RenderNuevo({ montar, botonCancelar }) {
+  const varMontar = montar
+  if (varMontar === true) {
+    return <ProductLongForm botonCancelar={botonCancelar} />
   }
   return null
 }

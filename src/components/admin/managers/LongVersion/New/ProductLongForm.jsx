@@ -12,8 +12,9 @@ import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
+import Axios from 'axios'
 
-const ProductLongForm = () => {
+const ProductLongForm = ({ botonCancelar }) => {
   let [acordeonIzqActivo, setAcordeonIzqActivo] = React.useState(false)
   let [acordeonDerActivo, setAcordeonDerActivo] = React.useState(false)
   let [primeraVez, setPrimeraVez] = React.useState(true)
@@ -26,6 +27,21 @@ const ProductLongForm = () => {
     setAcordeonDerActivo(!acordeonDerActivo)
   }
 
+  const [datosFormulario, setDatosFormulario] = React.useState({
+    categoria: '',
+    nombre: '',
+    valor: '',
+    descripcion: '',
+    ingredientes: ''
+  })
+
+  let urlBase = 'http://localhost:3004'
+
+  const enviarInformacion = async () => {
+    let endpoint = '/Productos/'
+    await Axios.post(urlBase + endpoint, datosFormulario)
+  }
+
   return (
     <Box onClick={() => setPrimeraVez(false)} sx={{ ...pantallaCompleta }}>
       <Box sx={{ ...contenedorSuperior }}>
@@ -35,16 +51,18 @@ const ProductLongForm = () => {
         </Box>
 
         <Box sx={{ ...contenedorBotones }}>
-          <Button variant='contained' sx={{ ...botonSecundario }}>
-            Cancelar
-          </Button>
+          {botonCancelar}
           <TooltipInferior
             title={textoTooltip}
             arrow
             open={primeraVez}
             sx={{ ...flechaTooltip }}
           >
-            <Button variant='contained' sx={{ ...botonPrimario }}>
+            <Button
+              variant='contained'
+              sx={{ ...botonPrimario }}
+              onClick={() => enviarInformacion()}
+            >
               Crear Producto
             </Button>
           </TooltipInferior>
@@ -92,7 +110,11 @@ const ProductLongForm = () => {
                 </AccordionSummary>
                 <AccordionDetails sx={{ ...acordeonInterno }}>
                   <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
-                    <DatosProducto />
+                    <DatosProducto
+                      infoFormulario={(datosFormulario) =>
+                        setDatosFormulario(datosFormulario)
+                      }
+                    />
                   </Container>
                 </AccordionDetails>
               </Accordion>
@@ -278,24 +300,6 @@ const botonPrimario = {
   }
 }
 
-const botonSecundario = {
-  backgroundColor: '#AA3D72',
-  borderRadius: '10px',
-  width: '129px',
-  px: '40px',
-  height: '39px',
-  textTransform: 'none',
-  fontFamily: 'Noto Sans, sans-serif',
-  fontWeight: '700',
-  fontSize: '1.125rem',
-  boxShadow: 'none',
-  mr: '18px',
-  '&:hover': {
-    backgroundColor: '#770047',
-    boxShadow: 'none'
-  }
-}
-
 const flechaTooltip = {
   '& .MuiTooltip-arrow': {
     ':before': {
@@ -342,11 +346,12 @@ let textoTooltip = 'Este botón se activará al ingresar toda la información.'
 let textoTooltip2 =
   'Ingrese la información del producto pulsando en alguna de las dos secciones.'
 
-function DatosProducto() {
+function DatosProducto(props) {
   const [seleccionCategorias, setSeleccionCategorias] = React.useState('')
 
   const cambioCategoria = (event) => {
     setSeleccionCategorias(event.target.value)
+    actualizarFormulario(event.target)
   }
 
   const categorias = [
@@ -364,6 +369,26 @@ function DatosProducto() {
     }
   ]
 
+  const [formulario, setFormulario] = React.useState({
+    categoria: "",
+    nombre: "",
+    valor: "",
+    descripcion: "",
+    ingredientes: ""
+  })
+
+  const actualizarFormulario = (target) => {
+    setFormulario({
+      ...formulario,
+      [target.name]: target.value
+    })
+  }
+
+  const ultimoEvento = (event) =>{
+    actualizarFormulario(event.target)
+    props.infoFormulario(formulario)
+  }
+
   return (
     <>
       <TextField
@@ -373,9 +398,10 @@ function DatosProducto() {
         placeholder='Categoria'
         value={seleccionCategorias}
         onChange={cambioCategoria}
-        sx={{ ...camposTexto, my: '14px' }}
+        sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         helperText='Seleccione una categoria.'
+        name='categoria'
         // value=''
         //required='true'
       >
@@ -392,6 +418,8 @@ function DatosProducto() {
         label='Nombre'
         placeholder='Nombre del producto'
         helperText='Escriba el nombre del producto.'
+        name='nombre'
+        onChange={(event) => actualizarFormulario(event.target)}
         // value=''
         //required='true'
       />
@@ -402,6 +430,8 @@ function DatosProducto() {
         label='Valor'
         placeholder='Valor unitario'
         helperText='Escriba el valor del producto.'
+        name='valor'
+        onChange={(event) => actualizarFormulario(event.target)}
         // value=''
         //required='true'
       />
@@ -413,6 +443,8 @@ function DatosProducto() {
         label='Descripción'
         placeholder='Descripción'
         helperText='Escriba una descripción del producto.'
+        name='descripcion'
+        onChange={(event) => actualizarFormulario(event.target)}
         // value=''
         //required='true'
       />
@@ -424,9 +456,15 @@ function DatosProducto() {
         label='Ingredientes'
         placeholder='Ingredientes'
         helperText='Escriba todos los ingredientes del producto.'
+        name='ingredientes'
+        onMouseOut={() => props.infoFormulario(formulario)}
+        onChange={(event) => actualizarFormulario(event.target)}
+        // onChange={(event) => {actualizarFormulario(event.target)
+        //   props.infoFormulario(formulario)}}
         // value=''
         //required='true'
       />
+      <Button onClick={() => console.log(formulario)}>ver coleccion</Button>
     </>
   )
 }
