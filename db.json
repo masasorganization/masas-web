@@ -1,28 +1,28 @@
 {
   "Productos": [
     {
+      "titulo": "Torta de chocolate amargo",
+      "valor": 50000,
       "tamaño": "x12 porciones",
-      "unidades": 4,
-      "toppings": "Nueces picadas",
+      "unidades": 5,
+      "toppings": "Salsa de chocolate",
       "id": 1
     },
     {
+      "titulo": "Torta de Quinua blanca",
+      "valor": 50000,
       "tamaño": "x8 porciones",
-      "unidades": 4,
+      "unidades": 5,
       "toppings": "Nueces picadas",
       "id": 2
     },
     {
+      "titulo": "Torta de naranja y zanahoria",
+      "valor": 50000,
       "tamaño": "x8 porciones",
-      "unidades": 4,
-      "toppings": "Nueces picadas",
+      "unidades": 1,
+      "toppings": "Gajos de naranja dulce",
       "id": 3
-    },
-    {
-      "tamaño": "x8 porciones",
-      "unidades": 4,
-      "toppings": "Nueces picadas",
-      "id": 4
     }
   ],
   "Comprador": []

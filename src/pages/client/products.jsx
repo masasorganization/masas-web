@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom"
 import Grid from "@mui/material/Grid"
 import Tab from "@mui/material/Tab"
 import Tabs from "@mui/material/Tabs"
+import Button from "@mui/material/Button"
 import AppBar from "@mui/material/AppBar"
 import BtnExit from "../../components/client/BtnExit"
 import CardProduct from "../../components/client/CardProduct"
@@ -112,6 +114,34 @@ function Products(props) {
         {selTab === 0 && <Sugarfree />}
         {selTab === 1 && <HealthyDough />}
         {selTab === 2 && <Organic />}
+        <Grid item xs={12} md={12}>
+        <div className='btn-client'>
+            <Link to='/orders'>
+              <Button
+                sx={{
+                  bgcolor: "#9bd816",
+                  textTransform: "none",
+                  width: "25rem",
+                  color: "#ffffff",
+                  borderRadius: "10px",
+                  boxShadow: "0",
+                  fontFamily: "Noto Sans, sans-serif",
+                  fontSize: {
+                    md: "1.1rem",
+                    xs: "1rem"
+                  },
+                  fontWeight: "700",
+                  ":hover": {
+                    bgcolor: "#ff4e00"
+                  },
+                  mt: "1rem"
+                }}
+              >
+                Pagar tus productos
+              </Button>
+            </Link>
+          </div>
+        </Grid>
         <Grid item xs={12} md={12}>
           <BtnExit />
         </Grid>

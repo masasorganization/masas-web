@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import Card from "@mui/material/Card"
 import CardMedia from "@mui/material/CardMedia"
 import CardContent from "@mui/material/CardContent"
@@ -23,6 +22,8 @@ function CardProduct(props) {
   const click = () => {
     setExpanded(!expanded)
   }
+
+  const [valorFinal, setValorFinal] = React.useState(props.valor)
 
   return (
     <>
@@ -60,7 +61,7 @@ function CardProduct(props) {
               }}
             >
               {"$"}
-              {props.valor}
+              {valorFinal}
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "row" }}>
               <Typography
@@ -84,7 +85,7 @@ function CardProduct(props) {
                   }
                 }}
               >
-                <FormProduct valor={props.valor} />
+                <FormProduct valor={props.valor} titulo={props.titulo} otroValor={valorFinal} calculoValor={(valorFinal) => setValorFinal(valorFinal)}/>
               </Box>
             </Box>
             <Collapse in={expanded} timeout='auto' unmountOnExit>
@@ -148,32 +149,6 @@ function CardProduct(props) {
               </Box>
             </div>
           </CardActions>
-          <div className='btn-client'>
-            <Link to='/orders'>
-              <Button
-                sx={{
-                  bgcolor: "#9bd816",
-                  textTransform: "none",
-                  width: "18rem",
-                  color: "#ffffff",
-                  borderRadius: "10px",
-                  boxShadow: "0",
-                  fontFamily: "Noto Sans, sans-serif",
-                  fontSize: {
-                    md: "1.1rem",
-                    xs: "1rem"
-                  },
-                  fontWeight: "700",
-                  ":hover": {
-                    bgcolor: "#ff4e00"
-                  },
-                  mt: "1rem"
-                }}
-              >
-                Pagar
-              </Button>
-            </Link>
-          </div>
         </Card>
       </Grid>
     </>
@@ -181,11 +156,7 @@ function CardProduct(props) {
 }
 
 function FormProduct(props) {
-  const [datosFormulario, setDatosFormulario] = React.useState({
-    tamaño: "",
-    unidades: "",
-    toppings: ""
-  })
+  
 
   const URL = "http://localhost:3004/Productos"
 
@@ -198,12 +169,7 @@ function FormProduct(props) {
     await axios.post(URL, datosFormulario)
   }
 
-  const handleInputChange = (target) => {
-    setDatosFormulario({
-      ...datosFormulario,
-      [target.name]: target.value
-    })
-  }
+
 
   const [seleccionTamaño, setSeleccionTamaño] = React.useState("")
 
@@ -364,8 +330,95 @@ function FormProduct(props) {
     v = v + 2500
   }
 
+  function primerCalculo(a) {
+    if (seleccionTamaño === "x8 porciones") {
+      a = a + 0
+    } else if (seleccionTamaño === "x12 porciones") {
+      a = a + 5000
+    }
+    return a
+  }
+
+  function segundoCalculo(a) {
+    if (seleccionUnidades === 1) {
+      a = a * 1
+    } else if (seleccionUnidades === 2) {
+      a = a * 2
+    } else if (seleccionUnidades === 3) {
+      a = a * 3
+    } else if (seleccionUnidades === 4) {
+      a = a * 4
+    } else if (seleccionUnidades === 5) {
+      a = a * 5
+    } else if (seleccionUnidades === 6) {
+      a = a * 6
+    } else if (seleccionUnidades === 7) {
+      a = a * 7
+    } else if (seleccionUnidades === 8) {
+      a = a * 8
+    } else if (seleccionUnidades === 9) {
+      a = a * 9
+    } else if (seleccionUnidades === 10) {
+      a = a * 10
+    }
+    return a
+  }
+
+  function tercerCalculo(a) {
+    if (seleccionToppings === "Gajos de naranja dulce") {
+      a = a + 500
+    } else if (seleccionToppings === "Jalea de ciruela") {
+      a = a + 1000
+    } else if (seleccionToppings === "Nueces picadas") {
+      a = a + 1500
+    } else if (seleccionToppings === "Salsa de chocolate") {
+      a = a + 2000
+    } else if (seleccionToppings === "Zanahorias asadas") {
+      a = a + 2500
+    }
+    return a
+  }
+
+  let valorfinalfinalfinal = tercerCalculo(segundoCalculo(primerCalculo(50000)))
+  
+  // console.log(primerCalculo(props.valor))
+  //console.log(segundoCalculo(props.valor))
+  // console.log(tercerCalculo(props.valor))
+
+  console.log(valorfinalfinalfinal)
+
+
+
+  // const valorFinal = props.otroValor
+
+  const [datosFormulario, setDatosFormulario] = React.useState({
+    titulo: props.titulo,
+    valor: valorfinalfinalfinal,
+    tamaño: "",
+    unidades: "",
+    toppings: ""
+  })
+
+  const handleInputChange = (target) => {
+    setDatosFormulario({
+      ...datosFormulario,
+      [target.name]: target.value
+    })
+  }
+  
   return (
-    <div>
+    <div onload={props.calculoValor(v)}>
+
+      {/* <TextField
+        id='value-product'
+        onChange={(event) =>{ handleInputChange(event.target.name)}}
+        value={props.otroValor}
+        name='valor'
+        sx={{  }}
+      >
+      </TextField> */}
+
+
       <TextField
         id='size-product'
         select
@@ -445,7 +498,6 @@ function FormProduct(props) {
         >
           {b}
         </Button>
-        <Box sx={{ display: "block" }}>{v}</Box>
       </div>
     </div>
   )
