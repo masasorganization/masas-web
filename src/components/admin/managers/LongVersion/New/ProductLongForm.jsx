@@ -14,7 +14,7 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import Axios from 'axios'
 
-const ProductLongForm = ({ botonCancelar }) => {
+const ProductLongForm = ({ id, editar, botonCancelar }) => {
   let [acordeonIzqActivo, setAcordeonIzqActivo] = React.useState(false)
   let [acordeonDerActivo, setAcordeonDerActivo] = React.useState(false)
   let [primeraVez, setPrimeraVez] = React.useState(true)
@@ -40,6 +40,12 @@ const ProductLongForm = ({ botonCancelar }) => {
   const enviarInformacion = async () => {
     let endpoint = '/Productos/'
     await Axios.post(urlBase + endpoint, datosFormulario)
+  }
+
+  const obtenerInformacion = async () => {
+    let endpoint = '/Productos/' + id
+    const response = Axios.get(endpoint)
+    return response
   }
 
   return (
@@ -111,6 +117,8 @@ const ProductLongForm = ({ botonCancelar }) => {
                 <AccordionDetails sx={{ ...acordeonInterno }}>
                   <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
                     <DatosProducto
+                      editar={editar}
+                      categoria={'Sin azúcar'}
                       infoFormulario={(datosFormulario) =>
                         setDatosFormulario(datosFormulario)
                       }
@@ -155,6 +163,7 @@ const ProductLongForm = ({ botonCancelar }) => {
           </Grid>
         </Grid>
       </Box>
+      <Box onClick={() => obtenerInformacion()}>LlamarInfo</Box>
     </Box>
   )
 }
@@ -347,6 +356,9 @@ let textoTooltip2 =
   'Ingrese la información del producto pulsando en alguna de las dos secciones.'
 
 function DatosProducto(props) {
+  // Edita la información
+  const editar = props.editar
+
   const [seleccionCategorias, setSeleccionCategorias] = React.useState('')
 
   const cambioCategoria = (event) => {
@@ -370,11 +382,11 @@ function DatosProducto(props) {
   ]
 
   const [formulario, setFormulario] = React.useState({
-    categoria: "",
-    nombre: "",
-    valor: "",
-    descripcion: "",
-    ingredientes: ""
+    categoria: '',
+    nombre: '',
+    valor: '',
+    descripcion: '',
+    ingredientes: ''
   })
 
   const actualizarFormulario = (target) => {
@@ -384,11 +396,6 @@ function DatosProducto(props) {
     })
   }
 
-  const ultimoEvento = (event) =>{
-    actualizarFormulario(event.target)
-    props.infoFormulario(formulario)
-  }
-
   return (
     <>
       <TextField
@@ -396,13 +403,12 @@ function DatosProducto(props) {
         select
         label='Categoria'
         placeholder='Categoria'
-        value={seleccionCategorias}
+        value={editar ? props.categoria : seleccionCategorias}
         onChange={cambioCategoria}
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         helperText='Seleccione una categoria.'
         name='categoria'
-        // value=''
         //required='true'
       >
         {categorias.map((option) => (
@@ -420,7 +426,7 @@ function DatosProducto(props) {
         helperText='Escriba el nombre del producto.'
         name='nombre'
         onChange={(event) => actualizarFormulario(event.target)}
-        // value=''
+        value={props.nombre}
         //required='true'
       />
       <TextField
@@ -432,7 +438,7 @@ function DatosProducto(props) {
         helperText='Escriba el valor del producto.'
         name='valor'
         onChange={(event) => actualizarFormulario(event.target)}
-        // value=''
+        value={props.valor}
         //required='true'
       />
       <TextField
@@ -445,7 +451,7 @@ function DatosProducto(props) {
         helperText='Escriba una descripción del producto.'
         name='descripcion'
         onChange={(event) => actualizarFormulario(event.target)}
-        // value=''
+        value={props.descripcion}
         //required='true'
       />
       <TextField
@@ -459,12 +465,11 @@ function DatosProducto(props) {
         name='ingredientes'
         onMouseOut={() => props.infoFormulario(formulario)}
         onChange={(event) => actualizarFormulario(event.target)}
+        value={props.ingredientes}
         // onChange={(event) => {actualizarFormulario(event.target)
         //   props.infoFormulario(formulario)}}
-        // value=''
         //required='true'
       />
-      <Button onClick={() => console.log(formulario)}>ver coleccion</Button>
     </>
   )
 }

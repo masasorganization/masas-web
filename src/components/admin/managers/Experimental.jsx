@@ -7,6 +7,8 @@ import { administrador } from '../../../components/admin/navigationData'
 import Grid from '@mui/material/Grid'
 import BoxManagement from '../../../components/admin/BoxManagement'
 import ProductLongForm from '../managers/LongVersion/New/ProductLongForm'
+import Axios from 'axios'
+import { styled } from '@mui/material/styles'
 
 function Experimental() {
   // ReactHook para cambiar el estado de la pagina actual
@@ -20,16 +22,13 @@ function Experimental() {
   React.useEffect(() => {
     limpiarPagina()
     ponerEstadoPagina()
+    document.title = 'má sas | Gestión de productos'
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const [indice, setIndice] = React.useState(true)
   const [nuevo, setNuevo] = React.useState(false)
   const [editar, setEditar] = React.useState(false)
-
-  React.useEffect(() => {
-    document.title = 'má sas | Gestión de productos'
-  })
 
   function estadoIndiceBotonNuevo() {
     setIndice(!indice)
@@ -39,6 +38,11 @@ function Experimental() {
   function estadoNuevoBotonCancelar() {
     setIndice(!indice)
     setNuevo(!nuevo)
+  }
+
+  function estadoEditarBotonCancelar() {
+    setIndice(!indice)
+    setEditar(!editar)
   }
 
   return (
@@ -75,8 +79,28 @@ function Experimental() {
           </Button>
         }
       ></RenderNuevo>
+      <RenderEditar
+        montar={editar}
+        botonCancelar={
+          <Button
+            onClick={() => estadoEditarBotonCancelar()}
+            variant='contained'
+            sx={{
+              ...botonSecundario,
+              backgroundColor: '#AA3D72',
+              '&:hover': {
+                backgroundColor: '#770047',
+                boxShadow: 'none'
+              }
+            }}
+          >
+            Cancelar
+          </Button>
+        }
+      />
       <Button onClick={() => setIndice(!indice)}>indice</Button>
       <Button onClick={() => setNuevo(!nuevo)}>nuevo</Button>
+      <Button onClick={() => setEditar(!editar)}>editar</Button>
     </div>
   )
 }
@@ -97,6 +121,14 @@ function RenderNuevo({ montar, botonCancelar }) {
   const varMontar = montar
   if (varMontar === true) {
     return <ProductLongForm botonCancelar={botonCancelar} />
+  }
+  return null
+}
+
+function RenderEditar({ montar, botonCancelar }) {
+  const varMontar = montar
+  if (varMontar === true) {
+    return <ProductLongForm botonCancelar={botonCancelar} editar={1} />
   }
   return null
 }
@@ -200,41 +232,81 @@ const botonSecundario = {
 }
 
 function ProductCatalog() {
-  return (
-    <>
-      <Box sx={{ mt: { xs: '32px', md: 0 }, mb: '20px' }}>
-        <Grid
-          container
-          columns={{ xs: 12, md: 12, xl: 12 }}
-          rowSpacing={{ xs: '30px' }}
-          columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
-        >
-          <Grid item xs={12} md={6} lg={6} xl={4}>
-            <BoxManagement
-              title='titulo exageradamente largo'
-              paragraph='parrafo exageradamente largo'
-            />
+  let [datosProductos, setDatosProductos] = React.useState('error')
+  let urlBase = 'http://localhost:3004'
+  let endpoint = '/Productos/'
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    Axios.get(urlBase + endpoint).then((res) => {
+      setDatosProductos(res.data)
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (datosProductos === 'error') {
+    return (
+      <>
+        <MensajeError />
+      </>
+    )
+  } else {
+    return (
+      <>
+        <Box sx={{ mt: { xs: '32px', md: 0 }, mb: '20px' }}>
+          <Grid
+            container
+            columns={{ xs: 12, md: 12, xl: 12 }}
+            rowSpacing={{ xs: '30px' }}
+            columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
+          >
+            {datosProductos.map((datos, indice) => {
+              const { nombre, categoria } = datos
+              return (
+                <Grid item xs={12} md={6} lg={6} xl={4}>
+                  <BoxManagement
+                    key={indice}
+                    title={nombre}
+                    paragraph={categoria}
+                  />
+                </Grid>
+              )
+            })}
           </Grid>
-          <Grid item xs={12} md={6} lg={6} xl={4}>
-            <BoxManagement
-              title='titulo exageradamente largo'
-              paragraph='parrafo exageradamente largo'
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} xl={4}>
-            <BoxManagement
-              title='titulo exageradamente largo'
-              paragraph='parrafo exageradamente largo'
-            />
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} xl={4}>
-            <BoxManagement title='prueba titulo' paragraph='prueba parrafo' />
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} xl={4}>
-            <BoxManagement title='prueba titulo' paragraph='prueba parrafo' />
-          </Grid>
-        </Grid>
-      </Box>
-    </>
-  )
+        </Box>
+      </>
+    )
+  }
+
+  function MensajeError() {
+    return (
+      <>
+        <Box sx={{ mt: '100px', display: 'flex', justifyContent: 'center' }}>
+          <Cuerpo sx={{ ...tituloCuerpo }}>No hay ningún </Cuerpo>
+          <Resaltado sx={{ ...tituloResaltado }}>Producto...</Resaltado>
+        </Box>
+      </>
+    )
+  }
+}
+
+// Componentes de Texto
+const Resaltado = styled('p')``
+const Cuerpo = styled('p')``
+
+const tituloCuerpo = {
+  fontFamily: 'Nunito, sans-serif',
+  fontWeight: 300,
+  fontSize: { xs: '2rem', md: '3rem' },
+  whiteSpace: 'pre-wrap',
+  m: 0
+}
+
+const tituloResaltado = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700,
+  fontSize: { xs: '2rem', md: '3rem' },
+  color: '#FF823B',
+  whiteSpace: 'pre-wrap',
+  m: 0
 }
