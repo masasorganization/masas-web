@@ -7,10 +7,11 @@ const theme = createTheme({})
 
 const BoxManagement = ({ title, paragraph, button1, button2 }) => {
   return (
-    <div>
+    <>
       <Box
+        component='div'
         sx={{
-          cursor: 'pointer',
+          //cursor: 'pointer',
           bgcolor: '',
           height: '120px',
           display: 'flex',
@@ -93,7 +94,7 @@ const BoxManagement = ({ title, paragraph, button1, button2 }) => {
           <img src={Image} alt='' />
         </Box>
       </Box>
-    </div>
+    </>
   )
 }
 

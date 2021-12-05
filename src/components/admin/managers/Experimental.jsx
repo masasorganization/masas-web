@@ -29,10 +29,16 @@ function Experimental() {
   const [indice, setIndice] = React.useState(true)
   const [nuevo, setNuevo] = React.useState(false)
   const [editar, setEditar] = React.useState(false)
+  const [indexDatos, setIndexDatos] = React.useState('false')
 
   function estadoIndiceBotonNuevo() {
     setIndice(!indice)
     setNuevo(!nuevo)
+  }
+
+  function estadoIndiceTarjetaEditar() {
+    setIndice(!indice)
+    setEditar(!editar)
   }
 
   function estadoNuevoBotonCancelar() {
@@ -49,6 +55,8 @@ function Experimental() {
     <div>
       <AdminNavbar usuario='admin' />
       <RenderIndice
+        indiceDatos={(indexDatos) => setIndexDatos(indexDatos)}
+        edicion={() => estadoIndiceTarjetaEditar()}
         montar={indice}
         botonNuevo={
           <Button
@@ -61,6 +69,7 @@ function Experimental() {
         }
       />
       <RenderNuevo
+        comportamiento={() => estadoNuevoBotonCancelar()}
         montar={nuevo}
         botonCancelar={
           <Button
@@ -80,6 +89,8 @@ function Experimental() {
         }
       ></RenderNuevo>
       <RenderEditar
+        indiceProducto={indexDatos}
+        comportamiento={() => estadoEditarBotonCancelar()}
         montar={editar}
         botonCancelar={
           <Button
@@ -98,40 +109,73 @@ function Experimental() {
           </Button>
         }
       />
+      {/* <RenderPrueba
+        comportamiento={() => estadoEditarBotonCancelar()}
+      ></RenderPrueba> */}
       <Button onClick={() => setIndice(!indice)}>indice</Button>
-      <Button onClick={() => setNuevo(!nuevo)}>nuevo</Button>
-      <Button onClick={() => setEditar(!editar)}>editar</Button>
+      <Button onClick={() => estadoIndiceTarjetaEditar()}>editar</Button>
     </div>
   )
 }
 
-function RenderIndice({ montar, botonNuevo }) {
+function RenderIndice({ indiceDatos, edicion, montar, botonNuevo }) {
   const varMontar = montar
   if (varMontar === true) {
     return (
       <LayoutProductM botonNuevo={botonNuevo}>
-        <ProductCatalog />
+        <ProductCatalog
+          indiceDatos={(e) => indiceDatos(e)}
+          edicion={() => edicion()}
+        />
       </LayoutProductM>
     )
   }
   return null
 }
 
-function RenderNuevo({ montar, botonCancelar }) {
+function RenderNuevo({ comportamiento, montar, botonCancelar }) {
   const varMontar = montar
   if (varMontar === true) {
-    return <ProductLongForm botonCancelar={botonCancelar} />
+    return (
+      <ProductLongForm
+        botonCancelar={botonCancelar}
+        volverIndice={() => comportamiento()}
+      />
+    )
   }
   return null
 }
 
-function RenderEditar({ montar, botonCancelar }) {
+function RenderEditar({
+  indiceProducto,
+  comportamiento,
+  montar,
+  botonCancelar
+}) {
   const varMontar = montar
   if (varMontar === true) {
-    return <ProductLongForm botonCancelar={botonCancelar} editar={1} />
+    return (
+      <ProductLongForm
+        producto={indiceProducto}
+        botonCancelar={botonCancelar}
+        botonEditar={true}
+        editar={true}
+        volverIndice={() => comportamiento()}
+      />
+    )
   }
   return null
 }
+
+// function RenderPrueba({ comportamiento }) {
+//   return (
+//     <>
+//       <Button onClick={() => comportamiento()} sx={{ backgroundColor: 'red' }}>
+//         Prueba
+//       </Button>
+//     </>
+//   )
+// }
 
 // Logica del padre para la barra de navegación
 
@@ -169,6 +213,98 @@ function LayoutProductM({ botonNuevo, children }) {
       </Box>
     </>
   )
+}
+
+function ProductCatalog(props) {
+  let [datosProductos, setDatosProductos] = React.useState('error')
+  let urlBase = 'http://localhost:3004'
+  let endpoint = '/Productos/'
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    Axios.get(urlBase + endpoint).then((res) => {
+      setDatosProductos(res.data)
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (datosProductos === 'error') {
+    return (
+      <>
+        <MensajeError />
+      </>
+    )
+  } else {
+    return (
+      <>
+        <Box sx={{ mt: { xs: '42px', md: 0 }, mb: '20px' }}>
+          <Grid
+            container
+            columns={{ xs: 12, md: 12, xl: 12 }}
+            rowSpacing={{ xs: '30px' }}
+            columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
+          >
+            {datosProductos.map((datos, index) => {
+              const { id, nombre, categoria } = datos
+              return (
+                <Grid
+                  id={'casilla_' + index}
+                  onClick={() => {
+                    props.indiceDatos(id)
+                    props.edicion()
+                  }}
+                  item
+                  xs={12}
+                  md={6}
+                  lg={6}
+                  xl={4}
+                >
+                  <BoxManagement
+                    key={index}
+                    id={'tarjeta_' + id}
+                    title={nombre}
+                    paragraph={categoria}
+                  />
+                </Grid>
+              )
+            })}
+          </Grid>
+        </Box>
+      </>
+    )
+  }
+
+  function MensajeError() {
+    return (
+      <>
+        <Box sx={{ mt: '100px', display: 'flex', justifyContent: 'center' }}>
+          <Cuerpo sx={{ ...tituloCuerpo }}>No hay ningún </Cuerpo>
+          <Resaltado sx={{ ...tituloResaltado }}>Producto...</Resaltado>
+        </Box>
+      </>
+    )
+  }
+}
+
+// Componentes de Texto
+const Resaltado = styled('p')``
+const Cuerpo = styled('p')``
+
+const tituloCuerpo = {
+  fontFamily: 'Nunito, sans-serif',
+  fontWeight: 300,
+  fontSize: { xs: '2rem', md: '3rem' },
+  whiteSpace: 'pre-wrap',
+  m: 0
+}
+
+const tituloResaltado = {
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700,
+  fontSize: { xs: '2rem', md: '3rem' },
+  color: '#FF823B',
+  whiteSpace: 'pre-wrap',
+  m: 0
 }
 
 const pantallaCompleta = {
@@ -229,84 +365,4 @@ const botonSecundario = {
     backgroundColor: '#00928e',
     boxShadow: 'none'
   }
-}
-
-function ProductCatalog() {
-  let [datosProductos, setDatosProductos] = React.useState('error')
-  let urlBase = 'http://localhost:3004'
-  let endpoint = '/Productos/'
-
-  // ReactHook para llamar a todos los Productos.
-  React.useEffect(() => {
-    Axios.get(urlBase + endpoint).then((res) => {
-      setDatosProductos(res.data)
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  if (datosProductos === 'error') {
-    return (
-      <>
-        <MensajeError />
-      </>
-    )
-  } else {
-    return (
-      <>
-        <Box sx={{ mt: { xs: '32px', md: 0 }, mb: '20px' }}>
-          <Grid
-            container
-            columns={{ xs: 12, md: 12, xl: 12 }}
-            rowSpacing={{ xs: '30px' }}
-            columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
-          >
-            {datosProductos.map((datos, indice) => {
-              const { nombre, categoria } = datos
-              return (
-                <Grid item xs={12} md={6} lg={6} xl={4}>
-                  <BoxManagement
-                    key={indice}
-                    title={nombre}
-                    paragraph={categoria}
-                  />
-                </Grid>
-              )
-            })}
-          </Grid>
-        </Box>
-      </>
-    )
-  }
-
-  function MensajeError() {
-    return (
-      <>
-        <Box sx={{ mt: '100px', display: 'flex', justifyContent: 'center' }}>
-          <Cuerpo sx={{ ...tituloCuerpo }}>No hay ningún </Cuerpo>
-          <Resaltado sx={{ ...tituloResaltado }}>Producto...</Resaltado>
-        </Box>
-      </>
-    )
-  }
-}
-
-// Componentes de Texto
-const Resaltado = styled('p')``
-const Cuerpo = styled('p')``
-
-const tituloCuerpo = {
-  fontFamily: 'Nunito, sans-serif',
-  fontWeight: 300,
-  fontSize: { xs: '2rem', md: '3rem' },
-  whiteSpace: 'pre-wrap',
-  m: 0
-}
-
-const tituloResaltado = {
-  fontFamily: 'Noto Sans, sans-serif',
-  fontWeight: 700,
-  fontSize: { xs: '2rem', md: '3rem' },
-  color: '#FF823B',
-  whiteSpace: 'pre-wrap',
-  m: 0
 }

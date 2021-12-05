@@ -14,7 +14,13 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 import Axios from 'axios'
 
-const ProductLongForm = ({ id, editar, botonCancelar }) => {
+const ProductLongForm = ({
+  botonEditar,
+  volverIndice,
+  editar,
+  botonCancelar,
+  producto
+}) => {
   let [acordeonIzqActivo, setAcordeonIzqActivo] = React.useState(false)
   let [acordeonDerActivo, setAcordeonDerActivo] = React.useState(false)
   let [primeraVez, setPrimeraVez] = React.useState(true)
@@ -35,43 +41,62 @@ const ProductLongForm = ({ id, editar, botonCancelar }) => {
     ingredientes: ''
   })
 
+  let [datosProductos, setDatosProductos] = React.useState('error')
   let urlBase = 'http://localhost:3004'
+  let endpoint = '/Productos/'
+  let indexProducto = producto
 
   const enviarInformacion = async () => {
     let endpoint = '/Productos/'
-    await Axios.post(urlBase + endpoint, datosFormulario)
+    await Axios.post(urlBase + endpoint)
   }
 
-  const obtenerInformacion = async () => {
-    let endpoint = '/Productos/' + id
-    const response = Axios.get(endpoint)
-    return response
+  const obtenerInformacion = () => {
+    Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+      setDatosProductos(res.data)
+    })
   }
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    if (editar === true) {
+      Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+        setDatosProductos(res.data)
+      })
+      console.log('modo edicion: Activado')
+    } else {
+      console.log('modo edicion: Desactivado')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  console.log('Datos que llegan:')
+  console.log(datosProductos)
 
   return (
     <Box onClick={() => setPrimeraVez(false)} sx={{ ...pantallaCompleta }}>
       <Box sx={{ ...contenedorSuperior }}>
         <Box sx={{ ...contenedorTitulos }}>
-          <Resaltado sx={{ ...tituloResaltado }}>Nuevo </Resaltado>
-          <Cuerpo sx={{ ...tituloCuerpo }}>Producto</Cuerpo>
+          {/* <Resaltado sx={{ ...tituloResaltado }}>Nuevo </Resaltado>
+          <Cuerpo sx={{ ...tituloCuerpo }}>Producto</Cuerpo> */}
+          <TituloPrincipal botonEditar={botonEditar} />
         </Box>
 
         <Box sx={{ ...contenedorBotones }}>
           {botonCancelar}
-          <TooltipInferior
+          {/* <TooltipInferior
             title={textoTooltip}
             arrow
             open={primeraVez}
             sx={{ ...flechaTooltip }}
-          >
-            <Button
-              variant='contained'
-              sx={{ ...botonPrimario }}
-              onClick={() => enviarInformacion()}
-            >
-              Crear Producto
-            </Button>
-          </TooltipInferior>
+          > */}
+          <BotonPrincipal
+            botonEditar={botonEditar}
+            tooltips={primeraVez}
+            enviarInfo={() => enviarInformacion()}
+            finalizar={() => volverIndice()}
+          />
+          {/* </TooltipInferior> */}
         </Box>
       </Box>
 
@@ -117,8 +142,12 @@ const ProductLongForm = ({ id, editar, botonCancelar }) => {
                 <AccordionDetails sx={{ ...acordeonInterno }}>
                   <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
                     <DatosProducto
-                      editar={editar}
-                      categoria={'Sin azúcar'}
+                      edicion={editar}
+                      categoria={datosProductos.categoria}
+                      nombre={datosProductos.nombre}
+                      valor={datosProductos.valor}
+                      descripcion={datosProductos.descripcion}
+                      ingredientes={datosProductos.ingredientes}
                       infoFormulario={(datosFormulario) =>
                         setDatosFormulario(datosFormulario)
                       }
@@ -163,7 +192,7 @@ const ProductLongForm = ({ id, editar, botonCancelar }) => {
           </Grid>
         </Grid>
       </Box>
-      <Box onClick={() => obtenerInformacion()}>LlamarInfo</Box>
+      <Button onClick={() => obtenerInformacion()}>LlamarInfo</Button>
     </Box>
   )
 }
@@ -317,6 +346,69 @@ const flechaTooltip = {
   }
 }
 
+function TituloPrincipal(props) {
+  const editar = props.botonEditar
+  if (editar === true) {
+    return (
+      <>
+        <Resaltado sx={{ ...tituloResaltado }}>Editar </Resaltado>
+        <Cuerpo sx={{ ...tituloCuerpo }}>producto</Cuerpo>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <Resaltado sx={{ ...tituloResaltado }}>Nuevo </Resaltado>
+        <Cuerpo sx={{ ...tituloCuerpo }}>producto</Cuerpo>
+      </>
+    )
+  }
+}
+
+function BotonPrincipal(props) {
+  const primeraVez = props.tooltips
+  const editar = props.botonEditar
+  if (editar === true) {
+    return (
+      <>
+        <Button
+          id='btn-editar'
+          variant='contained'
+          sx={{ ...botonPrimario }}
+          onClick={() => {
+            props.finalizar()
+          }}
+        >
+          Editar Producto
+        </Button>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <TooltipInferior
+          title={textoTooltip}
+          arrow
+          open={primeraVez}
+          sx={{ ...flechaTooltip }}
+        >
+          <Button
+            id='btn-crear'
+            variant='contained'
+            sx={{ ...botonPrimario }}
+            onClick={() => {
+              props.enviarInfo()
+              props.finalizar()
+            }}
+          >
+            Crear Producto
+          </Button>
+        </TooltipInferior>
+      </>
+    )
+  }
+}
+
 // Componentes de Texto
 const Resaltado = styled('p')``
 const Cuerpo = styled('p')``
@@ -357,7 +449,6 @@ let textoTooltip2 =
 
 function DatosProducto(props) {
   // Edita la información
-  const editar = props.editar
 
   const [seleccionCategorias, setSeleccionCategorias] = React.useState('')
 
@@ -399,11 +490,12 @@ function DatosProducto(props) {
   return (
     <>
       <TextField
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='categoriaProducto'
         select
         label='Categoria'
         placeholder='Categoria'
-        value={editar ? props.categoria : seleccionCategorias}
+        value={props.edicion ? props.categoria : seleccionCategorias}
         onChange={cambioCategoria}
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
@@ -411,13 +503,23 @@ function DatosProducto(props) {
         name='categoria'
         //required='true'
       >
-        {categorias.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
+        {/* if(props.edicion === true){
+          return(
+        <MenuItem value={props.categoria}>
+            {props.categoria}
+          </MenuItem>
+          )
+          
+        } */}
+        {/* asdasd**** */}
+        {categorias.map((option, index) => (
+          <MenuItem key={index} value={props.categoria}>
             {option.label}
           </MenuItem>
         ))}
       </TextField>
       <TextField
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='nombreProducto'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
@@ -430,6 +532,7 @@ function DatosProducto(props) {
         //required='true'
       />
       <TextField
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='valorProducto'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
@@ -442,6 +545,7 @@ function DatosProducto(props) {
         //required='true'
       />
       <TextField
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='descripcionProducto'
         multiline
         sx={{ ...camposTexto, mb: '14px' }}
@@ -455,6 +559,7 @@ function DatosProducto(props) {
         //required='true'
       />
       <TextField
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='ingredientesProducto'
         multiline
         sx={{ ...camposTexto, mb: '14px' }}
