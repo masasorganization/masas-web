@@ -48,7 +48,7 @@ const ProductLongForm = ({
 
   const enviarInformacion = async () => {
     let endpoint = '/Productos/'
-    await Axios.post(urlBase + endpoint)
+    await Axios.post(urlBase + endpoint, datosFormulario)
   }
 
   const obtenerInformacion = () => {
@@ -490,12 +490,12 @@ function DatosProducto(props) {
   return (
     <>
       <TextField
-        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
+        //InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='categoriaProducto'
         select
         label='Categoria'
         placeholder='Categoria'
-        value={props.edicion ? props.categoria : seleccionCategorias}
+        value={seleccionCategorias}
         onChange={cambioCategoria}
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
@@ -503,17 +503,8 @@ function DatosProducto(props) {
         name='categoria'
         //required='true'
       >
-        {/* if(props.edicion === true){
-          return(
-        <MenuItem value={props.categoria}>
-            {props.categoria}
-          </MenuItem>
-          )
-          
-        } */}
-        {/* asdasd**** */}
         {categorias.map((option, index) => (
-          <MenuItem key={index} value={props.categoria}>
+          <MenuItem key={index} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
