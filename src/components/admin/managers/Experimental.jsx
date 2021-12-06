@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import MainTitle from 'components/admin/MainTitle'
 import { administrador } from '../../../components/admin/navigationData'
 import Grid from '@mui/material/Grid'
-import BoxManagement from '../../../components/admin/BoxManagement'
+import BoxManagement from '../BoxManagement'
 import ProductLongForm from '../managers/LongVersion/New/ProductLongForm'
 import Axios from 'axios'
 import { styled } from '@mui/material/styles'
@@ -220,24 +220,36 @@ function ProductCatalog(props) {
   let urlBase = 'http://localhost:3004'
   let endpoint = '/Productos/'
 
-  // ReactHook para llamar a todos los Productos.
-  React.useEffect(() => {
+  const cargarDatos = () => {
     Axios.get(urlBase + endpoint).then((res) => {
       setDatosProductos(res.data)
     })
+  }
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    cargarDatos()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const pulsarTarjeta = (e) => {
+    props.indiceDatos(e)
+    props.edicion()
+  }
 
   if (datosProductos === 'error') {
     return (
       <>
-        <MensajeError />
+        <MensajeError onLoad={() => cargarDatos()} />
       </>
     )
   } else {
     return (
       <>
-        <Box sx={{ mt: { xs: '42px', md: 0 }, mb: '20px' }}>
+        <Box
+          onLoad={() => cargarDatos()}
+          sx={{ mt: { xs: '42px', md: 0 }, mb: '20px' }}
+        >
           <Grid
             container
             columns={{ xs: 12, md: 12, xl: 12 }}
@@ -247,24 +259,21 @@ function ProductCatalog(props) {
             {datosProductos.map((datos, index) => {
               const { id, nombre, categoria } = datos
               return (
-                <Grid
-                  id={'casilla_' + index}
-                  onClick={() => {
-                    props.indiceDatos(id)
-                    props.edicion()
-                  }}
-                  item
-                  xs={12}
-                  md={6}
-                  lg={6}
-                  xl={4}
-                >
+                <Grid id={'casilla_' + index} item xs={12} md={6} lg={6} xl={4}>
                   <BoxManagement
-                    key={index}
+                    key={'tarjeta_' + index}
                     id={'tarjeta_' + id}
+                    producto={id}
                     title={nombre}
                     paragraph={categoria}
-                  />
+                    sx={{ pointerEvents: 'auto' }}
+                    editarProducto={(e) => {
+                      pulsarTarjeta(e)
+                    }}
+                    recargar={() => {
+                      cargarDatos()
+                    }}
+                  ></BoxManagement>
                 </Grid>
               )
             })}
@@ -277,7 +286,15 @@ function ProductCatalog(props) {
   function MensajeError() {
     return (
       <>
-        <Box sx={{ mt: '100px', display: 'flex', justifyContent: 'center' }}>
+        <Box
+          sx={{
+            mt: '100px',
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            justifyContent: 'center'
+          }}
+        >
           <Cuerpo sx={{ ...tituloCuerpo }}>No hay ningún </Cuerpo>
           <Resaltado sx={{ ...tituloResaltado }}>Producto...</Resaltado>
         </Box>
@@ -293,7 +310,7 @@ const Cuerpo = styled('p')``
 const tituloCuerpo = {
   fontFamily: 'Nunito, sans-serif',
   fontWeight: 300,
-  fontSize: { xs: '2rem', md: '3rem' },
+  fontSize: { xs: '1.7rem', md: '3rem' },
   whiteSpace: 'pre-wrap',
   m: 0
 }
@@ -301,7 +318,7 @@ const tituloCuerpo = {
 const tituloResaltado = {
   fontFamily: 'Noto Sans, sans-serif',
   fontWeight: 700,
-  fontSize: { xs: '2rem', md: '3rem' },
+  fontSize: { xs: '1.7rem', md: '3rem' },
   color: '#FF823B',
   whiteSpace: 'pre-wrap',
   m: 0

@@ -23,44 +23,6 @@
       "descripcion": "Torta orgánica muy rica.",
       "ingredientes": "Agua, huevos, harina.",
       "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "error": "",
-      "id": 7
-    },
-    {
-      "categoria": "",
-      "nombre": "tttttttt",
-      "valor": "yyyyyyyyyyy",
-      "descripcion": "uuuuuuuuuu",
-      "ingredientes": "i",
-      "id": 8
-    },
-    {
-      "categoria": "",
-      "nombre": "uuuuuuuuuu",
-      "valor": "iiiiiiiiiiiiii",
-      "descripcion": "uuuuuuuuuuuu",
-      "ingredientes": "uuuuuuu",
-      "undefined": "Sin azúcar",
-      "id": 9
-    },
-    {
-      "categoria": "Masa saludable",
-      "nombre": "iiiiiiiiiiiii",
-      "valor": "iiiiiiiiiiiiii",
-      "descripcion": "iiiiiiiiiiiiii",
-      "ingredientes": "iiiiiiiiiii",
-      "id": 10
     }
   ]
 }

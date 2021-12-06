@@ -51,10 +51,17 @@ const ProductLongForm = ({
     await Axios.post(urlBase + endpoint, datosFormulario)
   }
 
-  const obtenerInformacion = () => {
-    Axios.get(urlBase + endpoint + indexProducto).then((res) => {
-      setDatosProductos(res.data)
-    })
+  //Variable que almacena los datos editados
+  let [datosProductosEditados, setDatosProductosEditados] =
+    React.useState('error')
+
+  //  `${'/Productos'}/${datosProductosEditados._id}`, datosProductosEditados
+  // `${'/Productos'}/${datosProductosEditados._id}`, datosProductosEditados).then((response) => { }
+
+  //Peticion para editar la informacion
+  const editarInformacion = async () => {
+    let endpoint = '/Productos/'
+    await Axios.put(urlBase + endpoint + indexProducto, datosProductosEditados)
   }
 
   // ReactHook para llamar a todos los Productos.
@@ -69,9 +76,6 @@ const ProductLongForm = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  console.log('Datos que llegan:')
-  console.log(datosProductos)
 
   return (
     <Box onClick={() => setPrimeraVez(false)} sx={{ ...pantallaCompleta }}>
@@ -192,7 +196,6 @@ const ProductLongForm = ({
           </Grid>
         </Grid>
       </Box>
-      <Button onClick={() => obtenerInformacion()}>LlamarInfo</Button>
     </Box>
   )
 }
@@ -487,8 +490,17 @@ function DatosProducto(props) {
     })
   }
 
+  // const obtenerInformacion = () => {
+  //   Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+  //     setDatosProductos(res.data)
+  //   })
+  // }
+
+  const pruebaRef = React.useRef(props.valor)
+
   return (
     <>
+      <Box component={TextField} type='text' defaultValue={pruebaRef.current} />
       <TextField
         //InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='categoriaProducto'
@@ -510,6 +522,8 @@ function DatosProducto(props) {
         ))}
       </TextField>
       <TextField
+        //value={props.nombre}
+        defaultValue={props.nombre}
         InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='nombreProducto'
         sx={{ ...camposTexto, mb: '14px' }}
@@ -519,9 +533,9 @@ function DatosProducto(props) {
         helperText='Escriba el nombre del producto.'
         name='nombre'
         onChange={(event) => actualizarFormulario(event.target)}
-        value={props.nombre}
         //required='true'
       />
+      Props de este componente: {props.nombre}
       <TextField
         InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='valorProducto'
@@ -532,7 +546,7 @@ function DatosProducto(props) {
         helperText='Escriba el valor del producto.'
         name='valor'
         onChange={(event) => actualizarFormulario(event.target)}
-        value={props.valor}
+        defaultValue={props.valor}
         //required='true'
       />
       <TextField

@@ -1,18 +1,41 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { Button } from '@mui/material'
 import Image from '../../assets/placeholder.png'
-import { createTheme } from '@mui/material'
+import * as React from 'react'
+import Axios from 'axios'
 
-const theme = createTheme({})
+const BoxManagement = ({
+  recargar,
+  producto,
+  title,
+  paragraph,
+  button1,
+  button2,
+  editarProducto
+}) => {
+  let urlBase = 'http://localhost:3004'
+  let endpoint = '/Productos/'
+  let indexProducto = producto
 
-const BoxManagement = ({ title, paragraph, button1, button2 }) => {
+  //Peticion para ELIMINAR la informacion
+  const eliminarInformacion = async () => {
+    await Axios.delete(urlBase + endpoint + indexProducto).then(() =>
+      recargar()
+    )
+  }
+
+  const [botonEditar, setBotonEditar] = React.useState(false)
+
+  const siwtchEditar = () => {
+    setBotonEditar(!botonEditar)
+  }
+
   return (
     <>
       <Box
         component='div'
         sx={{
-          //cursor: 'pointer',
-          bgcolor: '',
+          bgcolor: 'white',
           height: '120px',
           display: 'flex',
           maxWidth: { xs: 'unset', md: '540px', lg: '600px' },
@@ -20,9 +43,7 @@ const BoxManagement = ({ title, paragraph, button1, button2 }) => {
           border: 1,
           borderColor: '#a0a0a0',
           borderRadius: '10px',
-          [theme.breakpoints.down('md')]: { ml: '0px', mr: '0px' },
           ':hover': {
-            borderColor: '#C65306',
             transform: 'scale(1.005)'
           }
         }}
@@ -30,6 +51,7 @@ const BoxManagement = ({ title, paragraph, button1, button2 }) => {
         <Box>
           <Box
             sx={{
+              backgroundColor: 'white',
               color: '#460020',
               fontFamily: 'Noto Sans',
               fontWeight: 'Bold',
@@ -59,6 +81,7 @@ const BoxManagement = ({ title, paragraph, button1, button2 }) => {
           </Box>
           <Button
             variant='text'
+            onClick={() => eliminarInformacion()}
             sx={{
               color: '#AA3D72',
               fontFamily: 'Noto Sans',
@@ -66,14 +89,15 @@ const BoxManagement = ({ title, paragraph, button1, button2 }) => {
               fontSize: '14px',
               letterSpacing: '1.25px',
               textTransform: 'capitalize',
-              display: [button1],
-              ml: '18px',
-              [theme.breakpoints.down('md')]: { ml: '10px' }
+              ml: { xs: '18px' }
             }}
           >
             Borrar
           </Button>
           <Button
+            onClick={() => {
+              console.log('Boton archivar funciona')
+            }}
             variant='text'
             sx={{
               color: '#05B3B2',
@@ -83,15 +107,39 @@ const BoxManagement = ({ title, paragraph, button1, button2 }) => {
               letterSpacing: '1.25px',
               textTransform: 'capitalize',
               display: [button2],
-              ml: '18px',
-              [theme.breakpoints.down('md')]: { ml: '10px' }
+              ml: '18px'
             }}
           >
             Archivar
           </Button>
         </Box>
-        <Box className='cards'>
-          <img src={Image} alt='' />
+        <Box
+          className='cards'
+          onClick={() => editarProducto(indexProducto)}
+          onMouseEnter={() => siwtchEditar()}
+          onMouseLeave={() => siwtchEditar()}
+          sx={{ cursor: 'pointer' }}
+        >
+          <Box
+            sx={{
+              ...contenedorEditar,
+              display: botonEditar ? 'flex' : 'none'
+            }}
+          >
+            <Typography
+              sx={{
+                ...textoEditar
+              }}
+            >
+              Editar
+            </Typography>
+          </Box>
+          <Box
+            component='img'
+            src={Image}
+            alt=''
+            sx={{ display: botonEditar ? 'none' : 'flex' }}
+          />
         </Box>
       </Box>
     </>
@@ -99,3 +147,23 @@ const BoxManagement = ({ title, paragraph, button1, button2 }) => {
 }
 
 export default BoxManagement
+
+const contenedorEditar = {
+  bgcolor: '#05B3B2',
+  width: '120px',
+  height: '100%',
+  borderRadius: '0px 10px 10px 0px',
+  flexDirection: 'column',
+  alignContent: 'center',
+  alignItems: 'center',
+  justifyContent: 'center'
+}
+
+const textoEditar = {
+  m: 0,
+  mt: '5px',
+  color: 'white',
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700,
+  fontSize: { xs: '18px', md: '18px' }
+}
