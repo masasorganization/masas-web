@@ -491,7 +491,7 @@ function FormProduct(props) {
             `El registro ha sido guardado exitosamente!`,
             'success'
         )
-        history.push('/deliveryconf')
+        history.push('/finalsale')
         // handleCerrar()
         // history.push('/prueba')
     }else{
@@ -725,8 +725,10 @@ console.log(datosFormulario)
             </LocalizationProvider> */}
           </Box>
         </Box>
-        <Button sx={{...StyleButtonCancelar}} onClick={() => handleClose()}>Cancelar</Button>
-        <Button sx={{...StyleButtonOk}} onClick={() => handleSubmit()}>continuar</Button>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <Button sx={{...StyleButtonCancelar}} onClick={() => handleClose()}>Cancelar</Button>
+          <Button sx={{...StyleButtonOk}} onClick={() => handleOpenConfirmed()}>continuar</Button>
+        </Box>
         <Modal open={openConfirmed}>
           <Box
             sx={{
@@ -912,7 +914,8 @@ const StyleButtonOk = {
     textTransform: "none",
     borderRadius: "10px",
     boxShadow: "0",
-    mt: "1rem",
+    m: "1rem",
+    mt: '0rem',
     width: "18rem",
     fontFamily: "Noto Sans, sans-serif",
     fontSize: {
@@ -930,7 +933,8 @@ const StyleButtonCancelar = {
   color: "#ffffff",
   borderRadius: "10px",
   boxShadow: "0",
-  mt: "1rem",
+  m: "1rem",
+  mt: '0rem',
   textTransform: "none",
   width: "18rem",
   fontFamily: "Noto Sans, sans-serif",
