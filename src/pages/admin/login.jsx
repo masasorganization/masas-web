@@ -9,21 +9,83 @@ import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Axios from 'axios'
+import Swal from 'sweetalert2'
 
 // Contenedores de Texto
 const Resaltado = styled('p')``
 const Cuerpo = styled('p')``
 
-// Texto en variables (¿porque no?)
+// Texto en variables
 const texto1 = 'Inicia sesión en tu '
 const texto2 = 'cuenta:'
 
 function Login() {
-  const [botonActivo, setBotonActivo] = useState(true)
-
+  // Pone el titulo de la pagina actual en el navegador
   useEffect(() => {
     document.title = 'má sas | Iniciar sesión'
   })
+  
+  // Inicializando los espacios vacios
+  const [usuario, setUsuario] = useState('')
+  const [contrasena, setContrasena] = useState('')
+
+  // Declara una variable vacia para almacenar el estado del botón submit.
+  let botonActivo
+
+  // Compara los campos de texto, si estan vacios la variable vacia se vuelve verdadera, de lo contrario es falsa.
+  if (usuario !== '' && contrasena !== '') {
+    botonActivo = false
+  } else {
+    botonActivo = true
+  }
+
+  // Recibo valores capturados en el formulario
+
+  const login = async (e) => {
+    e.preventDefault()
+
+    //Generando un objeto con las credenciales capturadas
+    const usuarioProps = { usuario, contrasena }
+
+    //Aqui se completa la URl Base del index.js con /jefe/login y el objeto usuario que contiene las credenciales.
+
+    //Andres: Puse el endpoint para probar el usuario jefe (test : test)
+    //Andres: ajustar la ruta final antes de hacer el pull merge /jefe/login
+    const respuesta = await Axios.post('usuarios/login', usuarioProps)
+
+    //Mostrando la respuesta del servidor
+    const mensaje = respuesta.data.mensaje
+
+    //Validaciones del mensaje
+    if (mensaje !== 'Bienvenido!') {
+      Swal.fire({
+        icon: 'error',
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } else {
+      //Recibiendo datos de Base de datos
+      const token = respuesta.data.token
+      const nombre = respuesta.data.nombre
+      const idusuario = respuesta.data.id
+
+      sessionStorage.setItem('token', token)
+      sessionStorage.setItem('nombre', nombre)
+      sessionStorage.setItem('idusuario', idusuario)
+
+      Swal.fire({
+        icon: 'success',
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+    setTimeout(() => {
+      window.location.href = '/welcome'
+    }, 500)
+  }
 
   return (
     <div>
@@ -65,7 +127,7 @@ function Login() {
               flexDirection='row'
               justifyContent='center'
               sx={{
-                pt: '36px',
+                pt: { xs: '8px' },
                 mb: '28px'
               }}
             >
@@ -74,47 +136,54 @@ function Login() {
               {/* Texto resaltado Noto */}
               <Resaltado sx={{ ...resaltado }}>{texto2}</Resaltado>
             </Box>
-            {/* Campos de Texto */}
-            <Grid container>
-              <Grid item xs={12} sx={{ mb: '20px' }}>
-                <TextField
-                  required
-                  onChange={(text) => setBotonActivo(!text.target.value)}
-                  id='username'
-                  //helperText="Ingrese su nombre de usuario"
-                  label='Nombre de usuario'
-                  variant='standard'
-                  sx={{ ...formulario }}
-                />
+            {/* Formulario que conecta al BackEnd por medio de Axios */}
+            <form onSubmit={login}>
+              <Grid container>
+                <Grid item xs={12} sx={{ mb: '20px' }} className='form-group'>
+                  {/* Campos de Texto */}
+                  <TextField
+                    required
+                    id='username'
+                    className='form-control'
+                    label='Nombre de usuario'
+                    onChange={(e) => setUsuario(e.target.value)}
+                    variant='standard'
+                    sx={{ ...formulario }}
+                    //helperText="Ingrese su nombre de usuario"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    id='password'
+                    type='password'
+                    className='form-control'
+                    label='Contraseña'
+                    onChange={(e) => setContrasena(e.target.value)}
+                    variant='standard'
+                    sx={{ ...formulario }}
+                    //helperText="Ingrese su contraseña"
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  //helperText="Ingrese su contraseña"
-                  required
-                  onChange={(text) => setBotonActivo(!text.target.value)}
-                  id='password'
-                  label='Contraseña'
-                  variant='standard'
-                  type='password'
-                  sx={{ ...formulario }}
-                />
-              </Grid>
-            </Grid>
-            <Box
-              sx={{
-                mt: '56px',
-                mb: '36px'
-              }}
-            >
-              <Button
-                variant='contained'
-                color='primary'
-                sx={{ ...botonLogin }}
-                disabled={botonActivo}
+              <Box
+                sx={{
+                  mt: { xs: '48px' },
+                  mb: '26px'
+                }}
               >
-                Inicio
-              </Button>
-            </Box>
+                <Button
+                  type='submit'
+                  className='btn btn-primary btn-block'
+                  variant='contained'
+                  color='primary'
+                  sx={{ ...botonLogin }}
+                  disabled={botonActivo}
+                >
+                  Inicio
+                </Button>
+              </Box>
+            </form>
           </Container>
         </Box>
       </Box>
@@ -125,7 +194,6 @@ function Login() {
 export default Login
 
 // Estilos como variables (¿constantes? 🥴)
-
 const fondo = {
   bgcolor: '#05B3B2',
   backgroundImage: `url(${imagenFondo})`,
@@ -147,30 +215,30 @@ const recubrimientoFondo = {
 
 const contenedorBlanco = {
   bgcolor: 'white',
-  height: '680px',
-  width: '363px',
+  height: { xs: '566px' },
+  width: { xs: '340px' },
   borderRadius: '14px',
   p: '0'
 }
 
 const contenedorLogo = {
-  height: '353px',
-  width: '363px',
+  height: { xs: '293px' },
+  width: { xs: '340px' },
   borderRadius: '14px 14px 0 0'
 }
 
 const logo = {
   mx: 'auto',
-  height: '288px',
+  height: { xs: '227px' },
   width: '267px',
   backgroundImage: `url(${imagenLogo})`,
   backgroundPosition: 'center',
-  backgroundSize: 'cover',
+  backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   ':hover': {
-    transition: 'transform .2s',
+    transition: 'transform .4s',
     backgroundImage: `url(${imagenLogoAlt})`,
-    transform: 'scale(1.007)'
+    transform: 'scale(1.06)'
   }
 }
 
@@ -221,7 +289,7 @@ const botonLogin = {
   backgroundColor: '#05B3B2',
   borderRadius: '10px',
   width: '278px',
-  height: '39px',
+  height: '32px',
   textTransform: 'none',
   fontFamily: 'Noto Sans, sans-serif',
   fontWeight: '700',
