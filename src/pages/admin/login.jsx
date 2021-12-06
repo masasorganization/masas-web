@@ -47,10 +47,7 @@ function Login() {
 
     //Andres: Puse el endpoint para probar el usuario jefe (test : test)
     //Andres: ajustar la ruta final antes de hacer el pull merge /jefe/login
-    const respuesta = await Axios.post(
-      'https://masasapp.herokuapp.com/jefe/login',
-      usuarioProps
-    )
+    const respuesta = await Axios.post('usuarios/login', usuarioProps)
 
     //Mostrando la respuesta del servidor
     const mensaje = respuesta.data.mensaje
@@ -80,6 +77,9 @@ function Login() {
         timer: 1500
       })
     }
+    setTimeout(() => {
+      window.location.href = '/welcome'
+    }, 500)
   }
 
   return (
