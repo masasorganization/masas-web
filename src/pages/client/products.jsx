@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom"
-import Grid from "@mui/material/Grid"
-import Tab from "@mui/material/Tab"
-import Tabs from "@mui/material/Tabs"
-import Button from "@mui/material/Button"
-import AppBar from "@mui/material/AppBar"
-import BtnExit from "../../components/client/BtnExit"
-import CardProduct from "../../components/client/CardProduct"
-import React from "react"
-import axios from "axios"
+// import { Link } from "react-router-dom"
+import Grid from '@mui/material/Grid'
+import Tab from '@mui/material/Tab'
+import Tabs from '@mui/material/Tabs'
+// import Button from "@mui/material/Button"
+import AppBar from '@mui/material/AppBar'
+import BtnExit from '../../components/client/BtnExit'
+import CardProduct from '../../components/client/CardProduct'
+import React from 'react'
+import axios from 'axios'
 
 function Products(props) {
   const { match, history } = props
@@ -15,9 +15,9 @@ function Products(props) {
   const { category } = params
 
   const tabIndex = {
-    0: "sugarfree",
-    1: "healthydough",
-    2: "organic"
+    0: 'sugarfree',
+    1: 'healthydough',
+    2: 'organic'
   }
 
   const indexTab = {
@@ -36,11 +36,11 @@ function Products(props) {
   const [pOrganico, setPOrganico] = React.useState([])
   const [pMasa, setPMasa] = React.useState([])
 
-  let endpointAzucar = "Sin"
-  let endpointOrganico = "Org"
-  let endpointMasa = "Masas"
+  let endpointAzucar = 'Sin'
+  let endpointOrganico = 'Org'
+  let endpointMasa = 'Masas'
 
-  const URL = "https://masasapp.herokuapp.com/productos/buscarporcategoria/"
+  const URL = 'https://masasapp.herokuapp.com/productos/buscarporcategoria/'
 
   const getAzucar = async () => {
     const response = axios
@@ -67,6 +67,7 @@ function Products(props) {
     getAzucar()
     getOrganico()
     getMasa()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // const dataSinAzucar = [
@@ -126,18 +127,18 @@ function Products(props) {
   return (
     <div>
       <Grid container>
-        <AppBar sx={{ bgcolor: "#ff4e00", boxShadow: "0" }} position='static'>
+        <AppBar sx={{ bgcolor: '#ff4e00', boxShadow: '0' }} position='static'>
           <Tabs
             sx={{
-              height: "3.5rem",
-              "& .Mui-selected": {
-                color: "white !important",
-                Fontcolor: "white",
-                bgcolor: "#770047"
+              height: '3.5rem',
+              '& .Mui-selected': {
+                color: 'white !important',
+                Fontcolor: 'white',
+                bgcolor: '#770047'
               },
-              "& .MuiTabs-indicator": {
-                bgcolor: "#770047",
-                height: "9px"
+              '& .MuiTabs-indicator': {
+                bgcolor: '#770047',
+                height: '9px'
               }
             }}
             variant='fullWidth'
@@ -152,7 +153,7 @@ function Products(props) {
         {selTab === 0 && <Sugarfree />}
         {selTab === 1 && <HealthyDough />}
         {selTab === 2 && <Organic />}
-        
+
         <Grid item xs={12} md={12}>
           <BtnExit />
         </Grid>
@@ -221,13 +222,12 @@ function Products(props) {
 export default Products
 
 const tabStyle = {
-  color: "#ffffff",
+  color: '#ffffff',
   fontSize: {
-    md: "1.2rem",
-    xs: "0.9rem"
+    md: '1.2rem',
+    xs: '0.9rem'
   },
-  fontFamily: "Noto Sans, sans-serif",
-  fontWeight: "700",
-  textTransform: "none"
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: '700',
+  textTransform: 'none'
 }
-
