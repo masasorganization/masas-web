@@ -20,26 +20,7 @@ const FinalSale = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: "5rem",}}>
                     <Link to="/">
                         <Button
-                        sx={{
-                            border: "2px solid #ff4e00",
-                            color: "#ff4e00",
-                            borderRadius: "10px",
-                            boxShadow: "0",
-                            mt: "1rem",
-                            textTransform: "none",
-                            width: "18rem",
-                            fontFamily: "Noto Sans, sans-serif",
-                            fontSize: {
-                            md: "1.1rem",
-                            xs: "1rem",
-                            },
-                            fontWeight: "700",
-                            ":hover": {
-                            bgcolor: "#770047",
-                            color: "#ffffff",
-                            border: "0",
-                            },
-                        }}>
+                        sx={{...buttonSalir }}>
                         Inicio
                         </Button>
                     </Link>
@@ -88,3 +69,24 @@ const text1Style = {
       fontSize: '32px'
     }
   }
+
+  const buttonSalir = {
+    border: "2px solid #ff4e00",
+    color: "#ff4e00",
+    borderRadius: "10px",
+    boxShadow: "0",
+    mt: "1rem",
+    textTransform: "none",
+    width: "18rem",
+    fontFamily: "Noto Sans, sans-serif",
+    fontSize: {
+        md: "1.1rem",
+        xs: "1rem",
+    },
+    fontWeight: "700",
+        ":hover": {
+    bgcolor: "#770047",
+    color: "#ffffff",
+    border: "0",
+    },
+}
