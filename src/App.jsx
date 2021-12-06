@@ -16,6 +16,7 @@ import Report from 'pages/admin/report'
 import OrdersClient from 'pages/admin/ordersclient'
 import Registry from 'pages/admin/registry'
 import Test from 'pages/admin/testfield'
+import FinalSale from 'pages/client/FinalSale'
 //Se importa React-Router-Dom y axios
 import axios from 'axios'
 import {
@@ -91,6 +92,9 @@ function App() {
           </MyRoute>
           <Route path='/test'>
             <Test />
+          </Route>
+          <Route path='/finalsale'>
+            <FinalSale />
           </Route>
         </Switch>
       </Router>
