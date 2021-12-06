@@ -50,7 +50,7 @@ const TestNavbar = (props) => {
 
   return (
     <div>
-      <AppBar elevation={desactivarElevacion} position='static'>
+      <AppBar elevation={0} position='static'>
         <Toolbar sx={{ ...contenedorBarra }}>
           <Box sx={{ ...contenedorNavegacion }}>
             <IconButton
@@ -60,7 +60,7 @@ const TestNavbar = (props) => {
               sx={{ ...contenedorIcono }}
             >
               <MenuIcon
-                component={cambio ? CloseIcon : MenuIcon}
+                component={cambio ? MenuCerrar : MenuIcon}
                 sx={{ ...icono }}
               />
             </IconButton>
@@ -103,10 +103,18 @@ const TestNavbar = (props) => {
               })}
             </Collapse>
           </Box>
-          <Box component={Link} sx={{ ...logo }} to='welcome'></Box>
+          <Box sx={{ ...logo }}></Box>
         </Toolbar>
       </AppBar>
     </div>
+  )
+}
+
+function MenuCerrar() {
+  return (
+    <>
+      <CloseIcon sx={{ ...icono, color: '#AA3D72' }}></CloseIcon>
+    </>
   )
 }
 
@@ -120,8 +128,8 @@ const contenedorBarra = {
   display: 'flex',
   justifyContent: 'space-between',
   px: {
-    md: '94px',
-    xs: 'none'
+    md: '50px',
+    xs: '18px'
   },
   height: {
     md: '64px',
@@ -137,6 +145,7 @@ const contenedorNavegacion = {
 
 const contenedorIcono = {
   display: { xs: 'flex', md: 'none' },
+  p: 0,
   mr: '16px'
 }
 
@@ -195,5 +204,3 @@ const logo = {
     transform: 'scale(1.05)'
   }
 }
-
-let desactivarElevacion = 0

@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField'
 import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import Swal from 'sweetalert2'
 
@@ -16,12 +16,17 @@ import Swal from 'sweetalert2'
 const Resaltado = styled('p')``
 const Cuerpo = styled('p')``
 
-// Texto en variables (¿porque no?)
+// Texto en variables
 const texto1 = 'Inicia sesión en tu '
 const texto2 = 'cuenta:'
 
 function Login() {
-  //Inicializando los espacios vacios
+  // Pone el titulo de la pagina actual en el navegador
+  useEffect(() => {
+    document.title = 'má sas | Iniciar sesión'
+  })
+  
+  // Inicializando los espacios vacios
   const [usuario, setUsuario] = useState('')
   const [contrasena, setContrasena] = useState('')
 
@@ -35,7 +40,7 @@ function Login() {
     botonActivo = true
   }
 
-  //Recibo valores capturados en el formulario
+  // Recibo valores capturados en el formulario
 
   const login = async (e) => {
     e.preventDefault()
@@ -131,7 +136,6 @@ function Login() {
               {/* Texto resaltado Noto */}
               <Resaltado sx={{ ...resaltado }}>{texto2}</Resaltado>
             </Box>
-
             {/* Formulario que conecta al BackEnd por medio de Axios */}
             <form onSubmit={login}>
               <Grid container>
@@ -190,7 +194,6 @@ function Login() {
 export default Login
 
 // Estilos como variables (¿constantes? 🥴)
-
 const fondo = {
   bgcolor: '#05B3B2',
   backgroundImage: `url(${imagenFondo})`,

@@ -16,8 +16,8 @@ import Report from 'pages/admin/report'
 import OrdersClient from 'pages/admin/ordersclient'
 import Registry from 'pages/admin/registry'
 import Test from 'pages/admin/testfield'
+//Se importa React-Router-Dom y axios
 import axios from 'axios'
-//Se importa React-Router-Dom
 import {
   BrowserRouter as Router,
   Switch,
@@ -36,6 +36,7 @@ const estaAutenticado = () => {
     return false
   }
 }
+
 const MyRoute = (props) => {
   return estaAutenticado() ? <Route {...props} /> : <Redirect to='/login' />
 }

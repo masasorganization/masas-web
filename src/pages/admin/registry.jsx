@@ -1,37 +1,40 @@
-import * as React from 'react'
-import AdminNavbar from '../../components/admin/AdminNavbar'
-import { vendedor } from '../../components/admin/navigationData'
+import LayoutRegistry from 'Layouts/LayoutRegistry'
+import Grid from '@mui/material/Grid'
+import { Box } from '@mui/system'
+import BoxOrdersManag from '../../components/admin/BoxOrdersManag'
 
 function Registry() {
-  // ReactHook para cambiar el estado de la pagina actual
-  const [paginaActual, setPaginaActual] = React.useState(false)
-
-  const ponerEstadoPagina = () => {
-    setPaginaActual((vendedor[2].estado = !paginaActual))
-  }
-
-  // ReactHook para cambiar el estado de todas las paginas y de la pagina actual
-  React.useEffect(() => {
-    limpiarPagina()
-    ponerEstadoPagina()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
     <div>
-      <AdminNavbar />
-      <h1>Aquí está tu archivo</h1>
+      <LayoutRegistry>
+        <ArchiveCatalog />
+      </LayoutRegistry>
     </div>
   )
 }
 
 export default Registry
 
-// Logica del padre para la barra de navegación
-
-// Función que devuelve el estado de todas las paginas a falso
-const limpiarPagina = () => {
-  for (let i = 0; i < vendedor.length; i++) {
-    vendedor[i].estado = false
-  }
+function ArchiveCatalog() {
+  return (
+    <>
+      <Box sx={{ mt: { xs: '32px', md: 0 }, mb: '20px' }}>
+        <Grid
+          container
+          columns={{ xs: 12, md: 12, xl: 12 }}
+          rowSpacing={{ xs: '30px' }}
+          columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
+        >
+          <Grid item xs={12} md={6} lg={6} xl={4}>
+            <BoxOrdersManag
+              name='María Gómez Vega'
+              telephone='300 1234 45678'
+              type='Tipo orgánico'
+              amount='x8 porciones'
+            />
+          </Grid>
+        </Grid>
+      </Box>
+    </>
+  )
 }
