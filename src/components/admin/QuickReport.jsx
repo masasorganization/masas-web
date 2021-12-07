@@ -1,52 +1,96 @@
+import * as React from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
+import Axios from 'axios'
 
-// Arreglo de datos que deberian de llegar desde el padre
-const datosReporte = [
-  {
-    idPedido: 1,
-    categoriaPedido: 'Sin azúcar'
-  },
-  {
-    idPedido: 2,
-    categoriaPedido: 'Masa saludable'
-  },
-  {
-    idPedido: 3,
-    categoriaPedido: 'Tipo organico'
-  }
-]
+// // Arreglo de datos que deberian de llegar desde el padre
+// const datosReporte = [
+//   {
+//     idPedido: 1,
+//     categoriaPedido: 'Sin azúcar'
+//   },
+//   {
+//     idPedido: 2,
+//     categoriaPedido: 'Masa saludable'
+//   },
+//   {
+//     idPedido: 3,
+//     categoriaPedido: 'Tipo organico'
+//   }
+// ]
 
 // Devuelve un entero por cada objeto en el arreglo
-let indice = datosReporte.length
+// let indice = datosReporte.length
 
-//  Agrega un entero a la variable cada vez que encuentra la palabra "Sin azúcar"
-let sinAzucar = 0
-for (let a = 0; a < datosReporte.length; a++) {
-  if (datosReporte[a].categoriaPedido === 'Sin azúcar') {
-    sinAzucar++
-  }
-}
+// //  Agrega un entero a la variable cada vez que encuentra la palabra "Sin azúcar"
+// let sinAzucar = 0
+// for (let a = 0; a < datosReporte.length; a++) {
+//   if (datosReporte[a].categoriaPedido === 'Sin azúcar') {
+//     sinAzucar++
+//   }
+// }
 
-//  Agrega un entero a la variable cada vez que encuentra la palabra "Masa saludable"
-let masaSaludable = 0
-for (let b = 0; b < datosReporte.length; b++) {
-  if (datosReporte[b].categoriaPedido === 'Masa saludable') {
-    masaSaludable++
-  }
-}
+// //  Agrega un entero a la variable cada vez que encuentra la palabra "Masa saludable"
+// let masaSaludable = 0
+// for (let b = 0; b < datosReporte.length; b++) {
+//   if (datosReporte[b].categoriaPedido === 'Masa saludable') {
+//     masaSaludable++
+//   }
+// }
 
-//  Agrega un entero a la variable cada vez que encuentra la palabra "Tipo organico"
-let tipoOrganico = 0
-for (let c = 0; c < datosReporte.length; c++) {
-  if (datosReporte[c].categoriaPedido === 'Tipo organico') {
-    tipoOrganico++
-  }
-}
+// //  Agrega un entero a la variable cada vez que encuentra la palabra "Tipo organico"
+// let tipoOrganico = 0
+// for (let c = 0; c < datosReporte.length; c++) {
+//   if (datosReporte[c].categoriaPedido === 'Tipo organico') {
+//     tipoOrganico++
+//   }
+// }
 
 export default function QuickReport() {
+  let [datosPedidos, setDatosPedidos] = React.useState('error')
+
+  let urlBase = 'https://masasapp.herokuapp.com'
+  let endpoint = '/ventas/listar'
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    Axios.get(urlBase + endpoint).then((res) => {
+      setDatosPedidos(res.data)
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Devuelve un entero por cada objeto en el arreglo
+  let indice = datosPedidos.length
+
+  //  Agrega un entero a la variable cada vez que encuentra la palabra "Sin azúcar"
+  let sinAzucar = 0
+  for (let a = 0; a < datosPedidos.length; a++) {
+    if (datosPedidos[a].categoria === 'Sin azúcar') {
+      sinAzucar++
+    }
+  }
+
+  //  Agrega un entero a la variable cada vez que encuentra la palabra "Masa saludable"
+  let masaSaludable = 0
+  for (let b = 0; b < datosPedidos.length; b++) {
+    if (datosPedidos[b].categoria === 'Masa saludable') {
+      masaSaludable++
+    }
+  }
+
+  //  Agrega un entero a la variable cada vez que encuentra la palabra "Tipo organico"
+  let tipoOrganico = 0
+  for (let c = 0; c < datosPedidos.length; c++) {
+    if (datosPedidos[c].categoria === 'Tipo organico') {
+      tipoOrganico++
+    }
+  }
+
+  console.log(datosPedidos)
+
   return (
     <>
       <Box sx={{ height: '203px', mt: '34px' }}>
