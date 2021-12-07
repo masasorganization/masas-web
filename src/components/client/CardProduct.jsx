@@ -94,6 +94,7 @@ function CardProduct(props) {
                 <FormProduct
                   valor={props.valor}
                   nombrePto={props.nombrePto}
+                  categoria={props.categoria}
                   otroValor={valorFinal}
                   calculoValor={(valorFinal) => setValorFinal(valorFinal)}
                 />
@@ -417,7 +418,7 @@ function FormProduct(props) {
   // const valorFinal = props.otroValor
 
   const [datosFormulario, setDatosFormulario] = React.useState({
-    categoria: '',
+    categoria: props.categoria,
     nombrePto: props.nombrePto,
     tamano: '',
     complementos: '',
@@ -633,6 +634,7 @@ function FormProduct(props) {
                 helperText='Sin puntos (.) ni guiones (-) nit completo'
                 value={datosFormulario.numeroDocumento}
                 onChange={handleChange}
+                type='number'
               />
             </Box>
             <Box
@@ -683,6 +685,7 @@ function FormProduct(props) {
                 required={true}
                 value={datosFormulario.telefono}
                 onChange={handleChange}
+                type='number'
               />
               <TextField
                 name='fechaDeEntrega'

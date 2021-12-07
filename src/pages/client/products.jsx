@@ -36,9 +36,9 @@ function Products(props) {
   const [pOrganico, setPOrganico] = React.useState([])
   const [pMasa, setPMasa] = React.useState([])
 
-  let endpointAzucar = 'Sin'
-  let endpointOrganico = 'Org'
-  let endpointMasa = 'Masas'
+  let endpointAzucar = 'Sin azúcar'
+  let endpointOrganico = 'Tipo organico'
+  let endpointMasa = 'Masa saludable'
 
   const URL = 'https://masasapp.herokuapp.com/productos/buscarporcategoria/'
 
@@ -165,10 +165,12 @@ function Products(props) {
     return (
       <>
         {pAzucar.map((datos, indice) => {
-          const { nombrePto, valor, descripcion, ingredientes } = datos
+          const { categoria, nombrePto, valor, descripcion, ingredientes } =
+            datos
           return (
             <CardProduct
               key={indice}
+              categoria={categoria}
               nombrePto={nombrePto}
               valor={valor}
               descripcion={descripcion}
@@ -184,10 +186,12 @@ function Products(props) {
     return (
       <>
         {pMasa.map((datos, indice) => {
-          const { nombrePto, valor, descripcion, ingredientes } = datos
+          const { categoria, nombrePto, valor, descripcion, ingredientes } =
+            datos
           return (
             <CardProduct
               key={indice}
+              categoria={categoria}
               nombrePto={nombrePto}
               valor={valor}
               descripcion={descripcion}
@@ -203,10 +207,12 @@ function Products(props) {
     return (
       <>
         {pOrganico.map((datos, indice) => {
-          const { nombrePto, valor, descripcion, ingredientes } = datos
+          const { categoria, nombrePto, valor, descripcion, ingredientes } =
+            datos
           return (
             <CardProduct
               key={indice}
+              categoria={categoria}
               nombrePto={nombrePto}
               valor={valor}
               descripcion={descripcion}
