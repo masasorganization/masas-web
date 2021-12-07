@@ -5,8 +5,8 @@ import Button from '@mui/material/Button'
 import MainTitle from 'components/admin/MainTitle'
 import { administrador } from '../../../components/admin/navigationData'
 import Grid from '@mui/material/Grid'
-import BoxManagement from '../BoxManagement'
-import ProductLongForm from '../managers/LongVersion/New/ProductLongForm'
+import BoxAccountManag from '../BoxAccountManag'
+import AccountLongForm from './LongVersion/New/AccountLongForm'
 import Axios from 'axios'
 import { styled } from '@mui/material/styles'
 
@@ -15,14 +15,14 @@ function Experimental() {
   const [paginaActual, setPaginaActual] = React.useState(false)
 
   const ponerEstadoPagina = () => {
-    setPaginaActual((administrador[0].estado = !paginaActual))
+    setPaginaActual((administrador[1].estado = !paginaActual))
   }
 
   // ReactHook para cambiar el estado de todas las paginas y de la pagina actual
   React.useEffect(() => {
     limpiarPagina()
     ponerEstadoPagina()
-    document.title = 'má sas | Gestión de productos'
+    document.title = 'má sas | Gestión de cuentas'
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -64,7 +64,7 @@ function Experimental() {
             variant='contained'
             sx={{ ...botonPrimario }}
           >
-            Nuevo producto
+            Nueva cuenta
           </Button>
         }
       />
@@ -109,11 +109,12 @@ function Experimental() {
           </Button>
         }
       />
+      {/* Pruebas */}
       {/* <RenderPrueba
         comportamiento={() => estadoEditarBotonCancelar()}
       ></RenderPrueba> */}
-      <Button onClick={() => setIndice(!indice)}>indice</Button>
-      <Button onClick={() => estadoIndiceTarjetaEditar()}>editar</Button>
+      {/* <Button onClick={() => setIndice(!indice)}>indice</Button>
+      <Button onClick={() => estadoIndiceTarjetaEditar()}>editar</Button> */}
     </div>
   )
 }
@@ -122,12 +123,12 @@ function RenderIndice({ indiceDatos, edicion, montar, botonNuevo }) {
   const varMontar = montar
   if (varMontar === true) {
     return (
-      <LayoutProductM botonNuevo={botonNuevo}>
-        <ProductCatalog
+      <LayoutSellerM botonNuevo={botonNuevo}>
+        <AccountCatalog
           indiceDatos={(e) => indiceDatos(e)}
           edicion={() => edicion()}
         />
-      </LayoutProductM>
+      </LayoutSellerM>
     )
   }
   return null
@@ -137,7 +138,7 @@ function RenderNuevo({ comportamiento, montar, botonCancelar }) {
   const varMontar = montar
   if (varMontar === true) {
     return (
-      <ProductLongForm
+      <AccountLongForm
         botonCancelar={botonCancelar}
         volverIndice={() => comportamiento()}
       />
@@ -155,7 +156,7 @@ function RenderEditar({
   const varMontar = montar
   if (varMontar === true) {
     return (
-      <ProductLongForm
+      <AccountLongForm
         producto={indiceProducto}
         botonCancelar={botonCancelar}
         botonEditar={true}
@@ -188,7 +189,7 @@ const limpiarPagina = () => {
 
 export default Experimental
 
-function LayoutProductM({ botonNuevo, children }) {
+function LayoutSellerM({ botonNuevo, children }) {
   return (
     <>
       <Box sx={{ ...pantallaCompleta }}>
@@ -197,15 +198,15 @@ function LayoutProductM({ botonNuevo, children }) {
           {/* Cuadro que contiene a los titlos */}
           <MainTitle
             cuerpo={'Gestión de '}
-            resaltado={'productos'}
+            resaltado={'cuentas'}
             posicion={'normal'}
             color={'principal'}
           />
           {/* Cuadro que contiene a los botones */}
           <Box sx={{ ...contenedorBotones }}>
-            <Button variant='contained' sx={{ ...botonSecundario }}>
+            {/* <Button variant='contained' sx={{ ...botonSecundario }}>
               Archivo
-            </Button>
+            </Button> */}
             {botonNuevo}
           </Box>
         </Box>
@@ -215,10 +216,10 @@ function LayoutProductM({ botonNuevo, children }) {
   )
 }
 
-function ProductCatalog(props) {
+function AccountCatalog(props) {
   let [datosProductos, setDatosProductos] = React.useState('error')
   let urlBase = 'http://localhost:3004'
-  let endpoint = '/Productos/'
+  let endpoint = '/Cuentas/'
 
   // let urlBase = 'https://masasapp.herokuapp.com/'
   // let endpoint = 'productos/listar'
@@ -260,15 +261,15 @@ function ProductCatalog(props) {
             columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
           >
             {datosProductos.map((datos, index) => {
-              const { id, nombre, categoria } = datos
+              const { id, nombre, apellido, usuario } = datos
               return (
                 <Grid id={'casilla_' + index} item xs={12} md={6} lg={6} xl={4}>
-                  <BoxManagement
+                  <BoxAccountManag
                     key={'tarjeta_' + index}
                     id={'tarjeta_' + id}
                     producto={id}
-                    title={nombre}
-                    paragraph={categoria}
+                    title={nombre + ' ' + apellido}
+                    paragraph={usuario}
                     sx={{ pointerEvents: 'auto' }}
                     editarProducto={(e) => {
                       pulsarTarjeta(e)
@@ -276,7 +277,7 @@ function ProductCatalog(props) {
                     recargar={() => {
                       cargarDatos()
                     }}
-                  ></BoxManagement>
+                  ></BoxAccountManag>
                 </Grid>
               )
             })}
@@ -298,8 +299,8 @@ function ProductCatalog(props) {
             justifyContent: 'center'
           }}
         >
-          <Cuerpo sx={{ ...tituloCuerpo }}>No hay ningún </Cuerpo>
-          <Resaltado sx={{ ...tituloResaltado }}>Producto...</Resaltado>
+          <Cuerpo sx={{ ...tituloCuerpo }}>No hay ninguna </Cuerpo>
+          <Resaltado sx={{ ...tituloResaltado }}>Cuenta...</Resaltado>
         </Box>
       </>
     )

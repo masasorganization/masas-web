@@ -24,5 +24,21 @@
       "ingredientes": "Agua, huevos, harina.",
       "id": 3
     }
+  ],
+  "Cuentas": [
+    {
+      "nombre": "Andres",
+      "apellido": "Alvarez",
+      "usuario": "AndAlv",
+      "contrasena": "123456",
+      "id": 1
+    },
+    {
+      "nombre": "Kelly",
+      "apellido": "Monrroy",
+      "usuario": "KelyMon",
+      "contrasena": "123456",
+      "id": 2
+    }
   ]
 }

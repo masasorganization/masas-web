@@ -9,12 +9,10 @@ const BoxManagement = ({
   producto,
   title,
   paragraph,
-  button1,
-  button2,
   editarProducto
 }) => {
   let urlBase = 'http://localhost:3004'
-  let endpoint = '/Productos/'
+  let endpoint = '/Cuentas/'
   let indexProducto = producto
 
   // let urlBase = 'https://masasapp.herokuapp.com/'
@@ -33,6 +31,8 @@ const BoxManagement = ({
   const siwtchEditar = () => {
     setBotonEditar(!botonEditar)
   }
+
+  console.log('soy tarjeta cuentas')
 
   return (
     <>

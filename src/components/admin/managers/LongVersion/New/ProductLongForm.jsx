@@ -64,9 +64,6 @@ const ProductLongForm = ({
   let [datosProductosEditados, setDatosProductosEditados] =
     React.useState('error')
 
-  //  `${'/Productos'}/${datosProductosEditados._id}`, datosProductosEditados
-  // `${'/Productos'}/${datosProductosEditados._id}`, datosProductosEditados).then((response) => { }
-
   //Peticion para editar la informacion
   const editarInformacion = async () => {
     let endpoint = '/Productos/'
@@ -210,12 +207,13 @@ const ProductLongForm = ({
           </Grid>
         </Grid>
       </Box>
-      <Button onClick={() => console.log(datosProductosEditados)}>
+      {/* Botones de prueba */}
+      {/* <Button onClick={() => console.log(datosProductosEditados)}>
         Fomulario de edicion
       </Button>
       <Button onClick={() => console.log(datosFormulario)}>
         Fomulario de envio
-      </Button>
+      </Button> */}
     </Box>
   )
 }
@@ -403,7 +401,7 @@ function BotonPrincipal(props) {
             props.finalizar()
           }}
         >
-          Editar Producto
+          Actualizar producto
         </Button>
       </>
     )
@@ -532,9 +530,6 @@ function DatosProducto(props) {
       Axios.get(urlBase + endpoint + indexProducto).then((res) => {
         setDatosCargar(res.data)
       })
-      console.log('modo edicion: Activado')
-    } else {
-      console.log('modo edicion: Desactivado')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

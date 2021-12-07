@@ -11,8 +11,9 @@ import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+import Axios from 'axios'
 
-const AccountLongForm = () => {
+const AccountLongForm = (props) => {
   let [acordeonIzqActivo, setAcordeonIzqActivo] = React.useState(false)
   let [acordeonDerActivo, setAcordeonDerActivo] = React.useState(false)
   let [primeraVez, setPrimeraVez] = React.useState(true)
@@ -25,28 +26,86 @@ const AccountLongForm = () => {
     setAcordeonDerActivo(!acordeonDerActivo)
   }
 
+  const [datosFormulario, setDatosFormulario] = React.useState({
+    nombre: '',
+    apellido: '',
+    usuario: '',
+    contrasena: ''
+  })
+
+  let [datosProductos, setDatosProductos] = React.useState('error')
+  let urlBase = 'http://localhost:3004'
+  let endpoint = '/Cuentas/'
+  let indexProducto = props.producto
+
+  // CREAR
+  // let urlBase = 'https://masasapp.herokuapp.com/'
+  // let endpoint = 'crear'
+
+  // ACTUALIZAR
+  // let urlBase = 'https://masasapp.herokuapp.com/'
+  // let endpoint = 'actualizar/'
+  // let indexProducto = id
+
+  const enviarInformacion = async () => {
+    let endpoint = '/Cuentas/'
+    await Axios.post(urlBase + endpoint, datosFormulario)
+  }
+
+  //Variable que almacena los datos editados
+  let [datosProductosEditados, setDatosProductosEditados] =
+    React.useState('error')
+
+  //Peticion para editar la informacion
+  const editarInformacion = async () => {
+    let endpoint = '/Cuentas/'
+    await Axios.put(urlBase + endpoint + indexProducto, datosProductosEditados)
+  }
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    if (props.editar === true) {
+      Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+        setDatosProductos(res.data)
+      })
+      console.log('modo edicion: Activado')
+    } else {
+      console.log('modo edicion: Desactivado')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Box onClick={() => setPrimeraVez(false)} sx={{ ...pantallaCompleta }}>
       <Box sx={{ ...contenedorSuperior }}>
         <Box sx={{ ...contenedorTitulos }}>
-          <Resaltado sx={{ ...tituloResaltado }}>Nueva </Resaltado>
-          <Cuerpo sx={{ ...tituloCuerpo }}>Cuenta</Cuerpo>
+          {/* <Resaltado sx={{ ...tituloResaltado }}>Nueva </Resaltado>
+          <Cuerpo sx={{ ...tituloCuerpo }}>Cuenta</Cuerpo> */}
+          <TituloPrincipal botonEditar={props.botonEditar} />
         </Box>
 
         <Box sx={{ ...contenedorBotones }}>
-          <Button variant='contained' sx={{ ...botonSecundario }}>
+          {/* <Button variant='contained' sx={{ ...botonSecundario }}>
             Cancelar
-          </Button>
-          <TooltipInferior
+          </Button> */}
+          {/* <TooltipInferior
             title={textoTooltip}
             arrow
             open={primeraVez}
             sx={{ ...flechaTooltip }}
-          >
-            <Button variant='contained' sx={{ ...botonPrimario }}>
+          > */}
+          {/* <Button variant='contained' sx={{ ...botonPrimario }}>
               Crear cuenta
-            </Button>
-          </TooltipInferior>
+            </Button> */}
+          {/* </TooltipInferior> */}
+          {props.botonCancelar}
+          <BotonPrincipal
+            botonEditar={props.botonEditar}
+            tooltips={primeraVez}
+            enviarInfo={() => enviarInformacion()}
+            editarInfo={() => editarInformacion()}
+            finalizar={() => props.volverIndice()}
+          />
         </Box>
       </Box>
 
@@ -91,7 +150,20 @@ const AccountLongForm = () => {
                 </AccordionSummary>
                 <AccordionDetails sx={{ ...acordeonInterno }}>
                   <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
-                    <DatosVendedor />
+                    <DatosVendedor
+                      edicion={props.editar}
+                      producto={indexProducto}
+                      nombre={datosProductos.nombre}
+                      apellido={datosProductos.apellido}
+                      usuario={datosProductos.usuario}
+                      contrasena={datosProductos.contrasena}
+                      infoFormulario={(datosFormulario) =>
+                        setDatosFormulario(datosFormulario)
+                      }
+                      formularioEditado={(datosProductosEditados) =>
+                        setDatosProductosEditados(datosProductosEditados)
+                      }
+                    />
                   </Container>
                 </AccordionDetails>
               </Accordion>
@@ -279,29 +351,93 @@ const botonPrimario = {
   }
 }
 
-const botonSecundario = {
-  backgroundColor: '#AA3D72',
-  borderRadius: '10px',
-  width: '129px',
-  px: '40px',
-  height: '39px',
-  textTransform: 'none',
-  fontFamily: 'Noto Sans, sans-serif',
-  fontWeight: '700',
-  fontSize: '1.125rem',
-  boxShadow: 'none',
-  mr: '18px',
-  '&:hover': {
-    backgroundColor: '#770047',
-    boxShadow: 'none'
-  }
-}
+// const botonSecundario = {
+//   backgroundColor: '#AA3D72',
+//   borderRadius: '10px',
+//   width: '129px',
+//   px: '40px',
+//   height: '39px',
+//   textTransform: 'none',
+//   fontFamily: 'Noto Sans, sans-serif',
+//   fontWeight: '700',
+//   fontSize: '1.125rem',
+//   boxShadow: 'none',
+//   mr: '18px',
+//   '&:hover': {
+//     backgroundColor: '#770047',
+//     boxShadow: 'none'
+//   }
+// }
 
 const flechaTooltip = {
   '& .MuiTooltip-arrow': {
     ':before': {
       backgroundColor: '#05B3B2'
     }
+  }
+}
+
+function TituloPrincipal(props) {
+  const editar = props.botonEditar
+  if (editar === true) {
+    return (
+      <>
+        <Resaltado sx={{ ...tituloResaltado }}>Editar </Resaltado>
+        <Cuerpo sx={{ ...tituloCuerpo }}>cuenta</Cuerpo>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <Resaltado sx={{ ...tituloResaltado }}>Nueva </Resaltado>
+        <Cuerpo sx={{ ...tituloCuerpo }}>cuenta</Cuerpo>
+      </>
+    )
+  }
+}
+
+function BotonPrincipal(props) {
+  const primeraVez = props.tooltips
+  const editar = props.botonEditar
+  if (editar === true) {
+    return (
+      <>
+        <Button
+          id='btn-editar'
+          variant='contained'
+          sx={{ ...botonPrimario }}
+          onClick={() => {
+            props.editarInfo()
+            props.finalizar()
+          }}
+        >
+          Actualizar cuenta
+        </Button>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <TooltipInferior
+          title={textoTooltip}
+          arrow
+          open={primeraVez}
+          sx={{ ...flechaTooltip }}
+        >
+          <Button
+            id='btn-crear'
+            variant='contained'
+            sx={{ ...botonPrimario }}
+            onClick={() => {
+              props.enviarInfo()
+              props.finalizar()
+            }}
+          >
+            Crear cuenta
+          </Button>
+        </TooltipInferior>
+      </>
+    )
   }
 }
 
@@ -345,54 +481,145 @@ let textoTooltip2 =
   'Ingrese la información del producto pulsando en alguna de las dos secciones.'
 
 function DatosVendedor(props) {
+  // Formulario nuevo producto
+  const [formulario, setFormulario] = React.useState({
+    nombre: '',
+    apellido: '',
+    usuario: '',
+    contrasena: ''
+  })
+
+  // Constructor nuevo
+  const actualizarFormulario = (target) => {
+    setFormulario({
+      ...formulario,
+      [target.name]: target.value
+    })
+  }
+
+  let [datosCargar, setDatosCargar] = React.useState('error')
+  let urlBase = 'http://localhost:3004'
+  let endpoint = '/Cuentas/'
+  let indexProducto = props.producto
+
+  // Constructor editar
+  const constructorEditar = (target) => {
+    setDatosCargar({
+      ...datosCargar,
+      [target.name]: target.value
+    })
+  }
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    if (props.edicion === true) {
+      Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+        setDatosCargar(res.data)
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  let valorSeleccion = datosCargar.nombre
+
+  // if (datosCargar.categoria === 'Masa saludable') {
+  //   valorSeleccion = 'Masa saludable'
+  // } else if (datosCargar.categoria === 'Tipo orgánico') {
+  //   valorSeleccion = 'Tipo orgánico'
+  // } else if (datosCargar.categoria === 'Sin azúcar') {
+  //   valorSeleccion = 'Sin azúcar'
+  // } else {
+  //   valorSeleccion = datosCargar.categoria
+  // }
+
+  const [textoFunciona, setTextoFunciona] = React.useState(valorSeleccion)
+  const textoCambia = (e) => {
+    console.log(`Texto => ${e.target.value}`)
+    setTextoFunciona(e.target.value)
+    constructorEditar(e.target)
+  }
+
   return (
     <>
       <TextField
+        value={datosCargar.nombre}
+        defalutValue={textoFunciona}
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='nombreVendedor'
         sx={{ ...camposTexto, my: '14px' }}
         variant='standard'
         label='Nombre'
         placeholder='Nombre del vendedor'
         helperText='Escriba el nombre del vendedor.'
-        value={props.nombre}
+        name='nombre'
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
         //required='true'
-        // value=''
       />
 
       <TextField
+        value={datosCargar.apellido}
+        defalutValue={textoFunciona}
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='apellidoVendedor'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Apellido'
         placeholder='Apellido del vendedor'
         helperText='Escriba el apellido del vendedor.'
-        value={props.apellido}
+        name='apellido'
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
         //required='true'
-        // value=''
       />
 
       <TextField
+        value={datosCargar.usuario}
+        defalutValue={textoFunciona}
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='nombreCuenta'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Nombre de usuario'
         placeholder='Nombre de usuario de la cuenta'
         helperText='Escriba el nombre de usuario del vendedor.'
-        value={props.usuario}
+        name='usuario'
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
         //required='true'
-        // value=''
       />
 
       <TextField
+        value={datosCargar.contrasena}
+        defalutValue={textoFunciona}
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='contraseñaCuenta'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Contraseña'
         placeholder='Contraseña de la cuenta'
         helperText='Escriba una contraseña segura para el vendedor.'
-        value={props.password}
+        name='contrasena'
+        onMouseOut={
+          props.edicion
+            ? () => props.formularioEditado(datosCargar)
+            : () => props.infoFormulario(formulario)
+        }
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
         //required='true'
-        // value=''
       />
     </>
   )
