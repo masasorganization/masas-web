@@ -1,28 +1,29 @@
 import * as React from 'react'
-import AdminNavbar from '../../components/admin/AdminNavbar'
+import AdminNavbar from '../../../components/admin/AdminNavbar'
 import { Box } from '@mui/system'
 import Button from '@mui/material/Button'
 import MainTitle from 'components/admin/MainTitle'
-import { administrador } from '../../components/admin/navigationData'
+import { vendedor } from '../../../components/admin/navigationData'
 import Grid from '@mui/material/Grid'
-import BoxManagement from '../../components/admin/BoxManagement'
-import ProductLongForm from '../../components/admin/managers/LongVersion/New/ProductLongForm'
+import BoxOrdersManag from '../BoxOrdersManag'
+import OrderLongForm from '../managers/LongVersion/New/OrderLongForm'
 import Axios from 'axios'
 import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
 function Experimental() {
   // ReactHook para cambiar el estado de la pagina actual
   const [paginaActual, setPaginaActual] = React.useState(false)
 
   const ponerEstadoPagina = () => {
-    setPaginaActual((administrador[0].estado = !paginaActual))
+    setPaginaActual((vendedor[1].estado = !paginaActual))
   }
 
   // ReactHook para cambiar el estado de todas las paginas y de la pagina actual
   React.useEffect(() => {
     limpiarPagina()
     ponerEstadoPagina()
-    document.title = 'má sas | Gestión de productos'
+    document.title = 'má sas | Gestión de pedidos'
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -31,10 +32,10 @@ function Experimental() {
   const [editar, setEditar] = React.useState(false)
   const [indexDatos, setIndexDatos] = React.useState('false')
 
-  function estadoIndiceBotonNuevo() {
-    setIndice(!indice)
-    setNuevo(!nuevo)
-  }
+  // function estadoIndiceBotonNuevo() {
+  //   setIndice(!indice)
+  //   setNuevo(!nuevo)
+  // }
 
   function estadoIndiceTarjetaEditar() {
     setIndice(!indice)
@@ -53,20 +54,11 @@ function Experimental() {
 
   return (
     <div>
-      <AdminNavbar usuario='admin' />
+      <AdminNavbar />
       <RenderIndice
         indiceDatos={(indexDatos) => setIndexDatos(indexDatos)}
         edicion={() => estadoIndiceTarjetaEditar()}
         montar={indice}
-        botonNuevo={
-          <Button
-            onClick={() => estadoIndiceBotonNuevo()}
-            variant='contained'
-            sx={{ ...botonPrimario }}
-          >
-            Nuevo producto
-          </Button>
-        }
       />
       <RenderNuevo
         comportamiento={() => estadoNuevoBotonCancelar()}
@@ -105,7 +97,7 @@ function Experimental() {
               }
             }}
           >
-            Cancelar
+            Volver
           </Button>
         }
       />
@@ -119,16 +111,16 @@ function Experimental() {
   )
 }
 
-function RenderIndice({ indiceDatos, edicion, montar, botonNuevo }) {
+function RenderIndice({ indiceDatos, edicion, montar }) {
   const varMontar = montar
   if (varMontar === true) {
     return (
-      <LayoutProductM botonNuevo={botonNuevo}>
-        <ProductCatalog
+      <LayoutOrdersC>
+        <AccountCatalog
           indiceDatos={(e) => indiceDatos(e)}
           edicion={() => edicion()}
         />
-      </LayoutProductM>
+      </LayoutOrdersC>
     )
   }
   return null
@@ -138,7 +130,7 @@ function RenderNuevo({ comportamiento, montar, botonCancelar }) {
   const varMontar = montar
   if (varMontar === true) {
     return (
-      <ProductLongForm
+      <OrderLongForm
         botonCancelar={botonCancelar}
         volverIndice={() => comportamiento()}
       />
@@ -156,7 +148,7 @@ function RenderEditar({
   const varMontar = montar
   if (varMontar === true) {
     return (
-      <ProductLongForm
+      <OrderLongForm
         producto={indiceProducto}
         botonCancelar={botonCancelar}
         botonEditar={true}
@@ -182,14 +174,14 @@ function RenderEditar({
 
 // Función que devuelve el estado de todas las paginas a falso
 const limpiarPagina = () => {
-  for (let i = 0; i < administrador.length; i++) {
-    administrador[i].estado = false
+  for (let i = 0; i < vendedor.length; i++) {
+    vendedor[i].estado = false
   }
 }
 
 export default Experimental
 
-function LayoutProductM({ botonNuevo, children }) {
+function LayoutOrdersC({ children }) {
   return (
     <>
       <Box sx={{ ...pantallaCompleta }}>
@@ -198,16 +190,18 @@ function LayoutProductM({ botonNuevo, children }) {
           {/* Cuadro que contiene a los titlos */}
           <MainTitle
             cuerpo={'Gestión de '}
-            resaltado={'productos'}
+            resaltado={'pedidos'}
             posicion={'normal'}
-            color={'principal'}
+            color={'secundario'}
           />
           {/* Cuadro que contiene a los botones */}
           <Box sx={{ ...contenedorBotones }}>
-            {/* <Button variant='contained' sx={{ ...botonSecundario }}>
-              Archivo
+            {/* <Button variant='contained' sx={{ ...botonPrimario }}>
+              Exportar
             </Button> */}
-            {botonNuevo}
+            <Typography sx={{ ...textoComplementario }}>
+              Seleccione un pedido para obtener más información.
+            </Typography>
           </Box>
         </Box>
         {children}
@@ -216,13 +210,13 @@ function LayoutProductM({ botonNuevo, children }) {
   )
 }
 
-function ProductCatalog(props) {
+function AccountCatalog(props) {
   let [datosProductos, setDatosProductos] = React.useState('error')
   // let urlBase = 'http://localhost:3004'
-  // let endpoint = '/Productos/'
+  // let endpoint = '/Ventas/'
 
   let urlBase = 'https://masasapp.herokuapp.com'
-  let endpoint = '/productos/listar'
+  let endpoint = '/ventas/listar'
 
   const cargarDatos = () => {
     Axios.get(urlBase + endpoint).then((res) => {
@@ -240,6 +234,8 @@ function ProductCatalog(props) {
     props.indiceDatos(e)
     props.edicion()
   }
+
+  console.log(datosProductos)
 
   if (datosProductos === 'error') {
     return (
@@ -261,15 +257,18 @@ function ProductCatalog(props) {
             columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
           >
             {datosProductos.map((datos, index) => {
-              const { _id, nombrePto, categoria } = datos
+              const { _id, nombres, apellidos, telefono, categoria, tamano } =
+                datos
               return (
                 <Grid id={'casilla_' + index} item xs={12} md={6} lg={6} xl={4}>
-                  <BoxManagement
+                  <BoxOrdersManag
                     key={'tarjeta_' + index}
                     id={'tarjeta_' + _id}
                     producto={_id}
-                    title={nombrePto}
-                    paragraph={categoria}
+                    name={nombres + ' ' + apellidos}
+                    telephone={telefono}
+                    type={categoria}
+                    amount={tamano}
                     sx={{ pointerEvents: 'auto' }}
                     editarProducto={(e) => {
                       pulsarTarjeta(e)
@@ -277,7 +276,7 @@ function ProductCatalog(props) {
                     recargar={() => {
                       cargarDatos()
                     }}
-                  ></BoxManagement>
+                  ></BoxOrdersManag>
                 </Grid>
               )
             })}
@@ -299,8 +298,8 @@ function ProductCatalog(props) {
             justifyContent: 'center'
           }}
         >
-          <Cuerpo sx={{ ...tituloCuerpo }}>No hay ningún </Cuerpo>
-          <Resaltado sx={{ ...tituloResaltado }}>Producto...</Resaltado>
+          <Cuerpo sx={{ ...tituloCuerpo }}>No hay ninguna </Cuerpo>
+          <Resaltado sx={{ ...tituloResaltado }}>Pedido...</Resaltado>
         </Box>
       </>
     )
@@ -323,7 +322,7 @@ const tituloResaltado = {
   fontFamily: 'Noto Sans, sans-serif',
   fontWeight: 700,
   fontSize: { xs: '1.7rem', md: '3rem' },
-  color: '#FF823B',
+  color: '#05B3B2',
   whiteSpace: 'pre-wrap',
   m: 0
 }
@@ -354,21 +353,21 @@ const contenedorBotones = {
   mt: { xs: '10px', md: 0 }
 }
 
-const botonPrimario = {
-  backgroundColor: '#FF823B',
-  borderRadius: '10px',
-  width: '270px',
-  height: '39px',
-  textTransform: 'none',
-  fontFamily: 'Noto Sans, sans-serif',
-  fontWeight: '700',
-  fontSize: '1.125rem',
-  boxShadow: 'none',
-  '&:hover': {
-    backgroundColor: '#c65306',
-    boxShadow: 'none'
-  }
-}
+// const botonPrimario = {
+//   backgroundColor: '#FF823B',
+//   borderRadius: '10px',
+//   width: '270px',
+//   height: '39px',
+//   textTransform: 'none',
+//   fontFamily: 'Noto Sans, sans-serif',
+//   fontWeight: '700',
+//   fontSize: '1.125rem',
+//   boxShadow: 'none',
+//   '&:hover': {
+//     backgroundColor: '#c65306',
+//     boxShadow: 'none'
+//   }
+// }
 
 const botonSecundario = {
   backgroundColor: '#05B3B2',
@@ -385,5 +384,17 @@ const botonSecundario = {
   '&:hover': {
     backgroundColor: '#00928e',
     boxShadow: 'none'
+  }
+}
+
+const textoComplementario = {
+  textTransform: 'none',
+  fontFamily: 'Nunito, sans-serif',
+  fontWeight: 300,
+  fontSize: { xs: '0.875rem', md: '1.20rem' },
+  color: '#666666',
+  pt: { xs: 0, md: '7px' },
+  '&:hover': {
+    color: '#000000'
   }
 }

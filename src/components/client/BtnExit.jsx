@@ -11,7 +11,7 @@ function BtnExit() {
   const closeModal = () => setOpen(false);
 
   return (
-    <div className="btn-client" position="static">
+    <div className="btn-client" position="static" >
       <Button
         onClick={openModal}
         sx={{

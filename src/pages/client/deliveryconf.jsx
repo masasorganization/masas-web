@@ -9,8 +9,8 @@ function DeliveryConfirm() {
   return (
     <div>
       <Grid container>
-        <Grid xs={12} md={12}>
-          <div className="tab-showDelConf">
+        <Grid item xs={12} md={12}>
+          <div className="tab-showDelConf" >
             <h3 className="txt-title">Confirmación pedido contra-entrega: </h3>
           </div>
         </Grid>
@@ -23,10 +23,10 @@ function DeliveryConfirm() {
               fontSize: "1.2rem",
             }}
           >
-            <Typography sx={{ fontWeight: "700" }} h3>
+            <Typography sx={{ fontWeight: "700" }}>
               Datos de confirmación
             </Typography>
-            <Typography sx={{ color: "#c30500" }} h4>
+            <Typography sx={{ color: "#c30500" }}>
               Verifica que tus datos sean correctos
             </Typography>
           </Typography>
@@ -41,10 +41,10 @@ function DeliveryConfirm() {
               fontSize: "1.2rem",
             }}
           >
-            <Typography sx={{ fontWeight: "700" }} h3>
+            <Typography sx={{ fontWeight: "700" }}>
               Aquí tienes tu recibo
             </Typography>
-            <Typography sx={{ color: "#c30500" }} h4>
+            <Typography sx={{ color: "#c30500" }}>
               Recuerda presentarlo en el momento de la entrega
             </Typography>
           </Typography>
@@ -74,8 +74,7 @@ function DeliveryConfirm() {
                   color: "#ffffff",
                   border: "0",
                 },
-              }}
-            >
+              }}>
               Inicio
             </Button>
           </Link>
