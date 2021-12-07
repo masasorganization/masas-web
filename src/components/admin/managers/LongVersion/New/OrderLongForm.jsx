@@ -11,8 +11,15 @@ import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+import Axios from 'axios'
 
-const OrderLongForm = () => {
+const OrderLongForm = ({
+  botonEditar,
+  volverIndice,
+  editar,
+  botonCancelar,
+  producto
+}) => {
   let [acordeonIzqActivo, setAcordeonIzqActivo] = React.useState(false)
   let [acordeonDerActivo, setAcordeonDerActivo] = React.useState(false)
   let [primeraVez, setPrimeraVez] = React.useState(true)
@@ -25,28 +32,56 @@ const OrderLongForm = () => {
     setAcordeonDerActivo(!acordeonDerActivo)
   }
 
+  let [datosProductos, setDatosProductos] = React.useState('error')
+  let urlBase = 'https://masasapp.herokuapp.com'
+  let endpoint = '/ventas/'
+  let indexProducto = producto
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    if (editar === true) {
+      let funcion = 'buscarporid/'
+      Axios.get(urlBase + endpoint + funcion + indexProducto).then((res) => {
+        setDatosProductos(res.data)
+      })
+      console.log('modo edicion: Activado')
+    } else {
+      console.log('modo edicion: Desactivado')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Box onClick={() => setPrimeraVez(false)} sx={{ ...pantallaCompleta }}>
       <Box sx={{ ...contenedorSuperior }}>
         <Box sx={{ ...contenedorTitulos }}>
-          <Resaltado sx={{ ...tituloResaltado }}>Detalles </Resaltado>
-          <Cuerpo sx={{ ...tituloCuerpo }}>del pedido</Cuerpo>
+          {/* <Resaltado sx={{ ...tituloResaltado }}>Detalles </Resaltado>
+          <Cuerpo sx={{ ...tituloCuerpo }}>del pedido</Cuerpo> */}
+          <TituloPrincipal botonEditar={botonEditar} />
         </Box>
 
         <Box sx={{ ...contenedorBotones }}>
-          <Button variant='contained' sx={{ ...botonSecundario }}>
+          {botonCancelar}
+          {/* <Button variant='contained' sx={{ ...botonSecundario }}>
             Cancelar
-          </Button>
-          <TooltipInferior
+          </Button> */}
+          {/* <TooltipInferior
             title={textoTooltip}
             arrow
             open={primeraVez}
             sx={{ ...flechaTooltip }}
-          >
-            <Button variant='contained' sx={{ ...botonPrimario }}>
+          > */}
+          {/* <Button variant='contained' sx={{ ...botonPrimario }}>
               Crear cuenta
-            </Button>
-          </TooltipInferior>
+            </Button> */}
+          <BotonPrincipal
+            botonEditar={botonEditar}
+            tooltips={primeraVez}
+            // enviarInfo={() => enviarInformacion()}
+            // editarInfo={() => editarInformacion()}
+            finalizar={() => volverIndice()}
+          />
+          {/* </TooltipInferior> */}
         </Box>
       </Box>
 
@@ -91,7 +126,16 @@ const OrderLongForm = () => {
                 </AccordionSummary>
                 <AccordionDetails sx={{ ...acordeonInterno }}>
                   <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
-                    <DatosCliente />
+                    <DatosCliente
+                      nombres={datosProductos.nombres}
+                      apellidos={datosProductos.apellidos}
+                      numeroDocumento={datosProductos.numeroDocumento}
+                      direccion={datosProductos.direccion}
+                      numeroCasa={datosProductos.numeroCasa}
+                      barrio={datosProductos.barrio}
+                      telefono={datosProductos.telefono}
+                      fechaDeEntrega={datosProductos.fechaDeEntrega}
+                    />
                   </Container>
                 </AccordionDetails>
               </Accordion>
@@ -125,7 +169,15 @@ const OrderLongForm = () => {
               </AccordionSummary>
               <AccordionDetails sx={{ ...acordeonInterno }}>
                 <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
-                  <DatosPedido />
+                  <DatosPedido
+                    _id={indexProducto}
+                    categoria={datosProductos.categoria}
+                    nombre={datosProductos.nombrePto}
+                    tamano={datosProductos.tamano}
+                    complementos={datosProductos.complementos}
+                    unidades={datosProductos.unidades}
+                    valorFinal={datosProductos.valorFinal}
+                  />
                 </Container>
               </AccordionDetails>
             </Accordion>
@@ -264,7 +316,7 @@ const contenedorBotones = {
 }
 
 const botonPrimario = {
-  backgroundColor: '#FF823B',
+  backgroundColor: '#05B3B2',
   borderRadius: '10px',
   width: '270px',
   height: '39px',
@@ -274,34 +326,98 @@ const botonPrimario = {
   fontSize: '1.125rem',
   boxShadow: 'none',
   '&:hover': {
-    backgroundColor: '#c65306',
+    backgroundColor: '#00928E',
     boxShadow: 'none'
   }
 }
 
-const botonSecundario = {
-  backgroundColor: '#AA3D72',
-  borderRadius: '10px',
-  width: '129px',
-  px: '40px',
-  height: '39px',
-  textTransform: 'none',
-  fontFamily: 'Noto Sans, sans-serif',
-  fontWeight: '700',
-  fontSize: '1.125rem',
-  boxShadow: 'none',
-  mr: '18px',
-  '&:hover': {
-    backgroundColor: '#770047',
-    boxShadow: 'none'
-  }
-}
+// const botonSecundario = {
+//   backgroundColor: '#AA3D72',
+//   borderRadius: '10px',
+//   width: '129px',
+//   px: '40px',
+//   height: '39px',
+//   textTransform: 'none',
+//   fontFamily: 'Noto Sans, sans-serif',
+//   fontWeight: '700',
+//   fontSize: '1.125rem',
+//   boxShadow: 'none',
+//   mr: '18px',
+//   '&:hover': {
+//     backgroundColor: '#770047',
+//     boxShadow: 'none'
+//   }
+// }
 
 const flechaTooltip = {
   '& .MuiTooltip-arrow': {
     ':before': {
       backgroundColor: '#05B3B2'
     }
+  }
+}
+
+function TituloPrincipal(props) {
+  const editar = props.botonEditar
+  if (editar === true) {
+    return (
+      <>
+        <Resaltado sx={{ ...tituloResaltado }}>Detalles </Resaltado>
+        <Cuerpo sx={{ ...tituloCuerpo }}>del pedido</Cuerpo>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <Resaltado sx={{ ...tituloResaltado }}>Nuevo </Resaltado>
+        <Cuerpo sx={{ ...tituloCuerpo }}>pedido</Cuerpo>
+      </>
+    )
+  }
+}
+
+function BotonPrincipal(props) {
+  const primeraVez = props.tooltips
+  const editar = props.botonEditar
+  if (editar === true) {
+    return (
+      <>
+        <Button
+          id='btn-editar'
+          variant='contained'
+          sx={{ ...botonPrimario }}
+          onClick={() => {
+            // props.editarInfo()
+            props.finalizar()
+          }}
+        >
+          Imprimir recibo
+        </Button>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <TooltipInferior
+          title={textoTooltip}
+          arrow
+          open={primeraVez}
+          sx={{ ...flechaTooltip }}
+        >
+          <Button
+            id='btn-crear'
+            variant='contained'
+            sx={{ ...botonPrimario }}
+            onClick={() => {
+              props.enviarInfo()
+              props.finalizar()
+            }}
+          >
+            Crear Pedido
+          </Button>
+        </TooltipInferior>
+      </>
+    )
   }
 }
 
@@ -342,127 +458,198 @@ const TooltipInferior = styled(({ className, ...props }) => (
 
 let textoTooltip = 'Este botón se activará al ingresar toda la información.'
 let textoTooltip2 =
-  'Ingrese la información del producto pulsando en alguna de las dos secciones.'
+  'Revise la información del producto pulsando en alguna de las dos secciones.'
 
-function DatosCliente() {
+function DatosCliente(props) {
+  // let [datosCargar, setDatosCargar] = React.useState('error')
+  // let urlBase = 'https://masasapp.herokuapp.com'
+  // let endpoint = '/ventas/'
+  // let indexProducto = props.producto
+
+  // // ReactHook para llamar a todos los Productos.
+  // React.useEffect(() => {
+  //   if (props.edicion === true) {
+  //     let funcion = 'buscarporid/'
+  //     Axios.get(urlBase + endpoint + funcion + indexProducto).then((res) => {
+  //       setDatosCargar(res.data)
+  //     })
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
+
   return (
     <>
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.nombres}
         id='nombreComprador'
+        name='nombres'
         sx={{ ...camposTexto, my: '14px' }}
         variant='standard'
         label='Nombre completo'
-        value={'Cristian Peralta'}
       />
 
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.apellidos}
+        id='apellidosComprador'
+        name='apellidos'
+        sx={{ ...camposTexto, my: '14px' }}
+        variant='standard'
+        label='Nombre completo'
+      />
+
+      {/* <TextField
         id='tipoDocumentoComprador'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Tipo de documento'
         value={'CC'}
-      />
+      /> */}
 
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.numeroDocumento}
         id='documentoComprador'
+        name='numeroDocumento'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Documento de identidad'
-        value={'10100111'}
       />
 
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.direccion}
         id='direccionComprador'
+        name='direccion'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Dirección'
-        value={'Calle 14 #67 - 93'}
       />
 
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.numeroCasa}
         id='detallesDireccionComprador'
+        name='numeroCasa'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Número de casa o apartamento'
-        value={'Apartamento 203'}
       />
 
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.barrio}
         id='barrioComprador'
+        name='barrio'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Barrio'
-        value={'Chapinero'}
       />
 
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.telefono}
         id='celularComprador'
+        name='telefono'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Celular'
-        value={'325 586 6558'}
       />
 
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.entregaComprador}
         id='entregaComprador'
+        name='fechaDeEntrega'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Fecha de entrega'
-        value={'03 / Diciembre / 2021'}
       />
     </>
   )
 }
 
-function DatosPedido() {
+function DatosPedido(props) {
+  // let [datosCargar, setDatosCargar] = React.useState('error')
+  // let urlBase = 'https://masasapp.herokuapp.com'
+  // let endpoint = '/ventas/'
+  // let indexProducto = props.producto
+
+  // // ReactHook para llamar a todos los Productos.
+  // React.useEffect(() => {
+  //   if (props.edicion === true) {
+  //     let funcion = 'buscarporid/'
+  //     Axios.get(urlBase + endpoint + funcion + indexProducto).then((res) => {
+  //       setDatosCargar(res.data)
+  //     })
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
   return (
     <>
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props._id}
         id='idPedido'
+        name='_id'
         sx={{ ...camposTexto, my: '14px' }}
         variant='standard'
         label='ID-Pago'
-        value={'0001'}
       />
-
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.categoria}
+        id='categoriaPedido'
+        name='categoria'
+        sx={{ ...camposTexto, my: '14px' }}
+        variant='standard'
+        label='Categoria del producto'
+      />
+      <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.nombre}
         id='nombrePedido'
+        name='nombre'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Nombre del producto'
-        value={'Torta de remolacha'}
       />
-
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.tamano}
         id='tamañoPedido'
+        name='tamano'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Tamaño'
-        value={'x8 porciones'}
       />
-
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.unidades}
         id='unidadesPedido'
+        name='unidades'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Unidades'
-        value={'1'}
       />
-
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.complementos}
         id='toppingsPedido'
+        name='complementos'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Toppings'
-        value={'Gajos de naranja dulce'}
       />
-
       <TextField
+        InputLabelProps={{ shrink: true }}
+        value={props.valorFinal}
         id='idPedido'
+        name='valorFinal'
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
         label='Costo total'
-        value={'$35.000'}
       />
     </>
   )

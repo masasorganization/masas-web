@@ -1,10 +1,38 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Image from '../../assets/placeholder.png'
 import { createTheme } from '@mui/material'
+import * as React from 'react'
+// import Axios from 'axios'
 
 const theme = createTheme({})
 
-const BoxOrdersManag = ({ name, telephone, type, amount }) => {
+const BoxOrdersManag = ({
+  recargar,
+  producto,
+  editarProducto,
+  name,
+  telephone,
+  type,
+  amount
+}) => {
+  // let urlBase = 'https://masasapp.herokuapp.com'
+  // let endpoint = '/ventas/'
+  let indexProducto = producto
+
+  // //Peticion para ELIMINAR la informacion
+  // const eliminarInformacion = async () => {
+  //   let funcion = 'eliminar/'
+  //   await Axios.delete(urlBase + endpoint + funcion + indexProducto).then(() =>
+  //     recargar()
+  //   )
+  // }
+
+  const [botonEditar, setBotonEditar] = React.useState(false)
+
+  const siwtchEditar = () => {
+    setBotonEditar(!botonEditar)
+  }
+
   return (
     <div>
       <Box sx={{ ...box1Style }}>
@@ -14,8 +42,33 @@ const BoxOrdersManag = ({ name, telephone, type, amount }) => {
           <Box sx={{ ...typeStyle }}>{[type]}</Box>
           <Box sx={{ ...amountStyle }}>{[amount]}</Box>
         </Box>
-        <Box className='cards'>
-          <img src={Image} alt='' />
+        <Box
+          className='cards'
+          onClick={() => editarProducto(indexProducto)}
+          onMouseEnter={() => siwtchEditar()}
+          onMouseLeave={() => siwtchEditar()}
+          sx={{ cursor: 'pointer' }}
+        >
+          <Box
+            sx={{
+              ...contenedorEditar,
+              display: botonEditar ? 'flex' : 'none'
+            }}
+          >
+            <Typography
+              sx={{
+                ...textoEditar
+              }}
+            >
+              Info
+            </Typography>
+          </Box>
+          <Box
+            component='img'
+            src={Image}
+            alt=''
+            sx={{ display: botonEditar ? 'none' : 'flex' }}
+          />
         </Box>
       </Box>
     </div>
@@ -81,4 +134,24 @@ const amountStyle = {
   fontSize: '11px',
   letterSpacing: '1.25px',
   mt: '2px'
+}
+
+const contenedorEditar = {
+  bgcolor: '#05B3B2',
+  width: '120px',
+  height: '100%',
+  borderRadius: '0px 10px 10px 0px',
+  flexDirection: 'column',
+  alignContent: 'center',
+  alignItems: 'center',
+  justifyContent: 'center'
+}
+
+const textoEditar = {
+  m: 0,
+  mt: '5px',
+  color: 'white',
+  fontFamily: 'Noto Sans, sans-serif',
+  fontWeight: 700,
+  fontSize: { xs: '18px', md: '18px' }
 }
