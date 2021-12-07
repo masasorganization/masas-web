@@ -25,7 +25,7 @@ function Login() {
   useEffect(() => {
     document.title = 'má sas | Iniciar sesión'
   })
-  
+
   // Inicializando los espacios vacios
   const [usuario, setUsuario] = useState('')
   const [contrasena, setContrasena] = useState('')
@@ -57,6 +57,9 @@ function Login() {
     //Mostrando la respuesta del servidor
     const mensaje = respuesta.data.mensaje
 
+    // Mostrando la respuesta del servidor correspondiente al rol
+    // const rol = respuesta.data.roles
+
     //Validaciones del mensaje
     if (mensaje !== 'Bienvenido!') {
       Swal.fire({
@@ -82,6 +85,17 @@ function Login() {
         timer: 1500
       })
     }
+
+    // Redirección correspondiente al rol
+    // let ruta
+    // if (rol === '61a984613fac9aeab3c3bce4') {
+    //   ruta = 'welcome'
+    // } else if (rol === '61a984613fac9aeab3c3bce3') {
+    //   ruta = 'report'
+    // } else {
+    //   ruta = 'login'
+    // }
+
     setTimeout(() => {
       window.location.href = '/welcome'
     }, 500)
