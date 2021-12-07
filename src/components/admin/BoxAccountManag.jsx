@@ -29,8 +29,6 @@ const BoxManagement = ({
     setBotonEditar(!botonEditar)
   }
 
-  console.log('soy tarjeta cuentas')
-
   return (
     <>
       <Box

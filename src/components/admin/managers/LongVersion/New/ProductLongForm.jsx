@@ -35,15 +35,15 @@ const ProductLongForm = ({
 
   const [datosFormulario, setDatosFormulario] = React.useState({
     categoria: '',
-    nombre: '',
+    nombrePto: '',
     valor: '',
     descripcion: '',
     ingredientes: ''
   })
 
   let [datosProductos, setDatosProductos] = React.useState('error')
-  let urlBase = 'http://localhost:3004'
-  let endpoint = '/Productos/'
+  let urlBase = 'https://masasapp.herokuapp.com'
+  let endpoint = '/productos/'
   let indexProducto = producto
 
   // CREAR
@@ -56,8 +56,8 @@ const ProductLongForm = ({
   // let indexProducto = id
 
   const enviarInformacion = async () => {
-    let endpoint = '/Productos/'
-    await Axios.post(urlBase + endpoint, datosFormulario)
+    let funcion = 'crear'
+    await Axios.post(urlBase + endpoint + funcion, datosFormulario)
   }
 
   //Variable que almacena los datos editados
@@ -66,14 +66,18 @@ const ProductLongForm = ({
 
   //Peticion para editar la informacion
   const editarInformacion = async () => {
-    let endpoint = '/Productos/'
-    await Axios.put(urlBase + endpoint + indexProducto, datosProductosEditados)
+    let funcion = 'actualizar/'
+    await Axios.put(
+      urlBase + endpoint + funcion + indexProducto,
+      datosProductosEditados
+    )
   }
 
   // ReactHook para llamar a todos los Productos.
   React.useEffect(() => {
     if (editar === true) {
-      Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+      let funcion = 'buscarporid/'
+      Axios.get(urlBase + endpoint + funcion + indexProducto).then((res) => {
         setDatosProductos(res.data)
       })
       console.log('modo edicion: Activado')
@@ -82,6 +86,8 @@ const ProductLongForm = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  console.log(datosProductos.nombrePto)
 
   return (
     <Box onClick={() => setPrimeraVez(false)} sx={{ ...pantallaCompleta }}>
@@ -156,7 +162,7 @@ const ProductLongForm = ({
                       edicion={editar}
                       producto={indexProducto}
                       categoria={datosProductos.categoria}
-                      nombre={datosProductos.nombre}
+                      nombre={datosProductos.nombrePto}
                       valor={datosProductos.valor}
                       descripcion={datosProductos.descripcion}
                       ingredientes={datosProductos.ingredientes}
@@ -497,7 +503,7 @@ function DatosProducto(props) {
   // Formulario nuevo producto
   const [formulario, setFormulario] = React.useState({
     categoria: '',
-    nombre: '',
+    nombrePto: '',
     valor: '',
     descripcion: '',
     ingredientes: ''
@@ -512,8 +518,8 @@ function DatosProducto(props) {
   }
 
   let [datosCargar, setDatosCargar] = React.useState('error')
-  let urlBase = 'http://localhost:3004'
-  let endpoint = '/Productos/'
+  let urlBase = 'https://masasapp.herokuapp.com'
+  let endpoint = '/productos/'
   let indexProducto = props.producto
 
   // Constructor editar
@@ -527,7 +533,8 @@ function DatosProducto(props) {
   // ReactHook para llamar a todos los Productos.
   React.useEffect(() => {
     if (props.edicion === true) {
-      Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+      let funcion = 'buscarporid/'
+      Axios.get(urlBase + endpoint + funcion + indexProducto).then((res) => {
         setDatosCargar(res.data)
       })
     }
@@ -627,7 +634,7 @@ function DatosProducto(props) {
         ))}
       </TextField>
       <TextField
-        value={datosCargar.nombre}
+        value={datosCargar.nombrePto}
         defalutValue={textoFunciona}
         InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='nombreProducto'
@@ -636,7 +643,7 @@ function DatosProducto(props) {
         label='Nombre'
         placeholder='Nombre del producto'
         helperText='Escriba el nombre del producto.'
-        name='nombre'
+        name='nombrePto'
         onChange={
           props.edicion
             ? (e) => textoCambia(e)
