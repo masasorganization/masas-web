@@ -8,25 +8,13 @@ function FormProduct() {
 
     return(
         <div>
-            <Autocomplete disablePortal sx={{ width: {
-                                                md: '20rem',
-                                                xs: '10rem'} }} id="size-product" 
-                                                                options={size} 
-                                                                renderInput={(params) => <TextField {...params}  label="Tamaño" />} />
-            <Autocomplete disablePortal sx={{ width: {
-                                                md: '20rem',
-                                                xs: '10rem'
-                                            }, 
-                                            mt: '0.6rem' }} id="units-product" 
-                                                            options={units} 
-                                                            renderInput={(params) => <TextField {...params}  label="Unidades" />} />
-            <Autocomplete disablePortal sx={{ width: {
-                                                md: '20rem',
-                                                xs: '10rem'
-                                            }, 
-                                            mt: '0.6rem' }} id="toppings-product" 
-                                                            options={toppings} 
-                                                            renderInput={(params) => <TextField {...params}  label="Complementos" />} />
+            <Autocomplete disablePortal id="size-product" options={size}  renderInput={(params) => <TextField {...params}  label="Tamaño" />} />
+            <Autocomplete disablePortal sx={{ mt: '0.6rem'}} id="units-product" 
+                                                                options={units} 
+                                                                renderInput={(params) => <TextField {...params}  label="Unidades" / >} />
+            <Autocomplete disablePortal sx={{ mt: '0.6rem' }} id="toppings-product" 
+                                                                options={toppings} 
+                                                                renderInput={(params) => <TextField {...params}  label="Complementos" />} />
         </div>
     );
 }

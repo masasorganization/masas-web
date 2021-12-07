@@ -19,10 +19,12 @@ function AlertOrder() {
     const closeDeleteModal = () => setOpenDelete(false);
 
     return(
-        <div>
+        <div >
             <Alert severity="info" sx={{ bgcolor: '#ffffff',
                                         border: '2px solid #770047',
-                                        mt: '1.5rem' }} action={<Box sx={{ display: 'flex',
+                                        ml: '1rem',
+                                        mr: '1rem',
+                                        mt: '1.5rem'}} action={<Box sx={{ display: 'flex',
                                                                             flexDirection: {
                                                                                 md: 'row',
                                                                                 xs: 'column'
@@ -109,6 +111,10 @@ function AlertOrder() {
                                                                 borderRadius: '10px',
                                                                 boxShadow: '0',
                                                                 mt: '1rem',
+                                                                mr: {
+                                                                  md: "2rem",
+                                                                  xs: "0",
+                                                                },
                                                                 textTransform: 'none',
                                                                 width: '15rem',
                                                                 fontFamily: 'Noto Sans, sans-serif',
@@ -135,7 +141,7 @@ function AlertOrder() {
                                                     fontWeight: '700',
                                                     ":hover": {
                                                         bgcolor: '#9bd816'
-                                                    } }} >Si, ya no quiero el producto</Button>
+                                                    } }} >Si, quiero elimnarlo</Button>
                         </div>
                     </Box>
                 </Box>
@@ -165,22 +171,42 @@ function AlertOrder() {
                             <FormProduct />
                         </Box>
                         <div className="btn-client">
-                            <Button onClick={closeEditModal}  sx={{ bgcolor: '#ff4e00',
-                                                                color: '#ffffff',
-                                                                borderRadius: '10px',
-                                                                boxShadow: '0',
-                                                                mt: '1rem',
-                                                                textTransform: 'none',
-                                                                width: '15rem',
-                                                                fontFamily: 'Noto Sans, sans-serif',
-                                                                fontSize: {
-                                                                    md: '1.1rem',
-                                                                    xs: '1rem'
-                                                                },
-                                                                fontWeight: '700',
-                                                                ":hover": {
-                                                                    bgcolor: '#9bd816'
-                                                                } }} >Guardar cambios</Button>
+                            <Button sx={{ bgcolor: '#ff4e00',
+                                            color: '#ffffff',
+                                            borderRadius: '10px',
+                                            boxShadow: '0',
+                                            mt: '1rem',
+                                            mr: {
+                                                md: "2rem",
+                                                xs: "0",
+                                            },
+                                            textTransform: 'none',
+                                            width: '15rem',
+                                            fontFamily: 'Noto Sans, sans-serif',
+                                            fontSize: {
+                                                md: '1.1rem',
+                                                xs: '1rem'
+                                            },
+                                            fontWeight: '700',
+                                            ":hover": {
+                                            bgcolor: '#9bd816'
+                                        } }} >Guardar cambios</Button>
+                            <Button onClick={closeEditModal} sx={{ bgcolor: '#c30500',
+                                                    color: '#ffffff',
+                                                    borderRadius: '10px',
+                                                    boxShadow: '0',
+                                                    mt: '1rem',
+                                                    textTransform: 'none',
+                                                    width: '15rem',
+                                                    fontFamily: 'Noto Sans, sans-serif',
+                                                    fontSize: {
+                                                        md: '1.1rem',
+                                                        xs: '1rem'
+                                                    },
+                                                    fontWeight: '700',
+                                                    ":hover": {
+                                                        bgcolor: '#9bd816'
+                                                    } }} >Salir, sin guardar</Button>
                         </div>
                     </Box>
                 </Box>

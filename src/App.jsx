@@ -16,8 +16,31 @@ import Report from 'pages/admin/report'
 import OrdersClient from 'pages/admin/ordersclient'
 import Registry from 'pages/admin/registry'
 import Test from 'pages/admin/testfield'
-//Se importa React-Router-Dom
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import FinalSale from 'pages/client/FinalSale'
+//Se importa React-Router-Dom y axios
+import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
+
+//URL Base con Axios
+axios.defaults.baseURL = 'https://masasapp.herokuapp.com/'
+
+const estaAutenticado = () => {
+  const token = sessionStorage.getItem('token')
+  if (token) {
+    return true
+  } else {
+    return false
+  }
+}
+
+const MyRoute = (props) => {
+  return estaAutenticado() ? <Route {...props} /> : <Redirect to='/login' />
+}
 
 function App() {
   return (
@@ -33,9 +56,7 @@ function App() {
           <Route path='/categories'>
             <Categories />
           </Route>
-          <Route path='/products'>
-            <Products />
-          </Route>
+          <Route path='/products' component={SubRoutes} />
           <Route path='/orders'>
             <Orders />
           </Route>
@@ -48,29 +69,32 @@ function App() {
           <Route path='/login'>
             <Login />
           </Route>
-          <Route path='/welcome'>
+          <MyRoute path='/welcome'>
             <Welcome />
-          </Route>
-          <Route path='/productmanag'>
+          </MyRoute>
+          <MyRoute path='/productmanag'>
             <ProductManagement />
-          </Route>
-          <Route path='/sellermanag'>
+          </MyRoute>
+          <MyRoute path='/sellermanag'>
             <SellerManagement />
-          </Route>
-          <Route path='/salesrep'>
+          </MyRoute>
+          <MyRoute path='/salesrep'>
             <SalesReport />
-          </Route>
-          <Route path='/report'>
+          </MyRoute>
+          <MyRoute path='/report'>
             <Report />
-          </Route>
-          <Route path='/ordersclient'>
+          </MyRoute>
+          <MyRoute path='/ordersclient'>
             <OrdersClient />
-          </Route>
-          <Route path='/registry'>
+          </MyRoute>
+          <MyRoute path='/registry'>
             <Registry />
-          </Route>
+          </MyRoute>
           <Route path='/test'>
             <Test />
+          </Route>
+          <Route path='/finalsale'>
+            <FinalSale />
           </Route>
         </Switch>
       </Router>
@@ -79,3 +103,17 @@ function App() {
 }
 
 export default App
+
+function SubRoutes() {
+  return (
+    <Switch>
+      <Route
+        path='/products/:category?'
+        render={(props) => <Products {...props} />}
+      />
+      <Route path='*'>
+        <Redirect to='/orders' />
+      </Route>
+    </Switch>
+  )
+}

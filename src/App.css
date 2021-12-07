@@ -12,18 +12,11 @@ Jalea de ciruela: #b70030*/
 .nav-home {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0.5rem;
+  margin-top: 3rem;
 }
 
 .nav-home > a {
   text-decoration: none;
-}
-
-.logo-home {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 8rem;
 }
 
 .btn-client {
@@ -32,10 +25,6 @@ Jalea de ciruela: #b70030*/
 
 .btn-client > a {
   text-decoration: none;
-}
-
-.foot-home {
-  padding-top: 3rem;
 }
 
 /*Página categoría-categories*/
@@ -48,11 +37,6 @@ Jalea de ciruela: #b70030*/
 
 .l-cat {
   text-decoration: none;
-}
-
-.box-selectPro {
-  display: flex;
-  flex-direction: row;
 }
 
 .icon-exp {
@@ -79,10 +63,17 @@ Jalea de ciruela: #b70030*/
   padding: 0.3rem;
 }
 
+/*Página políticas y términos-politics*/
+.tab-politics {
+  background-color: #ff4e00;
+  margin-top: 0;
+  padding: 0.3rem;
+}
+
 /*Texto de las barras de las páginas*/
 .txt-title {
   color: #ffffff;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 1.15rem;
   text-align: center;
 }
