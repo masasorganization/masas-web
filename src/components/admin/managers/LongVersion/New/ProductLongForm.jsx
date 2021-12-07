@@ -46,6 +46,15 @@ const ProductLongForm = ({
   let endpoint = '/Productos/'
   let indexProducto = producto
 
+  // CREAR
+  // let urlBase = 'https://masasapp.herokuapp.com/'
+  // let endpoint = 'crear'
+
+  // ACTUALIZAR
+  // let urlBase = 'https://masasapp.herokuapp.com/'
+  // let endpoint = 'actualizar/'
+  // let indexProducto = id
+
   const enviarInformacion = async () => {
     let endpoint = '/Productos/'
     await Axios.post(urlBase + endpoint, datosFormulario)
@@ -98,6 +107,7 @@ const ProductLongForm = ({
             botonEditar={botonEditar}
             tooltips={primeraVez}
             enviarInfo={() => enviarInformacion()}
+            editarInfo={() => editarInformacion()}
             finalizar={() => volverIndice()}
           />
           {/* </TooltipInferior> */}
@@ -147,6 +157,7 @@ const ProductLongForm = ({
                   <Container maxWidth='mb' sx={{ ...contenedorFormulario }}>
                     <DatosProducto
                       edicion={editar}
+                      producto={indexProducto}
                       categoria={datosProductos.categoria}
                       nombre={datosProductos.nombre}
                       valor={datosProductos.valor}
@@ -154,6 +165,9 @@ const ProductLongForm = ({
                       ingredientes={datosProductos.ingredientes}
                       infoFormulario={(datosFormulario) =>
                         setDatosFormulario(datosFormulario)
+                      }
+                      formularioEditado={(datosProductosEditados) =>
+                        setDatosProductosEditados(datosProductosEditados)
                       }
                     />
                   </Container>
@@ -196,6 +210,12 @@ const ProductLongForm = ({
           </Grid>
         </Grid>
       </Box>
+      <Button onClick={() => console.log(datosProductosEditados)}>
+        Fomulario de edicion
+      </Button>
+      <Button onClick={() => console.log(datosFormulario)}>
+        Fomulario de envio
+      </Button>
     </Box>
   )
 }
@@ -379,6 +399,7 @@ function BotonPrincipal(props) {
           variant='contained'
           sx={{ ...botonPrimario }}
           onClick={() => {
+            props.editarInfo()
             props.finalizar()
           }}
         >
@@ -475,6 +496,7 @@ function DatosProducto(props) {
     }
   ]
 
+  // Formulario nuevo producto
   const [formulario, setFormulario] = React.useState({
     categoria: '',
     nombre: '',
@@ -483,6 +505,7 @@ function DatosProducto(props) {
     ingredientes: ''
   })
 
+  // Constructor nuevo
   const actualizarFormulario = (target) => {
     setFormulario({
       ...formulario,
@@ -490,24 +513,111 @@ function DatosProducto(props) {
     })
   }
 
-  // const obtenerInformacion = () => {
-  //   Axios.get(urlBase + endpoint + indexProducto).then((res) => {
-  //     setDatosProductos(res.data)
-  //   })
+  let [datosCargar, setDatosCargar] = React.useState('error')
+  let urlBase = 'http://localhost:3004'
+  let endpoint = '/Productos/'
+  let indexProducto = props.producto
+
+  // Constructor editar
+  const constructorEditar = (target) => {
+    setDatosCargar({
+      ...datosCargar,
+      [target.name]: target.value
+    })
+  }
+
+  // ReactHook para llamar a todos los Productos.
+  React.useEffect(() => {
+    if (props.edicion === true) {
+      Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+        setDatosCargar(res.data)
+      })
+      console.log('modo edicion: Activado')
+    } else {
+      console.log('modo edicion: Desactivado')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  let valorSeleccion = datosCargar.categoria
+
+  // if (datosCargar.categoria === 'Masa saludable') {
+  //   valorSeleccion = 'Masa saludable'
+  // } else if (datosCargar.categoria === 'Tipo orgánico') {
+  //   valorSeleccion = 'Tipo orgánico'
+  // } else if (datosCargar.categoria === 'Sin azúcar') {
+  //   valorSeleccion = 'Sin azúcar'
+  // } else {
+  //   valorSeleccion = datosCargar.categoria
   // }
 
-  const pruebaRef = React.useRef(props.valor)
+  const [textoFunciona, setTextoFunciona] = React.useState(valorSeleccion)
+  const textoCambia = (e) => {
+    console.log(`Texto => ${e.target.value}`)
+    setTextoFunciona(e.target.value)
+    constructorEditar(e.target)
+  }
 
   return (
     <>
-      <Box component={TextField} type='text' defaultValue={pruebaRef.current} />
-      <TextField
+      {/* Pruebas infructuosas que hacen perder el tiempo 🤔 */}
+      {/* <TextField
+        value={props.edicion ? datosCargar.categoria : seleccionCategorias}
+        defaultValue={textoFunciona}
         //InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='categoriaProducto'
         select
         label='Categoria'
         placeholder='Categoria'
+        onChange={cambioCategoria}
+        sx={{ ...camposTexto, mb: '14px' }}
+        variant='standard'
+        helperText='Seleccione una categoria.'
+        name='categoria'
+        //required='true'
+      >
+        {categorias.map((option, index) => (
+          <MenuItem
+            name={option.label}
+            value={option.value}
+            key={index}
+            defaultValue={textoFunciona}
+          >
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField> */}
+      {/* <TextField
+        value={datosCargar.nombre}
+        defalutValue={textoFunciona}
+        InputLabelProps={{ shrink: props.edicion ? true : undefined }}
+        id='nombreProducto'
+        sx={{ ...camposTexto, mb: '14px' }}
+        variant='standard'
+        label='Nombre'
+        placeholder='Nombre del producto'
+        helperText='Escriba el nombre del producto.'
+        name='nombre'
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
+        //onChange={(event) => actualizarFormulario(event.target)}
+        //required='true'
+      /> */}
+      {/* <Button onClick={() => console.log(datosCargar)}>datos variable</Button>
+      <Button onClick={() => props.formularioEditado(datosCargar)}>
+        enviar
+      </Button> */}
+      <TextField
+        disabled={props.edicion ? true : false}
         value={seleccionCategorias}
+        //InputLabelProps={{ shrink: props.edicion ? true : undefined }}
+        id='categoriaProducto'
+        select
+        label='Categoria'
+        placeholder='Categoria'
         onChange={cambioCategoria}
         sx={{ ...camposTexto, mb: '14px' }}
         variant='standard'
@@ -522,8 +632,8 @@ function DatosProducto(props) {
         ))}
       </TextField>
       <TextField
-        //value={props.nombre}
-        defaultValue={props.nombre}
+        value={datosCargar.nombre}
+        defalutValue={textoFunciona}
         InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='nombreProducto'
         sx={{ ...camposTexto, mb: '14px' }}
@@ -532,11 +642,16 @@ function DatosProducto(props) {
         placeholder='Nombre del producto'
         helperText='Escriba el nombre del producto.'
         name='nombre'
-        onChange={(event) => actualizarFormulario(event.target)}
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
         //required='true'
       />
-      Props de este componente: {props.nombre}
       <TextField
+        value={datosCargar.valor}
+        defalutValue={textoFunciona}
         InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='valorProducto'
         sx={{ ...camposTexto, mb: '14px' }}
@@ -545,11 +660,16 @@ function DatosProducto(props) {
         placeholder='Valor unitario'
         helperText='Escriba el valor del producto.'
         name='valor'
-        onChange={(event) => actualizarFormulario(event.target)}
-        defaultValue={props.valor}
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
         //required='true'
       />
       <TextField
+        value={datosCargar.descripcion}
+        defalutValue={textoFunciona}
         InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='descripcionProducto'
         multiline
@@ -559,11 +679,16 @@ function DatosProducto(props) {
         placeholder='Descripción'
         helperText='Escriba una descripción del producto.'
         name='descripcion'
-        onChange={(event) => actualizarFormulario(event.target)}
-        value={props.descripcion}
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
         //required='true'
       />
       <TextField
+        value={datosCargar.ingredientes}
+        defalutValue={textoFunciona}
         InputLabelProps={{ shrink: props.edicion ? true : undefined }}
         id='ingredientesProducto'
         multiline
@@ -573,12 +698,19 @@ function DatosProducto(props) {
         placeholder='Ingredientes'
         helperText='Escriba todos los ingredientes del producto.'
         name='ingredientes'
-        onMouseOut={() => props.infoFormulario(formulario)}
-        onChange={(event) => actualizarFormulario(event.target)}
-        value={props.ingredientes}
+        onMouseOut={
+          props.edicion
+            ? () => props.formularioEditado(datosCargar)
+            : () => props.infoFormulario(formulario)
+        }
+        onChange={
+          props.edicion
+            ? (e) => textoCambia(e)
+            : (event) => actualizarFormulario(event.target)
+        }
+        //required='true'
         // onChange={(event) => {actualizarFormulario(event.target)
         //   props.infoFormulario(formulario)}}
-        //required='true'
       />
     </>
   )

@@ -17,6 +17,10 @@ const BoxManagement = ({
   let endpoint = '/Productos/'
   let indexProducto = producto
 
+  // let urlBase = 'https://masasapp.herokuapp.com/'
+  // let endpoint = 'eliminar/'
+  // let indexProducto = id
+
   //Peticion para ELIMINAR la informacion
   const eliminarInformacion = async () => {
     await Axios.delete(urlBase + endpoint + indexProducto).then(() =>

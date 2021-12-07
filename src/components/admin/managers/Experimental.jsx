@@ -220,6 +220,9 @@ function ProductCatalog(props) {
   let urlBase = 'http://localhost:3004'
   let endpoint = '/Productos/'
 
+  // let urlBase = 'https://masasapp.herokuapp.com/'
+  // let endpoint = 'productos/listar'
+
   const cargarDatos = () => {
     Axios.get(urlBase + endpoint).then((res) => {
       setDatosProductos(res.data)
