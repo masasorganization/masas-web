@@ -4,6 +4,7 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
+Axios.defaults.baseURL = 'https://masasapp.herokuapp.com/'
 ReactDOM.render(
   <React.StrictMode>
     <App />

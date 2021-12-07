@@ -9,17 +9,11 @@ const BoxManagement = ({
   producto,
   title,
   paragraph,
-  button1,
-  button2,
   editarProducto
 }) => {
   let urlBase = 'https://masasapp.herokuapp.com'
-  let endpoint = '/productos/'
+  let endpoint = '/usuarios/'
   let indexProducto = producto
-
-  // let urlBase = 'https://masasapp.herokuapp.com/'
-  // let endpoint = 'eliminar/'
-  // let indexProducto = id
 
   //Peticion para ELIMINAR la informacion
   const eliminarInformacion = async () => {

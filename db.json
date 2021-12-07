@@ -1,0 +1,118 @@
+{
+  "Productos": [
+    {
+      "categoria": "Masa saludable",
+      "nombre": "Torta masita",
+      "valor": "12000",
+      "descripcion": "Una masita",
+      "ingredientes": "masa y harina",
+      "id": 1
+    },
+    {
+      "categoria": "Sin azúcar",
+      "nombre": "Torta de Azúcar",
+      "valor": "8500",
+      "descripcion": "Torta hecha con amor y mucho azúcar.",
+      "ingredientes": "Agua, huevos, azúcar.",
+      "id": 2
+    },
+    {
+      "categoria": "Tipo orgánico",
+      "nombre": "Torta orgánica",
+      "valor": "9000",
+      "descripcion": "Torta orgánica muy rica.",
+      "ingredientes": "Agua, huevos, harina.",
+      "id": 3
+    }
+  ],
+  "Cuentas": [
+    {
+      "nombre": "Andres",
+      "apellido": "Alvarez",
+      "usuario": "AndAlv",
+      "contrasena": "123456",
+      "id": 1
+    },
+    {
+      "nombre": "Kelly",
+      "apellido": "Monrroy",
+      "usuario": "KelyMon",
+      "contrasena": "123456",
+      "id": 2
+    }
+  ],
+  "Ventas": [
+    {
+      "_id": "61af950cd7618019831e29e3",
+      "categoria": "Tipo organico",
+      "nombrePto": "Rosquilla de banano",
+      "tamano": "x8 porciones",
+      "complementos": "Salsa de chocolate",
+      "unidades": "9",
+      "valorFinal": "20500",
+      "nombres": "yyyyy",
+      "apellidos": "yyyyyyyyyy",
+      "numeroDocumento": 123123123,
+      "direccion": "",
+      "numeroCasa": "",
+      "barrio": "",
+      "telefono": null,
+      "createdAt": "2021-12-07T17:08:28.876Z",
+      "updatedAt": "2021-12-07T17:08:28.876Z"
+    },
+    {
+      "_id": "61af961dd7618019831e29fb",
+      "categoria": "Sin azúcar",
+      "nombrePto": "Torta de chocolate amargo",
+      "tamano": "x8 porciones",
+      "complementos": "Jalea de ciruela",
+      "unidades": "5",
+      "valorFinal": "20500",
+      "nombres": "uuuuu",
+      "apellidos": "uuuuu",
+      "numeroDocumento": 12312456,
+      "direccion": "",
+      "numeroCasa": "",
+      "barrio": "",
+      "telefono": null,
+      "createdAt": "2021-12-07T17:13:01.172Z",
+      "updatedAt": "2021-12-07T17:13:01.172Z"
+    },
+    {
+      "_id": "61af9640d7618019831e2a02",
+      "categoria": "Masa saludable",
+      "nombrePto": "Rosquilla",
+      "tamano": "x8 porciones",
+      "complementos": "Jalea de ciruela",
+      "unidades": "7",
+      "valorFinal": "20500",
+      "nombres": "uuuuii",
+      "apellidos": "iiiii",
+      "numeroDocumento": 23116465,
+      "direccion": "",
+      "numeroCasa": "",
+      "barrio": "",
+      "telefono": null,
+      "createdAt": "2021-12-07T17:13:36.354Z",
+      "updatedAt": "2021-12-07T17:13:36.354Z"
+    },
+    {
+      "_id": "61af9732d7618019831e2a08",
+      "categoria": "Sin azúcar",
+      "nombrePto": "Torta de chocolate amargo",
+      "tamano": "x8 porciones",
+      "complementos": "Nueces picadas",
+      "unidades": "6",
+      "valorFinal": "20500",
+      "nombres": "",
+      "apellidos": "",
+      "numeroDocumento": null,
+      "direccion": "",
+      "numeroCasa": "",
+      "barrio": "",
+      "telefono": null,
+      "createdAt": "2021-12-07T17:17:38.476Z",
+      "updatedAt": "2021-12-07T17:17:38.476Z"
+    }
+  ]
+}
