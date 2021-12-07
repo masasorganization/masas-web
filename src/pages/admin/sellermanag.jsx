@@ -218,11 +218,11 @@ function LayoutSellerM({ botonNuevo, children }) {
 
 function AccountCatalog(props) {
   let [datosProductos, setDatosProductos] = React.useState('error')
-  let urlBase = 'http://localhost:3004'
-  let endpoint = '/Cuentas/'
+  // let urlBase = 'http://localhost:3004'
+  // let endpoint = '/Cuentas/'
 
-  // let urlBase = 'https://masasapp.herokuapp.com/'
-  // let endpoint = 'productos/listar'
+  let urlBase = 'https://masasapp.herokuapp.com'
+  let endpoint = '/usuarios/listar'
 
   const cargarDatos = () => {
     Axios.get(urlBase + endpoint).then((res) => {
@@ -261,13 +261,13 @@ function AccountCatalog(props) {
             columnSpacing={{ xs: 0, md: '30px', lg: '180px', xl: '35px' }}
           >
             {datosProductos.map((datos, index) => {
-              const { id, nombre, apellido, usuario } = datos
+              const { _id, nombre, apellido, usuario } = datos
               return (
                 <Grid id={'casilla_' + index} item xs={12} md={6} lg={6} xl={4}>
                   <BoxAccountManag
                     key={'tarjeta_' + index}
-                    id={'tarjeta_' + id}
-                    producto={id}
+                    id={'tarjeta_' + _id}
+                    producto={_id}
                     title={nombre + ' ' + apellido}
                     paragraph={usuario}
                     sx={{ pointerEvents: 'auto' }}

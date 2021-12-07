@@ -34,13 +34,13 @@ const AccountLongForm = (props) => {
   })
 
   let [datosProductos, setDatosProductos] = React.useState('error')
-  let urlBase = 'http://localhost:3004'
-  let endpoint = '/Cuentas/'
-  let indexProducto = props.producto
+  // let urlBase = 'http://localhost:3004'
+  // let endpoint = '/Cuentas/'
+  // let indexProducto = props.producto
 
-  // CREAR
-  // let urlBase = 'https://masasapp.herokuapp.com/'
-  // let endpoint = 'crear'
+  let urlBase = 'https://masasapp.herokuapp.com'
+  let endpoint = '/usuarios/'
+  let indexProducto = props.producto
 
   // ACTUALIZAR
   // let urlBase = 'https://masasapp.herokuapp.com/'
@@ -48,8 +48,8 @@ const AccountLongForm = (props) => {
   // let indexProducto = id
 
   const enviarInformacion = async () => {
-    let endpoint = '/Cuentas/'
-    await Axios.post(urlBase + endpoint, datosFormulario)
+    let funcion = 'crear'
+    await Axios.post(urlBase + endpoint + funcion, datosFormulario)
   }
 
   //Variable que almacena los datos editados
@@ -57,15 +57,20 @@ const AccountLongForm = (props) => {
     React.useState('error')
 
   //Peticion para editar la informacion
+
   const editarInformacion = async () => {
-    let endpoint = '/Cuentas/'
-    await Axios.put(urlBase + endpoint + indexProducto, datosProductosEditados)
+    let funcion = 'actualizar/'
+    await Axios.put(
+      urlBase + endpoint + funcion + indexProducto,
+      datosProductosEditados
+    )
   }
 
   // ReactHook para llamar a todos los Productos.
   React.useEffect(() => {
     if (props.editar === true) {
-      Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+      let funcion = 'buscarporid/'
+      Axios.get(urlBase + endpoint + funcion + indexProducto).then((res) => {
         setDatosProductos(res.data)
       })
       console.log('modo edicion: Activado')
@@ -498,8 +503,8 @@ function DatosVendedor(props) {
   }
 
   let [datosCargar, setDatosCargar] = React.useState('error')
-  let urlBase = 'http://localhost:3004'
-  let endpoint = '/Cuentas/'
+  let urlBase = 'https://masasapp.herokuapp.com'
+  let endpoint = '/usuarios/'
   let indexProducto = props.producto
 
   // Constructor editar
@@ -513,7 +518,8 @@ function DatosVendedor(props) {
   // ReactHook para llamar a todos los Productos.
   React.useEffect(() => {
     if (props.edicion === true) {
-      Axios.get(urlBase + endpoint + indexProducto).then((res) => {
+      let funcion = 'buscarporid/'
+      Axios.get(urlBase + endpoint + funcion + indexProducto).then((res) => {
         setDatosCargar(res.data)
       })
     }

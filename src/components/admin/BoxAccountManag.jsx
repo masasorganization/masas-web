@@ -11,17 +11,14 @@ const BoxManagement = ({
   paragraph,
   editarProducto
 }) => {
-  let urlBase = 'http://localhost:3004'
-  let endpoint = '/Cuentas/'
+  let urlBase = 'https://masasapp.herokuapp.com'
+  let endpoint = '/usuarios/'
   let indexProducto = producto
-
-  // let urlBase = 'https://masasapp.herokuapp.com/'
-  // let endpoint = 'eliminar/'
-  // let indexProducto = id
 
   //Peticion para ELIMINAR la informacion
   const eliminarInformacion = async () => {
-    await Axios.delete(urlBase + endpoint + indexProducto).then(() =>
+    let funcion = 'eliminar/'
+    await Axios.delete(urlBase + endpoint + funcion + indexProducto).then(() =>
       recargar()
     )
   }
